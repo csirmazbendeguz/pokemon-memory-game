@@ -1,4 +1,4 @@
-A simple memory game I made as a school assignment with Java Swing. This is the NetBeans project.
+A simple memory game I made for a school assignment with Java Swing. This is the NetBeans project.
 
 Original graphics resources are in the "img/resources" folder.
 
@@ -9,4 +9,7 @@ I used GIMP 2 (at home) and Adobe Photoshop (at school) for image editing.
 
 I hope it will prove useful for someone.
 
-Csirmaz Bendegúz
+Note: altough I like this project and its source code, it doesn't neccessarily reflect my current programming skills and style.
+At the time of uploading, it is already several months(!) old.
+
+Csirmaz BendegÃºz
