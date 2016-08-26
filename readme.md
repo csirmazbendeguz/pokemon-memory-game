@@ -3,9 +3,9 @@ A pokemon themed memory game.
 
 I created it as an assignment for school.
 
-You can find the executable [here](../dist). Note that the images are not bundled with the JAR, they should be in the same folder.
+You can find the executable [here](/dist). Note that the images are not bundled with the JAR, they should be in the same folder.
 
-Original graphics resources can be found [here](../img/resources).
+Original graphics resources can be found [here](/img/resources).
 
 #### Used Technologies
   - NetBeans IDE
