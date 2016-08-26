@@ -5,7 +5,7 @@ I created it as an assignment for school.
 
 You can find the executable [here](/dist). Note that the images are not bundled with the JAR, they should be in the same folder.
 
-Original graphics resources can be found [here](/img/resources).
+Original graphics resources can be found [here](resources_folder).
 
 #### Used Technologies
   - NetBeans IDE
@@ -20,3 +20,6 @@ Original graphics resources can be found [here](/img/resources).
 ---
 
 ![pokemon_win](https://cloud.githubusercontent.com/assets/19559023/18007670/49b658d6-6ba5-11e6-9932-39f2f7fec9f5.png)
+
+[resources_folder]: https://github.com/csirmazbendeguz/Pokemon-Memory-Game/tree/master/img/resources
+[dist_folder]: https://github.com/csirmazbendeguz/Pokemon-Memory-Game/tree/master/dist
