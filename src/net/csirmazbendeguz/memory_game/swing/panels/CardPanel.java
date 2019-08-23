@@ -1,10 +1,11 @@
-package net.csirmazbendeguz.memory_game;
+package net.csirmazbendeguz.memory_game.swing.panels;
+
+import net.csirmazbendeguz.memory_game.ImageLoader;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JFrame;

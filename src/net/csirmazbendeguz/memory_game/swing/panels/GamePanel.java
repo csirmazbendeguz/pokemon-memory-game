@@ -1,8 +1,11 @@
-package net.csirmazbendeguz.memory_game;
+package net.csirmazbendeguz.memory_game.swing.panels;
+
+import net.csirmazbendeguz.memory_game.swing.GameFrame;
+import net.csirmazbendeguz.memory_game.ImageLoader;
+import net.csirmazbendeguz.memory_game.MemoryGame;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

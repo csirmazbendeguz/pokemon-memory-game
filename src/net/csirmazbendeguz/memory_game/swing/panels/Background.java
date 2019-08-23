@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game;
+package net.csirmazbendeguz.memory_game.swing.panels;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;

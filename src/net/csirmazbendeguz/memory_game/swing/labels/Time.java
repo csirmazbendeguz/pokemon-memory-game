@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game;
+package net.csirmazbendeguz.memory_game.swing.labels;
 
 import java.awt.Color;
 import java.awt.Font;

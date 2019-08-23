@@ -1,13 +1,16 @@
-package net.csirmazbendeguz.memory_game;
+package net.csirmazbendeguz.memory_game.swing.buttons;
+
+import net.csirmazbendeguz.memory_game.swing.panels.GamePanel;
+import net.csirmazbendeguz.memory_game.MemoryGame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class IncButton extends PokemonButton implements ActionListener {
-    
+
     private int size = MemoryGame.START_SIZE;
     private GamePanel gp;
-    
+
     public IncButton(GamePanel gp) {
         super("4x4 >>");
         this.gp = gp;
@@ -15,9 +18,8 @@ public class IncButton extends PokemonButton implements ActionListener {
         this.setBounds(50, 775, super.size.width, super.size.height);
         this.addActionListener(this);
     }
-    
+
     private void changeText() {
-//        this.setText(size+"x"+size+" >>");
         super.setString(size+"x"+size+" >>");
     }
 
@@ -28,5 +30,5 @@ public class IncButton extends PokemonButton implements ActionListener {
         gp.newGame(size);
         changeText();
     }
-    
+
 }

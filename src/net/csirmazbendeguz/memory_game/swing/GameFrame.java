@@ -1,4 +1,13 @@
-package net.csirmazbendeguz.memory_game;
+package net.csirmazbendeguz.memory_game.swing;
+
+import net.csirmazbendeguz.memory_game.ImageLoader;
+import net.csirmazbendeguz.memory_game.swing.labels.Time;
+import net.csirmazbendeguz.memory_game.swing.labels.Tries;
+import net.csirmazbendeguz.memory_game.swing.panels.Win;
+import net.csirmazbendeguz.memory_game.swing.buttons.IncButton;
+import net.csirmazbendeguz.memory_game.swing.buttons.RestartButton;
+import net.csirmazbendeguz.memory_game.swing.panels.Background;
+import net.csirmazbendeguz.memory_game.swing.panels.GamePanel;
 
 import java.awt.Container;
 import java.awt.KeyEventDispatcher;
@@ -14,9 +23,9 @@ public class GameFrame extends JFrame {
     private GamePanel gamePanel;
     private IncButton incButton;
     private RestartButton restartButton;
-    Time time;
-    Tries tries;
-    Win win;
+    public Time time;
+    public Tries tries;
+    public Win win;
 
     public GameFrame() {
         super();
