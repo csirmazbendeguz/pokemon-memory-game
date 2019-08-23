@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
-import net.csirmazbendeguz.memory_game.ImageLoader;
+import net.csirmazbendeguz.memory_game.services.ResourceLoader;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -25,7 +25,7 @@ public class CardPanel extends JPanel implements MouseListener {
     private static BufferedImage cardBack;
 
     static {
-        cardBack = ImageLoader.getInstance().loadBackogroundImage("CardBack.png");
+        cardBack = ResourceLoader.getInstance().loadBackogroundImage("CardBack.png");
     }
 
     private String imgName;
@@ -37,7 +37,7 @@ public class CardPanel extends JPanel implements MouseListener {
     public CardPanel(String imgName) {
         this.imgName = imgName;
 
-        cardFront = ImageLoader.getInstance().loadCardImage(imgName);
+        cardFront = ResourceLoader.getInstance().loadCardImage(imgName);
 
         this.setPreferredSize(size);
         this.setMinimumSize(size);

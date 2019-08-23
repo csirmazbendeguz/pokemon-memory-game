@@ -1,7 +1,8 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
+import net.csirmazbendeguz.memory_game.services.ResourceLoader;
+import net.csirmazbendeguz.memory_game.services.TimerService;
 import net.csirmazbendeguz.memory_game.swing.GameFrame;
-import net.csirmazbendeguz.memory_game.ImageLoader;
 import net.csirmazbendeguz.memory_game.MemoryGame;
 
 import java.awt.*;
@@ -23,7 +24,7 @@ public class GamePanel extends JPanel {
         this.setBackground(Color.yellow);
         this.setBounds(25, 100, 650, 650);
 
-        image = ImageLoader.getInstance().loadBackogroundImage("GamePanelBackground.png");
+        image = ResourceLoader.getInstance().loadBackogroundImage("GamePanelBackground.png");
         
         initGame();
     }
@@ -45,7 +46,7 @@ public class GamePanel extends JPanel {
         this.size = size;
         initGame();
         GameFrame f = (GameFrame) SwingUtilities.getWindowAncestor(this);
-        f.time.reset();
+        TimerService.getInstance().restartTimer();
         f.tries.reset();
         f.validate();
         f.repaint();
@@ -100,9 +101,9 @@ public class GamePanel extends JPanel {
     private void checkWin() {
         if(cardPanels.isEmpty()) {
             GameFrame f = (GameFrame) SwingUtilities.getWindowAncestor(this);
-            f.time.end();
-            System.out.println("WIN!"+" Size: "+size+"x"+size+", Time: "+f.time.getText()+", "+f.tries.getText());
-            f.win.show(size, f.time.getText(), f.tries.getText());
+            TimerService.getInstance().stopTimer();
+            System.out.println("WIN!"+" Size: "+size+"x"+size+", Time: "+f.timeLabel.getText()+", "+f.tries.getText());
+            f.win.show(size, f.timeLabel.getText(), f.tries.getText());
         }
     }
 
@@ -110,7 +111,7 @@ public class GamePanel extends JPanel {
         List<String> cardList;
 
         try {
-            cardList = ImageLoader.getInstance().getCardList();
+            cardList = ResourceLoader.getInstance().getCardList();
         } catch (Exception exception) {
             throw new RuntimeException("Failed to load card list.");
         }

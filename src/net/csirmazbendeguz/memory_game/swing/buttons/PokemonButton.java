@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.buttons;
 
-import net.csirmazbendeguz.memory_game.ImageLoader;
+import net.csirmazbendeguz.memory_game.services.ResourceLoader;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -22,10 +22,10 @@ public class PokemonButton extends JButton implements MouseListener {
         this.setOpaque(false);
         this.str = str;
 
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        normal = imageLoader.loadBackogroundImage("Button.png");
-        hover = imageLoader.loadBackogroundImage("ButtonHover.png");
-        click = imageLoader.loadBackogroundImage("ButtonClick.png");
+        ResourceLoader resourceLoader = ResourceLoader.getInstance();
+        normal = resourceLoader.loadBackogroundImage("Button.png");
+        hover = resourceLoader.loadBackogroundImage("ButtonHover.png");
+        click = resourceLoader.loadBackogroundImage("ButtonClick.png");
         image = normal;
 
         this.setBorderPainted(false);

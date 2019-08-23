@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game;
+package net.csirmazbendeguz.memory_game.services;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -12,23 +12,23 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Service to load images into memory.
+ * Service to load resources.
  */
-public class ImageLoader {
+public class ResourceLoader {
 
     /**
-     * The image loader.
+     * The resource loader.
      */
-    private static ImageLoader instance;
+    private static ResourceLoader instance;
 
     /**
-     * Get the image loader.
+     * Get the resource loader.
      *
-     * @return The image loader.
+     * @return The resource loader.
      */
-    public static ImageLoader getInstance() {
+    public static ResourceLoader getInstance() {
         if (instance == null) {
-            instance = new ImageLoader();
+            instance = new ResourceLoader();
         }
 
         return instance;

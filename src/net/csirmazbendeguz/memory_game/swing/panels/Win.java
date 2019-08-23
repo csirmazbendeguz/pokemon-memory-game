@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
-import net.csirmazbendeguz.memory_game.ImageLoader;
+import net.csirmazbendeguz.memory_game.services.ResourceLoader;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -11,11 +11,8 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class Win extends JPanel {
@@ -51,7 +48,7 @@ public class Win extends JPanel {
         this.setOpaque(false);
         this.setBounds(0, 0, 1100, 900);
 
-        img = ImageLoader.getInstance().loadBackogroundImage("Win.png");
+        img = ResourceLoader.getInstance().loadBackogroundImage("Win.png");
     }
     
     public void show(int size, String time, String tries) {
