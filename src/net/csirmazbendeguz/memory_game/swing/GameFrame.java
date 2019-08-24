@@ -1,8 +1,9 @@
 package net.csirmazbendeguz.memory_game.swing;
 
 import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
+import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
 import net.csirmazbendeguz.memory_game.swing.labels.TimeLabel;
-import net.csirmazbendeguz.memory_game.swing.labels.Tries;
+import net.csirmazbendeguz.memory_game.swing.labels.TriesLabel;
 import net.csirmazbendeguz.memory_game.swing.panels.BackgroundPanel;
 import net.csirmazbendeguz.memory_game.swing.panels.Win;
 import net.csirmazbendeguz.memory_game.swing.buttons.IncButton;
@@ -17,8 +18,6 @@ import javax.swing.*;
 
 public class GameFrame extends JFrame {
 
-    public TimeLabel timeLabel;
-    public Tries tries;
     public Win win;
 
     public GameFrame() {
@@ -55,15 +54,16 @@ public class GameFrame extends JFrame {
         RestartButton restartButton = new RestartButton(gamePanel);
         bg.add(restartButton);
 
-        timeLabel = new TimeLabel();
+        TimeLabel timeLabel = new TimeLabel();
         bg.add(timeLabel);
 
-        tries = new Tries();
-        bg.add(tries);
+        TriesLabel triesLabel = new TriesLabel();
+        bg.add(triesLabel);
 
         this.validate();
         this.setVisible(true);
         Stopwatch.getInstance().resetSeconds();
+        TriesCounter.getInstance().reset();
     }
 
 }

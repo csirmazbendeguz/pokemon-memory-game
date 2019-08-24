@@ -1,5 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
+import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
 import net.csirmazbendeguz.memory_game.utils.RandomCardGenerator;
 import net.csirmazbendeguz.memory_game.utils.ResourceLoader;
 import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
@@ -9,15 +10,13 @@ import net.csirmazbendeguz.memory_game.MemoryGame;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 import javax.swing.*;
 
 public class GamePanel extends JPanel {
 
     private String[][] board;
     private ArrayList<CardPanel> cardPanels = new ArrayList<CardPanel>();
-    private int size = MemoryGame.START_SIZE; // 2-4-6
+    private int size = MemoryGame.DEFAULT_BOARD_DIMENSION; // 2-4-6
     private BufferedImage image;
 
     public GamePanel() {
@@ -47,7 +46,7 @@ public class GamePanel extends JPanel {
         Stopwatch stopwatch = Stopwatch.getInstance();
         stopwatch.stopTimer();
         stopwatch.resetSeconds();
-        f.tries.reset();
+        TriesCounter.getInstance().reset();
         f.validate();
         f.repaint();
     }
@@ -71,7 +70,7 @@ public class GamePanel extends JPanel {
             }
         }
     }
-    
+
     public void checkPairs() {
         ArrayList<Integer> tempA = new ArrayList<Integer>();
         for(int i = 0; i < cardPanels.size(); i++) {
@@ -82,7 +81,7 @@ public class GamePanel extends JPanel {
         }
         if(tempA.size() == 2) {
             GameFrame f = (GameFrame) SwingUtilities.getWindowAncestor(this);
-            f.tries.add();
+            TriesCounter.getInstance().increase();
             CardPanel imgp0 = cardPanels.get(tempA.get(0));
             CardPanel imgp1 = cardPanels.get(tempA.get(1));
             if(imgp0.getImgName().equals(imgp1.getImgName())) {
@@ -97,31 +96,23 @@ public class GamePanel extends JPanel {
             }
         }
     }
-    
+
     private void checkWin() {
         if(cardPanels.isEmpty()) {
             GameFrame f = (GameFrame) SwingUtilities.getWindowAncestor(this);
-            Stopwatch.getInstance().stopTimer();
-            System.out.println("WIN!"+" Size: "+size+"x"+size+", Time: "+f.timeLabel.getText()+", "+f.tries.getText());
-            f.win.show(size, f.timeLabel.getText(), f.tries.getText());
+            Stopwatch stopwatch = Stopwatch.getInstance();
+            stopwatch.stopTimer();
+            f.win.show(
+                size,
+                "Time: " + stopwatch.getSeconds(),
+                "Tries: " + TriesCounter.getInstance().getTries()
+            );
         }
     }
-    
-    // visszaadja hanyszor tartalmaz egy lista egy objektumot
-    private int elementsContained(ArrayList array, Object obj) {
-        int c = 0;
-        for(int i = 0; i < array.size(); i++) {
-            if(array.get(i) == obj) {
-                c++;
-            }
-        }
-        return c;
-    }
-    
+
     @Override
     public void paintComponent(Graphics g) {
         g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this);
     }
-    
-    
+
 }

@@ -43,6 +43,10 @@ public class Stopwatch extends Observable {
         return timer != null;
     }
 
+    public long getSeconds() {
+        return seconds;
+    }
+
     /**
      * Reset seconds to zero.
      */

@@ -7,7 +7,7 @@ public class MemoryGame {
     /**
      * Start the game with 4x4 cards.
      */
-    public static final int START_SIZE = 4;
+    public static final int DEFAULT_BOARD_DIMENSION = 4;
 
     public static void main(String[] args) {
         new GameFrame();

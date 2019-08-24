@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class IncButton extends PokemonButton implements ActionListener {
 
-    private int size = MemoryGame.START_SIZE;
+    private int size = MemoryGame.DEFAULT_BOARD_DIMENSION;
     private GamePanel gp;
 
     public IncButton(GamePanel gp) {
