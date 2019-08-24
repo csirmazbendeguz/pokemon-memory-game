@@ -1,5 +1,9 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
+import net.csirmazbendeguz.memory_game.game_state.Board;
+import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
+import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
+import net.csirmazbendeguz.memory_game.game_state.GameState;
 import net.csirmazbendeguz.memory_game.utils.ResourceLoader;
 
 import java.awt.Color;
@@ -11,19 +15,20 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.swing.JPanel;
+import javax.swing.*;
 
-public class Win extends JPanel {
-    
+public class Win extends JPanel implements Observer {
+
     private boolean isVisible = false;
     private int size;
     private String time, tries;
     private BufferedImage img;
     private Component gp;
-    
-    
+
     public Win(Component glassPane) {
         gp = glassPane;
         gp.setBounds(0, 0, 1100, 900);
@@ -49,6 +54,8 @@ public class Win extends JPanel {
         this.setBounds(0, 0, 1100, 900);
 
         img = ResourceLoader.getInstance().loadBackogroundImage("Win.png");
+
+        GameState.getInstance().addObserver(this);
     }
     
     public void show(int size, String time, String tries) {
@@ -93,10 +100,20 @@ public class Win extends JPanel {
             g2d.setFont(new Font("Serif", Font.BOLD, 45));
             g2d.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), null);
             
-            drawStrToWinCenter(g2d, "Size: "+size+"x"+size, 400);
-            drawStrToWinCenter(g2d, "Time: "+time, 500);
-            drawStrToWinCenter(g2d, tries, 600);
+            drawStrToWinCenter(g2d, String.format("Size: %1$sx%1$s", size), 400);
+            drawStrToWinCenter(g2d, String.format("Time: %s seconds", time), 500);
+            drawStrToWinCenter(g2d, String.format("Tries: %s", tries), 600);
         }
     }
-    
+
+    @Override
+    public void update(Observable observable, Object o) {
+        Stopwatch stopwatch = Stopwatch.getInstance();
+        stopwatch.stopTimer();
+        show(
+            Board.getInstance().getDimension(),
+            String.valueOf(stopwatch.getSeconds()),
+            String.valueOf(TriesCounter.getInstance().getTries())
+        );
+    }
 }

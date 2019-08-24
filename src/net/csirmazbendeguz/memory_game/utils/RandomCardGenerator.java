@@ -1,17 +1,18 @@
 package net.csirmazbendeguz.memory_game.utils;
 
+import net.csirmazbendeguz.memory_game.game_state.Card;
+
 import java.util.*;
 
 public class RandomCardGenerator {
 
     /**
-     * Generate a random board of card image names.
+     * Generate a random board of cards.
      *
      * @param dimension The board dimension (e.g. 4 for a 4x4 board).
      * @return The generated board.
      */
-    public String[][] generateBoard(int dimension) {
-        String[][] board = new String[dimension][dimension];
+    public Card[][] generateBoard(int dimension) {
         Set<String> cardImageNames = getRandomCardImageNames(dimension * dimension / 2);
 
         List<String> cards = new ArrayList<>();
@@ -19,9 +20,11 @@ public class RandomCardGenerator {
         cards.addAll(cardImageNames);
         Collections.shuffle(cards);
 
+        Card[][] board = new Card[dimension][dimension];
+
         for (int i = 0; i < dimension; ++i) {
             for (int j = 0; j < dimension; ++j) {
-                board[i][j] = cards.get(i * dimension + j);
+                board[i][j] = new Card(cards.get(i * dimension + j));
             }
         }
 
