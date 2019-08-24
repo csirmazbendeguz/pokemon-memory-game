@@ -1,41 +1,56 @@
-package net.csirmazbendeguz.memory_game.services;
+package net.csirmazbendeguz.memory_game.game_state;
 
 import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * Service to handle the current timer.
+ * Service to manage the game timer.
  */
-public class TimerService extends Observable {
+public class Stopwatch extends Observable {
 
     /**
-     * The timer service.
+     * The stopwatch.
      */
-    private static TimerService instance;
+    private static Stopwatch instance;
 
     /**
-     * Get the timer service.
+     * Get the stopwatch.
      *
-     * @return The timer service.
+     * @return The stopwatch.
      */
-    public static TimerService getInstance() {
+    public static Stopwatch getInstance() {
         if (instance == null) {
-            instance = new TimerService();
+            instance = new Stopwatch();
         }
 
         return instance;
     }
 
+    private Stopwatch() {}
+
     /**
      * The timer.
      */
-    private Timer timer = null;
+    private Timer timer;
 
     /**
      * Seconds passed since the start of the timer.
      */
-    private long seconds = 0;
+    private long seconds;
+
+    private boolean isTimerRunning() {
+        return timer != null;
+    }
+
+    /**
+     * Reset seconds to zero.
+     */
+    public void resetSeconds() {
+        seconds = 0;
+        setChanged();
+        notifyObservers(seconds);
+    }
 
     /**
      * Start the timer.
@@ -45,9 +60,7 @@ public class TimerService extends Observable {
             return;
         }
 
-        seconds = 0;
-        setChanged();
-        notifyObservers(seconds);
+        resetSeconds();
 
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -70,18 +83,6 @@ public class TimerService extends Observable {
 
         timer.cancel();
         timer = null;
-    }
-
-    public boolean isTimerRunning() {
-        return timer != null;
-    }
-
-    /**
-     * Restart the timer.
-     */
-    public void restartTimer() {
-        stopTimer();
-        startTimer();
     }
 
 }

@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
-import net.csirmazbendeguz.memory_game.services.ResourceLoader;
+import net.csirmazbendeguz.memory_game.utils.ResourceLoader;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -62,12 +62,6 @@ public class Win extends JPanel {
             public void run() {
                 isVisible = true;
                 refresh();
-//                timer.schedule(new TimerTask() {
-//                    @Override
-//                    public void run() {
-//                        hideWin();
-//                    }
-//                }, 3000);
             }
         }, 1000);
     }

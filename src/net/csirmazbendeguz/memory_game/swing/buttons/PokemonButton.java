@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.buttons;
 
-import net.csirmazbendeguz.memory_game.services.ResourceLoader;
+import net.csirmazbendeguz.memory_game.utils.ResourceLoader;
 
 import java.awt.Dimension;
 import java.awt.Graphics;

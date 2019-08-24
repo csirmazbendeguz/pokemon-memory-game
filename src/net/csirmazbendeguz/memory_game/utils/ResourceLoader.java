@@ -1,10 +1,11 @@
-package net.csirmazbendeguz.memory_game.services;
+package net.csirmazbendeguz.memory_game.utils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.*;
 import java.util.Collections;
 import java.util.List;
@@ -34,6 +35,8 @@ public class ResourceLoader {
         return instance;
     }
 
+    private ResourceLoader() {}
+
     /**
      * Load a card image.
      *
@@ -44,7 +47,7 @@ public class ResourceLoader {
         try {
             return loadImage("img/cards/" + card);
         } catch (IOException exception) {
-            throw new RuntimeException(String.format("Card image '%s' not found.", card));
+            throw new RuntimeException(String.format("Card image '%s' not found.", card), exception);
         }
     }
 
@@ -58,7 +61,7 @@ public class ResourceLoader {
         try {
             return loadImage("img/bg/" + background);
         } catch (IOException exception) {
-            throw new RuntimeException(String.format("Background image '%s' not found.", background));
+            throw new RuntimeException(String.format("Background image '%s' not found.", background), exception);
         }
     }
 
@@ -78,14 +81,28 @@ public class ResourceLoader {
     /**
      * Get the card image names.
      *
-     * @return The card list.
+     * @return The card image names.
      */
-    public List<String> getCardList() throws Exception {
-        URI uri = getClass().getClassLoader().getResource("img/cards").toURI();
+    public List<String> getCardImageNames() {
+        URI uri;
+
+        try {
+            uri = getClass().getClassLoader().getResource("img/cards").toURI();
+        } catch (URISyntaxException exception) {
+            throw new RuntimeException("Failed to load the card image names.", exception);
+        }
+
         Path path;
 
         if (uri.getScheme().equals("jar")) {
-            FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
+            FileSystem fileSystem;
+
+            try {
+                fileSystem = FileSystems.newFileSystem(uri, Collections.emptyMap());
+            } catch (IOException exception) {
+                throw new RuntimeException("Failed to load the card image names.", exception);
+            }
+
             path = fileSystem.getPath("img/cards");
         } else {
             path = Paths.get(uri);
@@ -96,6 +113,8 @@ public class ResourceLoader {
                 .map(Path::getFileName)
                 .map(Path::toString)
                 .collect(Collectors.toList());
+        } catch (IOException exception) {
+            throw new RuntimeException("Failed to load the card image names.", exception);
         }
     }
 

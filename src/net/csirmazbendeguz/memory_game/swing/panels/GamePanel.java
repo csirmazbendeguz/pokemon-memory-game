@@ -1,7 +1,8 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
-import net.csirmazbendeguz.memory_game.services.ResourceLoader;
-import net.csirmazbendeguz.memory_game.services.TimerService;
+import net.csirmazbendeguz.memory_game.utils.RandomCardGenerator;
+import net.csirmazbendeguz.memory_game.utils.ResourceLoader;
+import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
 import net.csirmazbendeguz.memory_game.swing.GameFrame;
 import net.csirmazbendeguz.memory_game.MemoryGame;
 
@@ -13,9 +14,8 @@ import java.util.Random;
 import javax.swing.*;
 
 public class GamePanel extends JPanel {
-    
-    private ArrayList<String> cardArrayList = new ArrayList<String>(); // jatekban levo kartyak
-    private ArrayList<String> cards = new ArrayList<String>(); // jatekban levo kartyak (2x) veletlenszeruen elrendezve
+
+    private String[][] board;
     private ArrayList<CardPanel> cardPanels = new ArrayList<CardPanel>();
     private int size = MemoryGame.START_SIZE; // 2-4-6
     private BufferedImage image;
@@ -36,9 +36,7 @@ public class GamePanel extends JPanel {
     private void initGame() {
         this.removeAll();
         cardPanels.clear();
-        cardArrayList.clear();
-        cards.clear();
-        fillCardArrayList(size);
+        board = new RandomCardGenerator().generateBoard(size);
         initPanel(size);
     }
     
@@ -46,7 +44,9 @@ public class GamePanel extends JPanel {
         this.size = size;
         initGame();
         GameFrame f = (GameFrame) SwingUtilities.getWindowAncestor(this);
-        TimerService.getInstance().restartTimer();
+        Stopwatch stopwatch = Stopwatch.getInstance();
+        stopwatch.stopTimer();
+        stopwatch.resetSeconds();
         f.tries.reset();
         f.validate();
         f.repaint();
@@ -65,7 +65,7 @@ public class GamePanel extends JPanel {
                 gbc.fill = GridBagConstraints.CENTER;
                 gbc.gridx = x;
                 gbc.gridy = y;
-                CardPanel ip = getRandomCard();
+                CardPanel ip = new CardPanel(board[x][y]);
                 cardPanels.add(ip);
                 this.add(ip, gbc);
             }
@@ -101,40 +101,10 @@ public class GamePanel extends JPanel {
     private void checkWin() {
         if(cardPanels.isEmpty()) {
             GameFrame f = (GameFrame) SwingUtilities.getWindowAncestor(this);
-            TimerService.getInstance().stopTimer();
+            Stopwatch.getInstance().stopTimer();
             System.out.println("WIN!"+" Size: "+size+"x"+size+", Time: "+f.timeLabel.getText()+", "+f.tries.getText());
             f.win.show(size, f.timeLabel.getText(), f.tries.getText());
         }
-    }
-
-    private void fillCardArrayList(int size) {
-        List<String> cardList;
-
-        try {
-            cardList = ResourceLoader.getInstance().getCardList();
-        } catch (Exception exception) {
-            throw new RuntimeException("Failed to load card list.");
-        }
-
-        Random rand = new Random();
-        do {
-            String card = cardList.get(rand.nextInt(cardList.size()));
-            if(!cardArrayList.contains(card)) {
-                cardArrayList.add(card);
-            }
-        } while(cardArrayList.size() < size*size/2);
-    }
-    
-    
-    private CardPanel getRandomCard() {
-        Random rand = new Random();
-        do {
-            String card = cardArrayList.get(rand.nextInt(cardArrayList.size()));
-            if(elementsContained(cards, card) < 2) {
-                cards.add(card);
-                return new CardPanel(card);
-            }
-        } while(true);
     }
     
     // visszaadja hanyszor tartalmaz egy lista egy objektumot

@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.labels;
 
-import net.csirmazbendeguz.memory_game.services.TimerService;
+import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -14,7 +14,7 @@ public class TimeLabel extends JLabel implements Observer {
         this.setForeground(Color.BLACK);
         this.setFont(new Font("Serif", Font.PLAIN, 25));
         this.setBounds(940, 18, 150, 50);
-        TimerService.getInstance().addObserver(this);
+        Stopwatch.getInstance().addObserver(this);
     }
 
     @Override

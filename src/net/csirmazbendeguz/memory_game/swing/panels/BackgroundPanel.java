@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
-import net.csirmazbendeguz.memory_game.services.ResourceLoader;
+import net.csirmazbendeguz.memory_game.utils.ResourceLoader;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

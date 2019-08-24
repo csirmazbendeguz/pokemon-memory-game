@@ -1,6 +1,7 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
-import net.csirmazbendeguz.memory_game.services.ResourceLoader;
+import net.csirmazbendeguz.memory_game.utils.ResourceLoader;
+import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -100,9 +101,10 @@ public class CardPanel extends JPanel implements MouseListener {
     @Override
     public void mousePressed(MouseEvent me) {
         if(isVisible && !showFront && !inanim) {
+            Stopwatch.getInstance().startTimer();
             showFront = !showFront;
             refresh();
-            
+
             GamePanel gp = (GamePanel) getParent();
             gp.checkPairs();
         }

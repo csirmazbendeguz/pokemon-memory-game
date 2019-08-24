@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing;
 
-import net.csirmazbendeguz.memory_game.services.TimerService;
+import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
 import net.csirmazbendeguz.memory_game.swing.labels.TimeLabel;
 import net.csirmazbendeguz.memory_game.swing.labels.Tries;
 import net.csirmazbendeguz.memory_game.swing.panels.BackgroundPanel;
@@ -63,7 +63,7 @@ public class GameFrame extends JFrame {
 
         this.validate();
         this.setVisible(true);
-        TimerService.getInstance().startTimer();
+        Stopwatch.getInstance().resetSeconds();
     }
 
 }
