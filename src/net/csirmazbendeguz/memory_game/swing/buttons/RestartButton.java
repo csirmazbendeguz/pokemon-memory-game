@@ -12,7 +12,7 @@ public class RestartButton extends PokemonButton implements ActionListener {
     public RestartButton(GamePanel gp) {
         super("Restart");
         this.gp = gp;
-        this.setBounds(250, 775, super.size.width, super.size.height);
+        this.setBounds(250, 775, WIDTH, HEIGHT);
         this.addActionListener(this);
     }
 

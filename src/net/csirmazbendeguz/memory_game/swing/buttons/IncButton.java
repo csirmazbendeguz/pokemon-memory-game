@@ -1,34 +1,32 @@
 package net.csirmazbendeguz.memory_game.swing.buttons;
 
+import net.csirmazbendeguz.memory_game.game_state.Board;
 import net.csirmazbendeguz.memory_game.swing.panels.GamePanel;
-import net.csirmazbendeguz.memory_game.MemoryGame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class IncButton extends PokemonButton implements ActionListener {
 
-    private int size = MemoryGame.DEFAULT_BOARD_DIMENSION;
     private GamePanel gp;
+    private static final String LABEL = "%1$sx%1$x >>";
 
     public IncButton(GamePanel gp) {
-        super("4x4 >>");
+        super(String.format(LABEL, Board.getInstance().getDimension()));
         this.gp = gp;
-        changeText();
-        this.setBounds(50, 775, super.size.width, super.size.height);
+        this.setBounds(50, 775, WIDTH, HEIGHT);
         this.addActionListener(this);
-    }
-
-    private void changeText() {
-        super.setString(size+"x"+size+" >>");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        size += 2;
-        if(size==8) size = 2;
-        gp.newGame(size);
-        changeText();
+        int dimension = Board.getInstance().getDimension();
+        dimension += 2;
+        if (dimension == 8) {
+            dimension = 2;
+        }
+        gp.newGame(dimension);
+        setText(String.format(LABEL, dimension));
     }
 
 }

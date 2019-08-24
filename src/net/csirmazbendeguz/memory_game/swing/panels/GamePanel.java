@@ -41,11 +41,13 @@ public class GamePanel extends JPanel {
     public void newGame(int size) {
         this.size = size;
         initGame();
-        GameFrame f = (GameFrame) SwingUtilities.getWindowAncestor(this);
+
         Stopwatch stopwatch = Stopwatch.getInstance();
         stopwatch.stopTimer();
         stopwatch.resetSeconds();
         TriesCounter.getInstance().reset();
+
+        GameFrame f = (GameFrame) SwingUtilities.getWindowAncestor(this);
         f.validate();
         f.repaint();
     }
