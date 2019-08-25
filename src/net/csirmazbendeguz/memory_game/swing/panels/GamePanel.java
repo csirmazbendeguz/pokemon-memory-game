@@ -14,27 +14,18 @@ import javax.swing.*;
 
 public class GamePanel extends JPanel {
 
-    private CardPanel[][] cardPanels;
     private int size = MemoryGame.DEFAULT_BOARD_DIMENSION;
     private BufferedImage image;
 
     public GamePanel() {
-        this.setBackground(Color.yellow);
         this.setBounds(25, 100, 650, 650);
-
         image = ResourceLoader.getInstance().loadBackogroundImage("GamePanelBackground.png");
-
         initGame();
-    }
-
-    public int get_size() {
-        return size;
     }
 
     private void initGame() {
         this.removeAll();
         Board.getInstance().newGame(size);
-        cardPanels = new CardPanel[size][size];
         initPanel(size);
     }
 
@@ -63,9 +54,7 @@ public class GamePanel extends JPanel {
                 constraints.fill = GridBagConstraints.CENTER;
                 constraints.gridx = row;
                 constraints.gridy = column;
-
                 CardPanel cardPanel = new CardPanel(board[row][column]);
-                cardPanels[row][column] = cardPanel;
                 this.add(cardPanel, constraints);
             }
         }

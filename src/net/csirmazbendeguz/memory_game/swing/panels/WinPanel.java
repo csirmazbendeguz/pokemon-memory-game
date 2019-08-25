@@ -21,7 +21,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.*;
 
-public class Win extends JPanel implements Observer {
+public class WinPanel extends JPanel implements Observer {
 
     private boolean isVisible = false;
     private int size;
@@ -29,7 +29,7 @@ public class Win extends JPanel implements Observer {
     private BufferedImage img;
     private Component gp;
 
-    public Win(Component glassPane) {
+    public WinPanel(Component glassPane) {
         gp = glassPane;
         gp.setBounds(0, 0, 1100, 900);
         gp.addMouseListener(new MouseListener() {

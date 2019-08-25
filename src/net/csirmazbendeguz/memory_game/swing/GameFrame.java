@@ -5,7 +5,7 @@ import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
 import net.csirmazbendeguz.memory_game.swing.labels.TimeLabel;
 import net.csirmazbendeguz.memory_game.swing.labels.TriesLabel;
 import net.csirmazbendeguz.memory_game.swing.panels.BackgroundPanel;
-import net.csirmazbendeguz.memory_game.swing.panels.Win;
+import net.csirmazbendeguz.memory_game.swing.panels.WinPanel;
 import net.csirmazbendeguz.memory_game.swing.buttons.IncButton;
 import net.csirmazbendeguz.memory_game.swing.buttons.RestartButton;
 import net.csirmazbendeguz.memory_game.swing.panels.GamePanel;
@@ -17,8 +17,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 public class GameFrame extends JFrame {
-
-    public Win win;
 
     public GameFrame() {
         super();
@@ -42,8 +40,8 @@ public class GameFrame extends JFrame {
         bg.setLayout(null);
         container.add(bg);
 
-        win = new Win(this.getGlassPane());
-        bg.add(win);
+        WinPanel winPanel = new WinPanel(this.getGlassPane());
+        bg.add(winPanel);
 
         GamePanel gamePanel = new GamePanel();
         bg.add(gamePanel);

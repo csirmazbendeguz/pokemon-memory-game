@@ -10,12 +10,12 @@ import java.util.TimerTask;
 public class Card extends Observable {
 
     /**
-     * The card back image (same for every card).
+     * The card back image.
      */
-    private static BufferedImage cardBack;
+    private static final BufferedImage CARD_BACK;
 
     static {
-        cardBack = ResourceLoader.getInstance().loadBackogroundImage("CardBack.png");
+        CARD_BACK = ResourceLoader.getInstance().loadBackogroundImage("CardBack.png");
     }
 
     /**
@@ -49,7 +49,7 @@ public class Card extends Observable {
     }
 
     public BufferedImage getImage() {
-        return isFaceUp() ? cardFront : cardBack;
+        return isFaceUp() ? cardFront : CARD_BACK;
     }
 
     public boolean isFaceUp() {
