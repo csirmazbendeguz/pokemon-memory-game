@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.buttons;
 
-import net.csirmazbendeguz.memory_game.game_state.Board;
+import net.csirmazbendeguz.memory_game.MemoryGame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +15,7 @@ public class RestartButton extends PokemonButton implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Board.getInstance().restartGame();
+        MemoryGame.gameState.restartGame();
     }
 
 }

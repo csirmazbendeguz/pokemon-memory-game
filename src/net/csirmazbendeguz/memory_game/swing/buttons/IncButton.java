@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.buttons;
 
-import net.csirmazbendeguz.memory_game.game_state.Board;
+import net.csirmazbendeguz.memory_game.MemoryGame;
 import net.csirmazbendeguz.memory_game.game_state.event.listeners.NewGameListener;
 import net.csirmazbendeguz.memory_game.game_state.event.objects.NewGameEvent;
 
@@ -19,12 +19,12 @@ public class IncButton extends PokemonButton implements ActionListener, NewGameL
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int dimension = Board.getInstance().getDimension();
+        int dimension = MemoryGame.gameState.getBoard().getDimension();
         dimension += 2;
         if (dimension == 8) {
             dimension = 2;
         }
-        Board.getInstance().newGame(dimension);
+        MemoryGame.gameState.newGame(dimension);
     }
 
     @Override

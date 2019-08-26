@@ -1,5 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
+import net.csirmazbendeguz.memory_game.MemoryGame;
 import net.csirmazbendeguz.memory_game.game_state.Board;
 import net.csirmazbendeguz.memory_game.game_state.Card;
 import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
@@ -44,7 +45,7 @@ public class CardPanel extends JPanel implements MouseListener, Observer {
     public void mousePressed(MouseEvent me) {
         if (card.isVisible() && !card.isFaceUp() && !card.isInAnimation()) {
             Stopwatch.getInstance().startTimer();
-            Board board = Board.getInstance();
+            Board board = MemoryGame.gameState.getBoard();
             board.flipUp(card);
             board.checkPairs();
         }

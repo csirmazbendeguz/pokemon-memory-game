@@ -1,9 +1,7 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
-import net.csirmazbendeguz.memory_game.game_state.Board;
-import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
-import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
-import net.csirmazbendeguz.memory_game.game_state.GameState;
+import net.csirmazbendeguz.memory_game.game_state.event.listeners.WinListener;
+import net.csirmazbendeguz.memory_game.game_state.event.objects.WinEvent;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
 import java.awt.Color;
@@ -15,13 +13,11 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.*;
 
-public class WinPanel extends JPanel implements Observer {
+public class WinPanel extends JPanel implements WinListener {
 
     private boolean isVisible = false;
     private int size;
@@ -54,8 +50,6 @@ public class WinPanel extends JPanel implements Observer {
         this.setBounds(0, 0, 1100, 900);
 
         img = ResourceLoader.getInstance().loadBackogroundImage("Win.png");
-
-        GameState.getInstance().addObserver(this);
     }
     
     public void show(int size, String time, String tries) {
@@ -107,13 +101,12 @@ public class WinPanel extends JPanel implements Observer {
     }
 
     @Override
-    public void update(Observable observable, Object o) {
-        Stopwatch stopwatch = Stopwatch.getInstance();
-        stopwatch.stopTimer();
+    public void gameWon(WinEvent event) {
         show(
-            Board.getInstance().getDimension(),
-            String.valueOf(stopwatch.getSeconds()),
-            String.valueOf(TriesCounter.getInstance().getTries())
+            event.getDimension(),
+            String.valueOf(event.getSeconds()),
+            String.valueOf(event.getTries())
         );
     }
+
 }
