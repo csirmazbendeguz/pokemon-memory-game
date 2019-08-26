@@ -6,16 +6,18 @@ import net.csirmazbendeguz.memory_game.game_state.event.listeners.NewGameListene
 import net.csirmazbendeguz.memory_game.game_state.event.objects.NewGameEvent;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 import net.csirmazbendeguz.memory_game.swing.GameFrame;
-import net.csirmazbendeguz.memory_game.MemoryGame;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 
+/**
+ * Container for the memory game cards.
+ */
 public class GamePanel extends JPanel implements NewGameListener {
 
     /**
-     * The background image.
+     * The container's background image.
      */
     private static final BufferedImage BACKGROUND;
 
@@ -23,20 +25,19 @@ public class GamePanel extends JPanel implements NewGameListener {
         BACKGROUND = ResourceLoader.getInstance().loadBackogroundImage("GamePanelBackground.png");
     }
 
+    /**
+     * Construct a container for the memory game cards.
+     */
     public GamePanel() {
         this.setBounds(25, 100, 650, 650);
     }
 
+    /**
+     * Initialize the memory game cards.
+     */
     @Override
     public void newGameStarted(NewGameEvent event) {
-        addCardPanels();
-    }
-
-    /**
-     * Create the card panels based on the board.
-     */
-    private void addCardPanels() {
-        Board board = Board.getInstance();
+        Board board = event.getBoard();
         Card[][] cards = board.getBoard();
         int dimension = board.getDimension();
         this.removeAll();
@@ -55,12 +56,13 @@ public class GamePanel extends JPanel implements NewGameListener {
         }
 
         GameFrame gameFrame = (GameFrame) SwingUtilities.getWindowAncestor(this);
-        if (gameFrame != null) {
-            gameFrame.validate();
-            gameFrame.repaint();
-        }
+        gameFrame.validate();
+        gameFrame.repaint();
     }
 
+    /**
+     * Draw the container's background image.
+     */
     @Override
     public void paintComponent(Graphics g) {
         g.drawImage(BACKGROUND, 0, 0, this.getWidth(), this.getHeight(), this);
