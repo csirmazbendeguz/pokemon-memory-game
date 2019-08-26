@@ -2,6 +2,7 @@ package net.csirmazbendeguz.memory_game.swing;
 
 import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
 import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
+import net.csirmazbendeguz.memory_game.game_state.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.swing.labels.TimeLabel;
 import net.csirmazbendeguz.memory_game.swing.labels.TriesLabel;
 import net.csirmazbendeguz.memory_game.swing.panels.BackgroundPanel;
@@ -18,8 +19,11 @@ import javax.swing.*;
 
 public class GameFrame extends JFrame {
 
+    public static EventDispatcher eventDispatcher;
+
     public GameFrame() {
         super();
+        eventDispatcher = new EventDispatcher(this);
 
         this.setSize(1100, 900);
         this.setLocationRelativeTo(null);
@@ -46,10 +50,10 @@ public class GameFrame extends JFrame {
         GamePanel gamePanel = new GamePanel();
         bg.add(gamePanel);
 
-        IncButton incButton = new IncButton(gamePanel);
+        IncButton incButton = new IncButton();
         bg.add(incButton);
 
-        RestartButton restartButton = new RestartButton(gamePanel);
+        RestartButton restartButton = new RestartButton();
         bg.add(restartButton);
 
         TimeLabel timeLabel = new TimeLabel();

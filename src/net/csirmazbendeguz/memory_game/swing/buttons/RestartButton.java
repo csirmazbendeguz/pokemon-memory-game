@@ -1,25 +1,21 @@
 package net.csirmazbendeguz.memory_game.swing.buttons;
 
 import net.csirmazbendeguz.memory_game.game_state.Board;
-import net.csirmazbendeguz.memory_game.swing.panels.GamePanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RestartButton extends PokemonButton implements ActionListener {
 
-    private GamePanel gp;
-
-    public RestartButton(GamePanel gp) {
+    public RestartButton() {
         super("Restart");
-        this.gp = gp;
         this.setBounds(250, 775, WIDTH, HEIGHT);
         this.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        gp.newGame(Board.getInstance().getDimension());
+        Board.getInstance().restartGame();
     }
 
 }

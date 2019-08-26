@@ -1,6 +1,8 @@
 package net.csirmazbendeguz.memory_game.game_state;
 
-import net.csirmazbendeguz.memory_game.utils.RandomCardGenerator;
+import net.csirmazbendeguz.memory_game.game_state.event.objects.NewGameEvent;
+import net.csirmazbendeguz.memory_game.swing.GameFrame;
+import net.csirmazbendeguz.memory_game.util.RandomCardGenerator;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -25,10 +27,21 @@ public class Board {
 
     private Queue<Card> faceUpCards;
 
+    public void restartGame() {
+        newGame(dimension);
+    }
+
     public void newGame(int dimension) {
         this.dimension = dimension;
         board = new RandomCardGenerator().generateBoard(dimension);
         faceUpCards = new ArrayDeque<>();
+
+        Stopwatch stopwatch = Stopwatch.getInstance();
+        stopwatch.stopTimer();
+        stopwatch.resetSeconds();
+        TriesCounter.getInstance().reset();
+
+        GameFrame.eventDispatcher.dispatch(new NewGameEvent(this, this));
     }
 
     public int getDimension() {

@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.game_state;
 
-import net.csirmazbendeguz.memory_game.utils.ResourceLoader;
+import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
 import java.awt.image.BufferedImage;
 import java.util.Observable;

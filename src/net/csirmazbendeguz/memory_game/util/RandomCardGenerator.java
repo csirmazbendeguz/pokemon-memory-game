@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.utils;
+package net.csirmazbendeguz.memory_game.util;
 
 import net.csirmazbendeguz.memory_game.game_state.Card;
 

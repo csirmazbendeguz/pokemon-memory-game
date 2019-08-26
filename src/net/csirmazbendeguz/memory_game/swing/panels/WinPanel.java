@@ -4,7 +4,7 @@ import net.csirmazbendeguz.memory_game.game_state.Board;
 import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
 import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
 import net.csirmazbendeguz.memory_game.game_state.GameState;
-import net.csirmazbendeguz.memory_game.utils.ResourceLoader;
+import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
 import java.awt.Color;
 import java.awt.Component;
