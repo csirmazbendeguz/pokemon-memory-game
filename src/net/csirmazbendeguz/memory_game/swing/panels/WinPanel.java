@@ -52,21 +52,6 @@ public class WinPanel extends JPanel implements WinListener {
         img = ResourceLoader.getInstance().loadBackogroundImage("Win.png");
     }
     
-    public void show(int size, String time, String tries) {
-        gp.setVisible(true);
-        this.size = size;
-        this.time = time;
-        this.tries = tries;
-        final Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                isVisible = true;
-                refresh();
-            }
-        }, 1000);
-    }
-    
     private void hideWin() {
         if(isVisible) {
             isVisible = false;
@@ -100,13 +85,23 @@ public class WinPanel extends JPanel implements WinListener {
         }
     }
 
+    /**
+     * Show the win screen.
+     */
     @Override
     public void gameWon(WinEvent event) {
-        show(
-            event.getDimension(),
-            String.valueOf(event.getSeconds()),
-            String.valueOf(event.getTries())
-        );
+        gp.setVisible(true);
+        this.size = event.getDimension();
+        this.time = String.valueOf(event.getSeconds());
+        this.tries = String.valueOf(event.getTries());
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                isVisible = true;
+                refresh();
+            }
+        }, 1000);
     }
 
 }

@@ -7,16 +7,28 @@ import net.csirmazbendeguz.memory_game.game_state.event.objects.NewGameEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class IncButton extends PokemonButton implements ActionListener, NewGameListener {
+/**
+ * Button to change the dimension.
+ */
+public class ChangeDimensionButton extends PokemonButton implements ActionListener, NewGameListener {
 
+    /**
+     * Template for the button's label.
+     */
     private static final String LABEL = "%1$sx%1$x >>";
 
-    public IncButton() {
+    /**
+     * Construct a button for changing the dimension.
+     */
+    public ChangeDimensionButton() {
         super("");
         this.setBounds(50, 775, WIDTH, HEIGHT);
         this.addActionListener(this);
     }
 
+    /**
+     * Change the dimension.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         int dimension = MemoryGame.gameState.getBoard().getDimension();
@@ -27,6 +39,9 @@ public class IncButton extends PokemonButton implements ActionListener, NewGameL
         MemoryGame.gameState.newGame(dimension);
     }
 
+    /**
+     * Update the button's label.
+     */
     @Override
     public void newGameStarted(NewGameEvent event) {
         setText(String.format(LABEL, event.getBoard().getDimension()));

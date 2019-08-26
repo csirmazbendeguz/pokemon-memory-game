@@ -6,7 +6,7 @@ import net.csirmazbendeguz.memory_game.swing.labels.TimeLabel;
 import net.csirmazbendeguz.memory_game.swing.labels.TriesLabel;
 import net.csirmazbendeguz.memory_game.swing.panels.BackgroundPanel;
 import net.csirmazbendeguz.memory_game.swing.panels.WinPanel;
-import net.csirmazbendeguz.memory_game.swing.buttons.IncButton;
+import net.csirmazbendeguz.memory_game.swing.buttons.ChangeDimensionButton;
 import net.csirmazbendeguz.memory_game.swing.buttons.RestartButton;
 import net.csirmazbendeguz.memory_game.swing.panels.GamePanel;
 
@@ -45,8 +45,8 @@ public class GameFrame extends JFrame {
         GamePanel gamePanel = new GamePanel();
         bg.add(gamePanel);
 
-        IncButton incButton = new IncButton();
-        bg.add(incButton);
+        ChangeDimensionButton changeDimensionButton = new ChangeDimensionButton();
+        bg.add(changeDimensionButton);
 
         RestartButton restartButton = new RestartButton();
         bg.add(restartButton);

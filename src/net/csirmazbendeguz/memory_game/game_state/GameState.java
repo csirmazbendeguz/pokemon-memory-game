@@ -14,7 +14,7 @@ public class GameState {
         this.eventDispatcher = eventDispatcher;
     }
 
-    public void checkWin() {
+    void checkWin() {
         if (board.isGameWon()) {
             Stopwatch stopwatch = Stopwatch.getInstance();
             stopwatch.stopTimer();

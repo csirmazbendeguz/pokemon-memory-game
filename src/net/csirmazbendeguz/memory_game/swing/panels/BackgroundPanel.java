@@ -6,15 +6,18 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
+/**
+ * Container for the game's background image.
+ */
 public class BackgroundPanel extends JPanel {
 
     /**
      * The background image.
      */
-    private BufferedImage image;
+    private static final BufferedImage IMAGE;
 
-    public BackgroundPanel() {
-        this.image = ResourceLoader.getInstance().loadBackogroundImage("Background.jpg");
+    static {
+        IMAGE = ResourceLoader.getInstance().loadBackogroundImage("Background.jpg");
     }
 
     /**
@@ -23,7 +26,7 @@ public class BackgroundPanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         Container parent = getParent();
-        g.drawImage(image, 0, 0, parent.getWidth(), parent.getHeight(), null);
+        g.drawImage(IMAGE, 0, 0, parent.getWidth(), parent.getHeight(), null);
     }
 
 }
