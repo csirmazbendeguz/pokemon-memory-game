@@ -90,11 +90,11 @@ public class WinGlassPane extends JPanel implements WinListener, MouseListener {
     /**
      * Draw the text horizontally centered.
      */
-    private void drawStringToCenter(Graphics2D g2d, String str, int y) {
+    private void drawStringToCenter(Graphics2D g2d, String text, int y) {
         // Horizontally center the text.
         // Account for the background image not being perfectly centered by shifting the text left a little.
-        int x = getWidth() / 2 - g2d.getFontMetrics().stringWidth(str) / 2 - 10;
-        g2d.drawString(str, x, y);
+        int x = getWidth() / 2 - g2d.getFontMetrics().stringWidth(text) / 2 - 10;
+        g2d.drawString(text, x, y);
     }
 
     @Override
