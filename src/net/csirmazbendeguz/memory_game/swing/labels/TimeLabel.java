@@ -19,11 +19,11 @@ public class TimeLabel extends JLabel implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        long totalSeconds = (long) o;
+        int totalSeconds = (int) o;
 
-        long hours = totalSeconds / 3600;
-        long minutes = (totalSeconds % 3600) / 60;
-        long seconds = totalSeconds % 60;
+        int hours = totalSeconds / 3600;
+        int minutes = (totalSeconds % 3600) / 60;
+        int seconds = totalSeconds % 60;
 
         this.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
         this.repaint();

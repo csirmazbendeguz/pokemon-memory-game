@@ -4,13 +4,22 @@ import java.util.EventObject;
 
 public class WinEvent extends EventObject {
 
+    /**
+     * The game board's dimension.
+     */
     private int dimension;
 
-    private long seconds;
+    /**
+     * The number of seconds it took to finish the game.
+     */
+    private int seconds;
 
+    /**
+     * The number of tries it took to finish the game.
+     */
     private int tries;
 
-    public WinEvent(Object source, int dimension, long seconds, int tries) {
+    public WinEvent(Object source, int dimension, int seconds, int tries) {
         super(source);
         this.dimension = dimension;
         this.seconds = seconds;
@@ -21,7 +30,7 @@ public class WinEvent extends EventObject {
         return dimension;
     }
 
-    public long getSeconds() {
+    public int getSeconds() {
         return seconds;
     }
 

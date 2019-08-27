@@ -37,13 +37,13 @@ public class Stopwatch extends Observable {
     /**
      * Seconds passed since the start of the timer.
      */
-    private long seconds;
+    private int seconds;
 
     private boolean isTimerRunning() {
         return timer != null;
     }
 
-    public long getSeconds() {
+    public int getSeconds() {
         return seconds;
     }
 

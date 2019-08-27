@@ -11,17 +11,17 @@ import javax.swing.JLabel;
 public class TriesLabel extends JLabel implements Observer {
 
     public TriesLabel() {
-        this.setBounds(950, 72, 100, 50);
-        this.setForeground(Color.BLACK);
-        this.setFont(new Font("Serif", Font.PLAIN, 25));
+        setBounds(950, 72, 100, 50);
+        setForeground(Color.BLACK);
+        setFont(new Font("Serif", Font.PLAIN, 25));
         TriesCounter.getInstance().addObserver(this);
     }
 
     @Override
     public void update(Observable observable, Object o) {
         int tries = (int) o;
-        this.setText("Tries: " + tries);
-        this.repaint();
+        setText("Tries: " + tries);
+        repaint();
     }
 
 }
