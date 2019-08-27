@@ -17,72 +17,71 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.*;
 
+/**
+ * Container for the win screen.
+ */
 public class WinPanel extends JPanel implements WinListener {
 
+    /**
+     * The container's background image.
+     */
+    private static final BufferedImage BACKGROUND;
+
+    static {
+        BACKGROUND = ResourceLoader.getInstance().loadBackogroundImage("Win.png");
+    }
+
+    /**
+     * Whether the win screen
+     */
     private boolean isVisible = false;
     private int size;
     private String time, tries;
-    private BufferedImage img;
-    private Component gp;
+
+    private Component glassPane;
 
     public WinPanel(Component glassPane) {
-        gp = glassPane;
-        gp.setBounds(0, 0, 1100, 900);
-        gp.addMouseListener(new MouseListener() {
+        this.glassPane = glassPane;
+        this.glassPane.setBounds(0, 0, 1100, 900);
+        this.glassPane.addMouseListener(new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {e.consume();}
+            public void mouseClicked(MouseEvent e) {
+                e.consume();
+            }
 
             @Override
-            public void mousePressed(MouseEvent e) {hideWin();}
+            public void mousePressed(MouseEvent e) {
+                hideWin();
+            }
 
             @Override
-            public void mouseReleased(MouseEvent e) {e.consume();}
+            public void mouseReleased(MouseEvent e) {
+                e.consume();
+            }
 
             @Override
-            public void mouseEntered(MouseEvent e) {e.consume();}
+            public void mouseEntered(MouseEvent e) {
+                e.consume();
+            }
 
             @Override
-            public void mouseExited(MouseEvent e) {e.consume();}
+            public void mouseExited(MouseEvent e) {
+                e.consume();
+            }
         });
-        
+
         this.setBackground(null);
         this.setOpaque(false);
         this.setBounds(0, 0, 1100, 900);
+    }
 
-        img = ResourceLoader.getInstance().loadBackogroundImage("Win.png");
-    }
-    
+    /**
+     * Hide the win screen.
+     */
     private void hideWin() {
-        if(isVisible) {
-            isVisible = false;
-            gp.setVisible(false);
-            refresh();
-        }
-    }
-    
-    private void refresh() {
-        this.repaint();
-    }
-    
-    private void drawStrToWinCenter(Graphics2D g2d, String str, int y) {
-        g2d.drawString(str, this.getWidth()/2-g2d.getFontMetrics().stringWidth(str)/2-10, y);
-    }
-    
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        if(isVisible) {
-            Graphics2D g2d = (Graphics2D) g;
-            g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-            g2d.setColor(Color.WHITE);
-            
-            g2d.setFont(new Font("Serif", Font.BOLD, 45));
-            g2d.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), null);
-            
-            drawStrToWinCenter(g2d, String.format("Size: %1$sx%1$s", size), 400);
-            drawStrToWinCenter(g2d, String.format("Time: %s seconds", time), 500);
-            drawStrToWinCenter(g2d, String.format("Tries: %s", tries), 600);
-        }
+        isVisible = false;
+        glassPane.setVisible(false);
+        repaint();
     }
 
     /**
@@ -90,18 +89,49 @@ public class WinPanel extends JPanel implements WinListener {
      */
     @Override
     public void gameWon(WinEvent event) {
-        gp.setVisible(true);
-        this.size = event.getDimension();
-        this.time = String.valueOf(event.getSeconds());
-        this.tries = String.valueOf(event.getTries());
-        final Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
+        glassPane.setVisible(true);
+
+        size = event.getDimension();
+        time = String.valueOf(event.getSeconds());
+        tries = String.valueOf(event.getTries());
+
+        new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 isVisible = true;
-                refresh();
+                repaint();
             }
         }, 1000);
+    }
+
+    /**
+     * Draw the win screen.
+     */
+    @Override
+    public void paintComponent(Graphics g) {
+        if (!isVisible) {
+            return;
+        }
+
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(BACKGROUND, 0, 0, getWidth(), getHeight(), null);
+        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        g2d.setColor(Color.WHITE);
+        g2d.setFont(new Font("Serif", Font.BOLD, 45));
+        drawStringToCenter(g2d, String.format("Size: %1$sx%1$s", size), 400);
+        drawStringToCenter(g2d, String.format("Time: %s seconds", time), 500);
+        drawStringToCenter(g2d, String.format("Tries: %s", tries), 600);
+    }
+
+    /**
+     * Draw the text horizontally centered.
+     */
+    private void drawStringToCenter(Graphics2D g2d, String str, int y) {
+        // Horizontally center the text.
+        // Account for the background image not being perfectly centered by shifting the text left a little.
+        int x = getWidth() / 2 - g2d.getFontMetrics().stringWidth(str) / 2 - 10;
+        g2d.drawString(str, x, y);
     }
 
 }

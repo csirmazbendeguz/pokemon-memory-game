@@ -1,5 +1,7 @@
 package net.csirmazbendeguz.memory_game.game_state.event;
 
+import net.csirmazbendeguz.memory_game.util.ComponentTreeIterator;
+
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -21,7 +23,7 @@ public class EventDispatcher {
      * @param event The event to dispatch.
      */
     public void dispatch(EventObject event) {
-        new ComponentIterator(root).forEachRemaining(component -> {
+        new ComponentTreeIterator(root).forEachRemaining(component -> {
             // Events can only be dispatched to event listeners.
             if (!(component instanceof EventListener)) {
                 return;

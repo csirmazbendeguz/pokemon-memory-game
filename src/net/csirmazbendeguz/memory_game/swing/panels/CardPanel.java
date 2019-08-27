@@ -14,33 +14,50 @@ import java.util.Observer;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+/**
+ * Container for memory game cards.
+ */
 public class CardPanel extends JPanel implements MouseListener, Observer {
 
+    /**
+     * The card state.
+     */
     private Card card;
 
+    /**
+     * Construct a container for memory game cards.
+     *
+     * @param card The card state.
+     */
     public CardPanel(Card card) {
         this.card = card;
 
         Dimension size = new Dimension(100, 100);
-        this.setPreferredSize(size);
-        this.setMinimumSize(size);
-        this.setMaximumSize(size);
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
 
-        this.addMouseListener(this);
+        addMouseListener(this);
         card.addObserver(this);
     }
 
+    /**
+     * Draw the card.
+     */
     @Override
     public void paintComponent(Graphics g) {
         if (!card.isVisible()) {
             return;
         }
-        g.drawImage(card.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
+        g.drawImage(card.getImage(), 0, 0, getWidth(), getHeight(), null);
     }
 
     @Override
     public void mouseClicked(MouseEvent me) {}
 
+    /**
+     * Handle the card click event.
+     */
     @Override
     public void mousePressed(MouseEvent me) {
         if (card.isVisible() && !card.isFaceUp() && !card.isInAnimation()) {
@@ -60,6 +77,9 @@ public class CardPanel extends JPanel implements MouseListener, Observer {
     @Override
     public void mouseExited(MouseEvent me) {}
 
+    /**
+     * Redraw the card.
+     */
     @Override
     public void update(Observable observable, Object o) {
         GameFrame gameFrame = (GameFrame) SwingUtilities.getWindowAncestor(this);

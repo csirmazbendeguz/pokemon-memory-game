@@ -8,6 +8,9 @@ import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * The card state.
+ */
 public class Card extends Observable {
 
     /**
@@ -25,7 +28,7 @@ public class Card extends Observable {
     private BufferedImage cardFront;
 
     /**
-     * The card image name.
+     * The card front image's name.
      */
     private String imageName;
 
@@ -35,15 +38,20 @@ public class Card extends Observable {
     private boolean faceUp = false;
 
     /**
-     * True while a card animation is running.
+     * Whether a card animation is running.
      */
     private boolean inAnimation = false;
 
     /**
-     * True until the card is removed from the board.
+     * Whether the card should be displayed.
      */
     private boolean visible = true;
 
+    /**
+     * Construct a new card state object.
+     *
+     * @param imageName The card front image's name.
+     */
     public Card(String imageName) {
         this.imageName = imageName;
         cardFront = ResourceLoader.getInstance().loadCardImage(imageName);

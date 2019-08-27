@@ -12,9 +12,9 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 /**
- * Container for the memory game cards.
+ * Container for the board.
  */
-public class GamePanel extends JPanel implements NewGameListener {
+public class BoardPanel extends JPanel implements NewGameListener {
 
     /**
      * The container's background image.
@@ -26,14 +26,14 @@ public class GamePanel extends JPanel implements NewGameListener {
     }
 
     /**
-     * Construct a container for the memory game cards.
+     * Construct a container for the board.
      */
-    public GamePanel() {
+    public BoardPanel() {
         this.setBounds(25, 100, 650, 650);
     }
 
     /**
-     * Initialize the memory game cards.
+     * Initialize the board.
      */
     @Override
     public void newGameStarted(NewGameEvent event) {

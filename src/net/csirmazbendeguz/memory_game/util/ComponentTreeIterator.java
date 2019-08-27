@@ -1,12 +1,14 @@
-package net.csirmazbendeguz.memory_game.game_state.event;
+package net.csirmazbendeguz.memory_game.util;
 
 import java.awt.*;
 import java.util.*;
 
 /**
  * Iterator for component trees.
+ *
+ * Traverses a component tree BFS style.
  */
-class ComponentIterator implements Iterator<Component> {
+public class ComponentTreeIterator implements Iterator<Component> {
 
     /**
      * The components to iterate.
@@ -18,15 +20,21 @@ class ComponentIterator implements Iterator<Component> {
      *
      * @param root The component tree's root.
      */
-    ComponentIterator(Component root) {
+    public ComponentTreeIterator(Component root) {
         queue.offer(root);
     }
 
+    /**
+     * Decide whether there are any components available for iteration.
+     */
     @Override
     public boolean hasNext() {
         return !queue.isEmpty();
     }
 
+    /**
+     * Compute the next component of the tree.
+     */
     @Override
     public Component next() {
         Component next = queue.poll();

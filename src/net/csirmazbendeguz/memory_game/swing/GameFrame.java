@@ -5,10 +5,10 @@ import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
 import net.csirmazbendeguz.memory_game.swing.labels.TimeLabel;
 import net.csirmazbendeguz.memory_game.swing.labels.TriesLabel;
 import net.csirmazbendeguz.memory_game.swing.panels.BackgroundPanel;
+import net.csirmazbendeguz.memory_game.swing.panels.BoardPanel;
 import net.csirmazbendeguz.memory_game.swing.panels.WinPanel;
 import net.csirmazbendeguz.memory_game.swing.buttons.ChangeDimensionButton;
 import net.csirmazbendeguz.memory_game.swing.buttons.RestartButton;
-import net.csirmazbendeguz.memory_game.swing.panels.GamePanel;
 
 import java.awt.Container;
 import java.awt.KeyEventDispatcher;
@@ -42,8 +42,8 @@ public class GameFrame extends JFrame {
         WinPanel winPanel = new WinPanel(this.getGlassPane());
         bg.add(winPanel);
 
-        GamePanel gamePanel = new GamePanel();
-        bg.add(gamePanel);
+        BoardPanel boardPanel = new BoardPanel();
+        bg.add(boardPanel);
 
         ChangeDimensionButton changeDimensionButton = new ChangeDimensionButton();
         bg.add(changeDimensionButton);
