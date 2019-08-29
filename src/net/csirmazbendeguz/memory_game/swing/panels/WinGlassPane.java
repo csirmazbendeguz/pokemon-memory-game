@@ -1,7 +1,7 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
-import net.csirmazbendeguz.memory_game.game_state.event.listeners.WinListener;
-import net.csirmazbendeguz.memory_game.game_state.event.objects.WinEvent;
+import net.csirmazbendeguz.memory_game.game_state.event.listeners.GameEndListener;
+import net.csirmazbendeguz.memory_game.game_state.event.objects.GameEndEvent;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
 import java.awt.*;
@@ -15,7 +15,7 @@ import javax.swing.*;
 /**
  * Glass pane for the win screen.
  */
-public class WinGlassPane extends JPanel implements WinListener, MouseListener {
+public class WinGlassPane extends JPanel implements GameEndListener, MouseListener {
 
     /**
      * The win screen's background image.
@@ -49,7 +49,7 @@ public class WinGlassPane extends JPanel implements WinListener, MouseListener {
      * Show the win screen.
      */
     @Override
-    public void gameWon(WinEvent event) {
+    public void gameEnded(GameEndEvent event) {
         // Make the glass pane immediately visible.
         // This will block all the other components from being clicked.
         setVisible(true);

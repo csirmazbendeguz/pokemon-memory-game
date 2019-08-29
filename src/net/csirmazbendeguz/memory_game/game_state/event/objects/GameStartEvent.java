@@ -4,11 +4,14 @@ import net.csirmazbendeguz.memory_game.game_state.Board;
 
 import java.util.EventObject;
 
-public class NewGameEvent extends EventObject {
+/**
+ * Event object for dispatching information about a new game.
+ */
+public class GameStartEvent extends EventObject {
 
     private Board board;
 
-    public NewGameEvent(Object source, Board board) {
+    public GameStartEvent(Object source, Board board) {
         super(source);
         this.board = board;
     }

@@ -1,8 +1,8 @@
 package net.csirmazbendeguz.memory_game.swing.buttons;
 
 import net.csirmazbendeguz.memory_game.MemoryGame;
-import net.csirmazbendeguz.memory_game.game_state.event.listeners.NewGameListener;
-import net.csirmazbendeguz.memory_game.game_state.event.objects.NewGameEvent;
+import net.csirmazbendeguz.memory_game.game_state.event.listeners.GameStartListener;
+import net.csirmazbendeguz.memory_game.game_state.event.objects.GameStartEvent;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 /**
  * Button to change the dimension.
  */
-public class ChangeDimensionButton extends PokemonButton implements ActionListener, NewGameListener {
+public class ChangeDimensionButton extends PokemonButton implements ActionListener, GameStartListener {
 
     /**
      * Template for the button's label.
@@ -43,7 +43,7 @@ public class ChangeDimensionButton extends PokemonButton implements ActionListen
      * Update the button's label.
      */
     @Override
-    public void newGameStarted(NewGameEvent event) {
+    public void gameStarted(GameStartEvent event) {
         setText(String.format(LABEL, event.getBoard().getDimension()));
     }
 

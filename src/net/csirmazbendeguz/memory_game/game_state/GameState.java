@@ -1,8 +1,8 @@
 package net.csirmazbendeguz.memory_game.game_state;
 
 import net.csirmazbendeguz.memory_game.game_state.event.EventDispatcher;
-import net.csirmazbendeguz.memory_game.game_state.event.objects.NewGameEvent;
-import net.csirmazbendeguz.memory_game.game_state.event.objects.WinEvent;
+import net.csirmazbendeguz.memory_game.game_state.event.objects.GameStartEvent;
+import net.csirmazbendeguz.memory_game.game_state.event.objects.GameEndEvent;
 
 public class GameState {
 
@@ -19,7 +19,7 @@ public class GameState {
             Stopwatch stopwatch = Stopwatch.getInstance();
             stopwatch.stopTimer();
 
-            eventDispatcher.dispatch(new WinEvent(this, board.getDimension(), stopwatch.getSeconds(), TriesCounter.getInstance().getTries()));
+            eventDispatcher.dispatch(new GameEndEvent(this, board.getDimension(), stopwatch.getSeconds(), TriesCounter.getInstance().getTries()));
         }
     }
 
@@ -34,7 +34,7 @@ public class GameState {
         TriesCounter.getInstance().reset();
 
         board = new Board(dimension);
-        eventDispatcher.dispatch(new NewGameEvent(this, board));
+        eventDispatcher.dispatch(new GameStartEvent(this, board));
     }
 
     public Board getBoard() {

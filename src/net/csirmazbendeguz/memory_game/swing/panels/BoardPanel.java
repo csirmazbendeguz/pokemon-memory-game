@@ -2,8 +2,8 @@ package net.csirmazbendeguz.memory_game.swing.panels;
 
 import net.csirmazbendeguz.memory_game.game_state.Board;
 import net.csirmazbendeguz.memory_game.game_state.Card;
-import net.csirmazbendeguz.memory_game.game_state.event.listeners.NewGameListener;
-import net.csirmazbendeguz.memory_game.game_state.event.objects.NewGameEvent;
+import net.csirmazbendeguz.memory_game.game_state.event.listeners.GameStartListener;
+import net.csirmazbendeguz.memory_game.game_state.event.objects.GameStartEvent;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 import net.csirmazbendeguz.memory_game.swing.GameFrame;
 
@@ -14,7 +14,7 @@ import javax.swing.*;
 /**
  * Container for the board.
  */
-public class BoardPanel extends JPanel implements NewGameListener {
+public class BoardPanel extends JPanel implements GameStartListener {
 
     /**
      * The container's background image.
@@ -36,7 +36,7 @@ public class BoardPanel extends JPanel implements NewGameListener {
      * Initialize the board.
      */
     @Override
-    public void newGameStarted(NewGameEvent event) {
+    public void gameStarted(GameStartEvent event) {
         Board board = event.getBoard();
         Card[][] cards = board.getBoard();
         int dimension = board.getDimension();

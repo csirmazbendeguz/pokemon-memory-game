@@ -2,7 +2,10 @@ package net.csirmazbendeguz.memory_game.game_state.event.objects;
 
 import java.util.EventObject;
 
-public class WinEvent extends EventObject {
+/**
+ * Event object for dispatching information about a finished game.
+ */
+public class GameEndEvent extends EventObject {
 
     /**
      * The game board's dimension.
@@ -19,7 +22,7 @@ public class WinEvent extends EventObject {
      */
     private int tries;
 
-    public WinEvent(Object source, int dimension, int seconds, int tries) {
+    public GameEndEvent(Object source, int dimension, int seconds, int tries) {
         super(source);
         this.dimension = dimension;
         this.seconds = seconds;
