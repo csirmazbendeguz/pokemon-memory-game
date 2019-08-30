@@ -45,7 +45,7 @@ public class ResourceLoader {
      */
     public BufferedImage loadCardImage(String card) {
         try {
-            return loadImage("img/cards/" + card);
+            return loadImage("images/cards/" + card);
         } catch (IOException exception) {
             throw new RuntimeException(String.format("Card image '%s' not found.", card), exception);
         }
@@ -59,7 +59,7 @@ public class ResourceLoader {
      */
     public BufferedImage loadBackogroundImage(String background) {
         try {
-            return loadImage("img/bg/" + background);
+            return loadImage("images/backgrounds/" + background);
         } catch (IOException exception) {
             throw new RuntimeException(String.format("Background image '%s' not found.", background), exception);
         }
@@ -87,7 +87,7 @@ public class ResourceLoader {
         URI uri;
 
         try {
-            uri = getClass().getClassLoader().getResource("img/cards").toURI();
+            uri = getClass().getClassLoader().getResource("images/cards").toURI();
         } catch (URISyntaxException exception) {
             throw new RuntimeException("Failed to load the card image names.", exception);
         }
@@ -103,7 +103,7 @@ public class ResourceLoader {
                 throw new RuntimeException("Failed to load the card image names.", exception);
             }
 
-            path = fileSystem.getPath("img/cards");
+            path = fileSystem.getPath("images/cards");
         } else {
             path = Paths.get(uri);
         }
