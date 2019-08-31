@@ -4,8 +4,8 @@ import net.csirmazbendeguz.memory_game.game_state.Board;
 import net.csirmazbendeguz.memory_game.game_state.Card;
 import net.csirmazbendeguz.memory_game.game_state.event.listeners.GameStartListener;
 import net.csirmazbendeguz.memory_game.game_state.event.objects.GameStartEvent;
-import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 import net.csirmazbendeguz.memory_game.swing.GameFrame;
+import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -19,17 +19,14 @@ public class BoardPanel extends JPanel implements GameStartListener {
     /**
      * The container's background image.
      */
-    private static final BufferedImage BACKGROUND;
-
-    static {
-        BACKGROUND = ResourceLoader.getInstance().loadBackogroundImage("GamePanelBackground.png");
-    }
+    private static BufferedImage background;
 
     /**
      * Construct a container for the board.
      */
-    public BoardPanel() {
+    public BoardPanel(ResourceLoader resourceLoader) {
         this.setBounds(25, 100, 650, 650);
+        background = resourceLoader.loadBackogroundImage("GamePanelBackground.png");
     }
 
     /**
@@ -65,7 +62,7 @@ public class BoardPanel extends JPanel implements GameStartListener {
      */
     @Override
     public void paintComponent(Graphics g) {
-        g.drawImage(BACKGROUND, 0, 0, this.getWidth(), this.getHeight(), this);
+        g.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), this);
     }
 
 }

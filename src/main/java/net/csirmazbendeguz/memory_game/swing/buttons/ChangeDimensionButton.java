@@ -3,6 +3,7 @@ package net.csirmazbendeguz.memory_game.swing.buttons;
 import net.csirmazbendeguz.memory_game.MemoryGame;
 import net.csirmazbendeguz.memory_game.game_state.event.listeners.GameStartListener;
 import net.csirmazbendeguz.memory_game.game_state.event.objects.GameStartEvent;
+import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,10 +21,10 @@ public class ChangeDimensionButton extends PokemonButton implements ActionListen
     /**
      * Construct a button for changing the dimension.
      */
-    public ChangeDimensionButton() {
-        super("");
-        this.setBounds(50, 775, WIDTH, HEIGHT);
-        this.addActionListener(this);
+    public ChangeDimensionButton(ResourceLoader resourceLoader) {
+        super(resourceLoader);
+        setBounds(50, 775, WIDTH, HEIGHT);
+        addActionListener(this);
     }
 
     /**

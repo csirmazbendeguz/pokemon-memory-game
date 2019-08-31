@@ -14,10 +14,10 @@ public class BackgroundPanel extends JPanel {
     /**
      * The background image.
      */
-    private static final BufferedImage IMAGE;
+    private BufferedImage image;
 
-    static {
-        IMAGE = ResourceLoader.getInstance().loadBackogroundImage("Background.jpg");
+    public BackgroundPanel(ResourceLoader resourceLoader) {
+        image = resourceLoader.loadBackogroundImage("Background.jpg");
     }
 
     /**
@@ -26,7 +26,7 @@ public class BackgroundPanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         Container parent = getParent();
-        g.drawImage(IMAGE, 0, 0, parent.getWidth(), parent.getHeight(), null);
+        g.drawImage(image, 0, 0, parent.getWidth(), parent.getHeight(), null);
     }
 
 }

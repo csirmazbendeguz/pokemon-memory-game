@@ -20,11 +20,7 @@ public class WinGlassPane extends JPanel implements GameEndListener, MouseListen
     /**
      * The win screen's background image.
      */
-    private static final BufferedImage BACKGROUND;
-
-    static {
-        BACKGROUND = ResourceLoader.getInstance().loadBackogroundImage("Win.png");
-    }
+    private BufferedImage background;
 
     /**
      * The statistics to draw on the win screen.
@@ -39,10 +35,11 @@ public class WinGlassPane extends JPanel implements GameEndListener, MouseListen
     /**
      * Construct a new glass pane for the win screen.
      */
-    public WinGlassPane() {
+    public WinGlassPane(ResourceLoader resourceLoader) {
         setBackground(null);
         setOpaque(false);
         addMouseListener(this);
+        background = resourceLoader.loadBackogroundImage("Win.png");
     }
 
     /**
@@ -78,7 +75,7 @@ public class WinGlassPane extends JPanel implements GameEndListener, MouseListen
 
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(BACKGROUND, 0, 0, getWidth(), getHeight(), null);
+        g2d.drawImage(background, 0, 0, getWidth(), getHeight(), null);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2d.setColor(Color.WHITE);
         g2d.setFont(new Font("Serif", Font.BOLD, 45));

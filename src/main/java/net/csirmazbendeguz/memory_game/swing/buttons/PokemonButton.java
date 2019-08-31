@@ -1,5 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.buttons;
 
+import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
 import java.awt.Graphics;
@@ -17,37 +18,30 @@ public class PokemonButton extends JButton implements MouseListener {
     /**
      * The button images.
      */
-    private static final BufferedImage NORMAL, HOVER, CLICK;
-
-    static {
-        ResourceLoader resourceLoader = ResourceLoader.getInstance();
-        NORMAL = resourceLoader.loadBackogroundImage("Button.png");
-        HOVER = resourceLoader.loadBackogroundImage("ButtonHover.png");
-        CLICK = resourceLoader.loadBackogroundImage("ButtonClick.png");
-    }
+    private BufferedImage normal, hover, click;
 
     /**
-     * The button width.
+     * The button dimensions.
      */
-    static final int WIDTH = 170;
-
-    /**
-     * The button height.
-     */
-    static final int HEIGHT = 50;
+    static final int WIDTH = 170, HEIGHT = 50;
 
     /**
      * The image to render.
      */
-    private BufferedImage image = NORMAL;
+    private BufferedImage image;
 
-    public PokemonButton(String text) {
-        super(text);
-        this.setOpaque(false);
-        this.setBorderPainted(false);
-        this.setContentAreaFilled(false);
-        this.setFocusPainted(false);
-        this.addMouseListener(this);
+    @Inject
+    public PokemonButton(ResourceLoader resourceLoader) {
+        super();
+        setOpaque(false);
+        setBorderPainted(false);
+        setContentAreaFilled(false);
+        setFocusPainted(false);
+        addMouseListener(this);
+        normal = resourceLoader.loadBackogroundImage("Button.png");
+        hover = resourceLoader.loadBackogroundImage("ButtonHover.png");
+        click = resourceLoader.loadBackogroundImage("ButtonClick.png");
+        image = normal;
     }
 
     @Override
@@ -61,27 +55,27 @@ public class PokemonButton extends JButton implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        image = HOVER;
+        image = hover;
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        image = CLICK;
+        image = click;
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        image = NORMAL;
+        image = normal;
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        image = HOVER;
+        image = hover;
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        image = NORMAL;
+        image = normal;
     }
 
 }

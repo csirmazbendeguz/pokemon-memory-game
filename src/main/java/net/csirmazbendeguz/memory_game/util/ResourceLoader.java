@@ -13,34 +13,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Service to load resources.
+ * Abstractions for loading resources.
  */
 public class ResourceLoader {
 
     /**
-     * The resource loader.
-     */
-    private static ResourceLoader instance;
-
-    /**
-     * Get the resource loader.
-     *
-     * @return The resource loader.
-     */
-    public static ResourceLoader getInstance() {
-        if (instance == null) {
-            instance = new ResourceLoader();
-        }
-
-        return instance;
-    }
-
-    private ResourceLoader() {}
-
-    /**
      * Load a card image.
      *
-     * @param card The card image to load.
+     * @param card The card image's name.
      * @return The loaded card image.
      */
     public BufferedImage loadCardImage(String card) {
@@ -54,7 +34,7 @@ public class ResourceLoader {
     /**
      * Load a background image.
      *
-     * @param background The background image to load.
+     * @param background The background image's name.
      * @return The loaded background image.
      */
     public BufferedImage loadBackogroundImage(String background) {

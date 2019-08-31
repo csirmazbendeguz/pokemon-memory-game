@@ -1,10 +1,19 @@
 package net.csirmazbendeguz.memory_game.util;
 
+import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.game_state.Card;
 
+import java.awt.image.BufferedImage;
 import java.util.*;
 
 public class RandomCardGenerator {
+
+    private ResourceLoader resourceLoader;
+
+    @Inject
+    public RandomCardGenerator(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
 
     /**
      * Generate a random board of cards.
@@ -21,10 +30,13 @@ public class RandomCardGenerator {
         Collections.shuffle(cards);
 
         Card[][] board = new Card[dimension][dimension];
+        BufferedImage cardBack = resourceLoader.loadBackogroundImage("CardBack.png");
 
         for (int i = 0; i < dimension; ++i) {
             for (int j = 0; j < dimension; ++j) {
-                board[i][j] = new Card(cards.get(i * dimension + j));
+                String imageName = cards.get(i * dimension + j);
+                BufferedImage cardFront = resourceLoader.loadCardImage(imageName);
+                board[i][j] = new Card(cards.get(i * dimension + j), cardFront, cardBack);
             }
         }
 
@@ -35,7 +47,7 @@ public class RandomCardGenerator {
      * Randomly select a given number of card image names.
      */
     private Set<String> getRandomCardImageNames(int count) {
-        List<String> cardImageNames = ResourceLoader.getInstance().getCardImageNames();
+        List<String> cardImageNames = resourceLoader.getCardImageNames();
         if (cardImageNames.size() < count) {
             throw new IllegalArgumentException("Failed to find enough cards.");
         }

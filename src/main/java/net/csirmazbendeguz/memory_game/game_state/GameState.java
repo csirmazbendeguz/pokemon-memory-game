@@ -3,6 +3,7 @@ package net.csirmazbendeguz.memory_game.game_state;
 import net.csirmazbendeguz.memory_game.game_state.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.game_state.event.objects.GameStartEvent;
 import net.csirmazbendeguz.memory_game.game_state.event.objects.GameEndEvent;
+import net.csirmazbendeguz.memory_game.util.RandomCardGenerator;
 
 public class GameState {
 
@@ -10,8 +11,11 @@ public class GameState {
 
     private EventDispatcher eventDispatcher;
 
-    public GameState(EventDispatcher eventDispatcher) {
+    private RandomCardGenerator randomCardGenerator;
+
+    public GameState(EventDispatcher eventDispatcher, RandomCardGenerator randomCardGenerator) {
         this.eventDispatcher = eventDispatcher;
+        this.randomCardGenerator = randomCardGenerator;
     }
 
     void checkWin() {
@@ -33,7 +37,7 @@ public class GameState {
         stopwatch.resetSeconds();
         TriesCounter.getInstance().reset();
 
-        board = new Board(dimension);
+        board = new Board(dimension, randomCardGenerator.generateBoard(dimension));
         eventDispatcher.dispatch(new GameStartEvent(this, board));
     }
 

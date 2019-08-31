@@ -1,7 +1,5 @@
 package net.csirmazbendeguz.memory_game.game_state;
 
-import net.csirmazbendeguz.memory_game.util.RandomCardGenerator;
-
 import java.util.ArrayDeque;
 import java.util.Queue;
 
@@ -13,9 +11,9 @@ public class Board {
 
     private Queue<Card> faceUpCards;
 
-    public Board(int dimension) {
+    public Board(int dimension, Card[][] board) {
         this.dimension = dimension;
-        board = new RandomCardGenerator().generateBoard(dimension);
+        this.board = board;
         faceUpCards = new ArrayDeque<>();
     }
 
