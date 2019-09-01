@@ -4,6 +4,7 @@ import com.google.inject.AbstractModule;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.game_state.GameState;
 import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
+import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
 import net.csirmazbendeguz.memory_game.util.RandomCardGenerator;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
@@ -16,6 +17,7 @@ public class BasicModule extends AbstractModule {
         bind(EventDispatcher.class).asEagerSingleton();
         bind(GameState.class).asEagerSingleton();
         bind(Stopwatch.class).asEagerSingleton();
+        bind(TriesCounter.class).asEagerSingleton();
     }
 
 }

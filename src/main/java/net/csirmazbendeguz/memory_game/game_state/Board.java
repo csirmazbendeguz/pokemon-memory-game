@@ -11,10 +11,13 @@ public class Board {
 
     private Queue<Card> faceUpCards;
 
-    public Board(int dimension, Card[][] board) {
+    private TriesCounter triesCounter;
+
+    public Board(int dimension, Card[][] board, TriesCounter triesCounter) {
         this.dimension = dimension;
         this.board = board;
         faceUpCards = new ArrayDeque<>();
+        this.triesCounter = triesCounter;
     }
 
     public int getDimension() {
@@ -43,10 +46,8 @@ public class Board {
     }
 
     public void checkPairs() {
-        TriesCounter triesCounter = TriesCounter.getInstance();
-
         while (faceUpCards.size() >= 2) {
-            triesCounter.increase();
+            triesCounter.increment();
 
             Card card1 = faceUpCards.poll();
             Card card2 = faceUpCards.poll();

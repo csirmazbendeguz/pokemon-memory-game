@@ -3,6 +3,7 @@ package net.csirmazbendeguz.memory_game.swing;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.game_state.GameState;
 import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
+import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
 import net.csirmazbendeguz.memory_game.swing.labels.TimeLabel;
 import net.csirmazbendeguz.memory_game.swing.labels.TriesLabel;
 import net.csirmazbendeguz.memory_game.swing.panels.BackgroundPanel;
@@ -17,7 +18,7 @@ import javax.swing.*;
 
 public class GameFrame extends JFrame {
 
-    public GameFrame(ResourceLoader resourceLoader, EventDispatcher eventDispatcher, GameState gameState, Stopwatch stopwatch) {
+    public GameFrame(ResourceLoader resourceLoader, EventDispatcher eventDispatcher, GameState gameState, Stopwatch stopwatch, TriesCounter triesCounter) {
         super();
         setSize(1100, 900);
         setLocationRelativeTo(null);
@@ -36,7 +37,7 @@ public class GameFrame extends JFrame {
         ChangeDimensionButton changeDimensionButton = new ChangeDimensionButton(resourceLoader, eventDispatcher, gameState);
         RestartButton restartButton = new RestartButton(resourceLoader, gameState);
         TimeLabel timeLabel = new TimeLabel(stopwatch);
-        TriesLabel triesLabel = new TriesLabel();
+        TriesLabel triesLabel = new TriesLabel(triesCounter);
 
         getContentPane().add(bg);
         bg.setLayout(null);

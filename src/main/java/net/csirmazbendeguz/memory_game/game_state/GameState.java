@@ -21,13 +21,16 @@ public class GameState implements CardHideListener {
 
     private Stopwatch stopwatch;
 
+    private TriesCounter triesCounter;
+
     @Inject
-    public GameState(ResourceLoader resourceLoader, EventDispatcher eventDispatcher, RandomCardGenerator randomCardGenerator, Stopwatch stopwatch) {
+    public GameState(ResourceLoader resourceLoader, EventDispatcher eventDispatcher, RandomCardGenerator randomCardGenerator, Stopwatch stopwatch, TriesCounter triesCounter) {
         this.resourceLoader = resourceLoader;
         this.eventDispatcher = eventDispatcher;
         this.randomCardGenerator = randomCardGenerator;
         eventDispatcher.addListener(CardHideEvent.class, this);
         this.stopwatch = stopwatch;
+        this.triesCounter = triesCounter;
     }
 
     public void restartGame() {
@@ -37,9 +40,9 @@ public class GameState implements CardHideListener {
     public void newGame(int dimension) {
         stopwatch.stopTimer();
         stopwatch.resetSeconds();
-        TriesCounter.getInstance().reset();
+        triesCounter.reset();
 
-        board = new Board(dimension, generateCards(randomCardGenerator.generateBoard(dimension)));
+        board = new Board(dimension, generateCards(randomCardGenerator.generateBoard(dimension)), triesCounter);
         eventDispatcher.dispatch(new GameStartEvent(this, board));
     }
 
@@ -70,7 +73,7 @@ public class GameState implements CardHideListener {
                 this,
                 board.getDimension(),
                 stopwatch.getSeconds(),
-                TriesCounter.getInstance().getTries()
+                triesCounter.getTries()
             ));
         }
     }

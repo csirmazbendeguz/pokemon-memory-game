@@ -10,11 +10,11 @@ import javax.swing.JLabel;
 
 public class TriesLabel extends JLabel implements Observer {
 
-    public TriesLabel() {
+    public TriesLabel(TriesCounter triesCounter) {
         setBounds(950, 72, 100, 50);
         setForeground(Color.BLACK);
         setFont(new Font("Serif", Font.PLAIN, 25));
-        TriesCounter.getInstance().addObserver(this);
+        triesCounter.addObserver(this);
     }
 
     @Override
