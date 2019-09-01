@@ -10,11 +10,11 @@ import javax.swing.JLabel;
 
 public class TimeLabel extends JLabel implements Observer {
 
-    public TimeLabel() {
+    public TimeLabel(Stopwatch stopwatch) {
         this.setForeground(Color.BLACK);
         this.setFont(new Font("Serif", Font.PLAIN, 25));
         this.setBounds(940, 18, 150, 50);
-        Stopwatch.getInstance().addObserver(this);
+        stopwatch.addObserver(this);
     }
 
     @Override

@@ -4,8 +4,8 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import net.csirmazbendeguz.memory_game.game_state.GameState;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
+import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
 import net.csirmazbendeguz.memory_game.swing.GameFrame;
-import net.csirmazbendeguz.memory_game.util.RandomCardGenerator;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
 public class MemoryGame {
@@ -15,16 +15,14 @@ public class MemoryGame {
      */
     private static final int DEFAULT_BOARD_DIMENSION = 4;
 
-    public static GameState gameState;
-
     public static void main(String[] args) {
         Injector injector = Guice.createInjector(new BasicModule());
         ResourceLoader resourceLoader = injector.getInstance(ResourceLoader.class);
-        RandomCardGenerator randomCardGenerator = injector.getInstance(RandomCardGenerator.class);
         EventDispatcher eventDispatcher = injector.getInstance(EventDispatcher.class);
+        GameState gameState = injector.getInstance(GameState.class);
+        Stopwatch stopwatch = injector.getInstance(Stopwatch.class);
 
-        GameFrame gameFrame = new GameFrame(resourceLoader, eventDispatcher);
-        gameState = new GameState(eventDispatcher, randomCardGenerator);
+        GameFrame gameFrame = new GameFrame(resourceLoader, eventDispatcher, gameState, stopwatch);
         gameState.newGame(DEFAULT_BOARD_DIMENSION);
     }
 

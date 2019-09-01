@@ -1,11 +1,15 @@
 package net.csirmazbendeguz.memory_game.game_state;
 
+import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
+import net.csirmazbendeguz.memory_game.event.listeners.CardHideListener;
+import net.csirmazbendeguz.memory_game.event.objects.CardHideEvent;
 import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
 import net.csirmazbendeguz.memory_game.event.objects.GameEndEvent;
 import net.csirmazbendeguz.memory_game.util.RandomCardGenerator;
+import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
-public class GameState {
+public class GameState implements CardHideListener {
 
     private Board board;
 
@@ -13,18 +17,17 @@ public class GameState {
 
     private RandomCardGenerator randomCardGenerator;
 
-    public GameState(EventDispatcher eventDispatcher, RandomCardGenerator randomCardGenerator) {
+    private ResourceLoader resourceLoader;
+
+    private Stopwatch stopwatch;
+
+    @Inject
+    public GameState(ResourceLoader resourceLoader, EventDispatcher eventDispatcher, RandomCardGenerator randomCardGenerator, Stopwatch stopwatch) {
+        this.resourceLoader = resourceLoader;
         this.eventDispatcher = eventDispatcher;
         this.randomCardGenerator = randomCardGenerator;
-    }
-
-    void checkWin() {
-        if (board.isGameWon()) {
-            Stopwatch stopwatch = Stopwatch.getInstance();
-            stopwatch.stopTimer();
-
-            eventDispatcher.dispatch(new GameEndEvent(this, board.getDimension(), stopwatch.getSeconds(), TriesCounter.getInstance().getTries()));
-        }
+        eventDispatcher.addListener(CardHideEvent.class, this);
+        this.stopwatch = stopwatch;
     }
 
     public void restartGame() {
@@ -32,17 +35,44 @@ public class GameState {
     }
 
     public void newGame(int dimension) {
-        Stopwatch stopwatch = Stopwatch.getInstance();
         stopwatch.stopTimer();
         stopwatch.resetSeconds();
         TriesCounter.getInstance().reset();
 
-        board = new Board(dimension, randomCardGenerator.generateBoard(dimension));
+        board = new Board(dimension, generateCards(randomCardGenerator.generateBoard(dimension)));
         eventDispatcher.dispatch(new GameStartEvent(this, board));
+    }
+
+    private Card[][] generateCards(String[][] cardImageNames) {
+        Card[][] cards = new Card[cardImageNames.length][cardImageNames.length];
+
+        for (int i = 0; i < cardImageNames.length; ++i) {
+            for (int j = 0; j < cardImageNames.length; ++j) {
+                cards[i][j] = new Card(cardImageNames[i][j], resourceLoader, eventDispatcher);
+            }
+        }
+
+        return cards;
     }
 
     public Board getBoard() {
         return board;
+    }
+
+    /**
+     * Check for win.
+     */
+    @Override
+    public void cardHidden(CardHideEvent event) {
+        if (board.isGameWon()) {
+            stopwatch.stopTimer();
+            eventDispatcher.dispatch(new GameEndEvent(
+                this,
+                board.getDimension(),
+                stopwatch.getSeconds(),
+                TriesCounter.getInstance().getTries()
+            ));
+        }
     }
 
 }

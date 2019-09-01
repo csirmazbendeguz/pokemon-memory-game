@@ -10,26 +10,6 @@ import java.util.TimerTask;
 public class Stopwatch extends Observable {
 
     /**
-     * The stopwatch.
-     */
-    private static Stopwatch instance;
-
-    /**
-     * Get the stopwatch.
-     *
-     * @return The stopwatch.
-     */
-    public static Stopwatch getInstance() {
-        if (instance == null) {
-            instance = new Stopwatch();
-        }
-
-        return instance;
-    }
-
-    private Stopwatch() {}
-
-    /**
      * The timer.
      */
     private Timer timer;

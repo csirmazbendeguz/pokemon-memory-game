@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.buttons;
 
-import net.csirmazbendeguz.memory_game.MemoryGame;
+import net.csirmazbendeguz.memory_game.game_state.GameState;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
 import java.awt.event.ActionEvent;
@@ -8,16 +8,19 @@ import java.awt.event.ActionListener;
 
 public class RestartButton extends PokemonButton implements ActionListener {
 
-    public RestartButton(ResourceLoader resourceLoader) {
+    private GameState gameState;
+
+    public RestartButton(ResourceLoader resourceLoader, GameState gameState) {
         super(resourceLoader);
         setText("Restart");
         setBounds(250, 775, WIDTH, HEIGHT);
         addActionListener(this);
+        this.gameState = gameState;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        MemoryGame.gameState.restartGame();
+        gameState.restartGame();
     }
 
 }

@@ -1,9 +1,6 @@
 package net.csirmazbendeguz.memory_game.util;
 
 import com.google.inject.Inject;
-import net.csirmazbendeguz.memory_game.game_state.Card;
-
-import java.awt.image.BufferedImage;
 import java.util.*;
 
 public class RandomCardGenerator {
@@ -16,12 +13,12 @@ public class RandomCardGenerator {
     }
 
     /**
-     * Generate a random board of cards.
+     * Generate a random board of card image names.
      *
      * @param dimension The board dimension (e.g. 4 for a 4x4 board).
-     * @return The generated board.
+     * @return The generated board of card image names.
      */
-    public Card[][] generateBoard(int dimension) {
+    public String[][] generateBoard(int dimension) {
         Set<String> cardImageNames = getRandomCardImageNames(dimension * dimension / 2);
 
         List<String> cards = new ArrayList<>();
@@ -29,14 +26,11 @@ public class RandomCardGenerator {
         cards.addAll(cardImageNames);
         Collections.shuffle(cards);
 
-        Card[][] board = new Card[dimension][dimension];
-        BufferedImage cardBack = resourceLoader.loadBackogroundImage("CardBack.png");
+        String[][] board = new String[dimension][dimension];
 
         for (int i = 0; i < dimension; ++i) {
             for (int j = 0; j < dimension; ++j) {
-                String imageName = cards.get(i * dimension + j);
-                BufferedImage cardFront = resourceLoader.loadCardImage(imageName);
-                board[i][j] = new Card(cards.get(i * dimension + j), cardFront, cardBack);
+                board[i][j] = cards.get(i * dimension + j);
             }
         }
 

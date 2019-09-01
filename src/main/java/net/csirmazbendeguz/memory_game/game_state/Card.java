@@ -1,8 +1,11 @@
 package net.csirmazbendeguz.memory_game.game_state;
 
-import net.csirmazbendeguz.memory_game.MemoryGame;
+import net.csirmazbendeguz.memory_game.event.EventDispatcher;
+import net.csirmazbendeguz.memory_game.event.objects.CardHideEvent;
+import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
 import java.awt.image.BufferedImage;
+import java.util.EventObject;
 import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -23,19 +26,9 @@ public class Card extends Observable {
     private BufferedImage cardFront;
 
     /**
-     * The card front image's name.
-     */
-    private String imageName;
-
-    /**
      * Whether the card is facing up or down.
      */
     private boolean faceUp = false;
-
-    /**
-     * Whether a card animation is running.
-     */
-    private boolean inAnimation = false;
 
     /**
      * Whether the card should be displayed.
@@ -43,37 +36,75 @@ public class Card extends Observable {
     private boolean visible = true;
 
     /**
+     * Whether a card animation is running.
+     */
+    private boolean inAnimation = false;
+
+    /**
+     * The card front image's name.
+     */
+    private String imageName;
+
+    /**
+     * The event dispatcher.
+     */
+    private EventDispatcher eventDispatcher;
+
+    /**
      * Construct a new card state object.
      *
      * @param imageName The card front image's name.
      */
-    public Card(String imageName, BufferedImage cardFront, BufferedImage cardBack) {
+    public Card(String imageName, ResourceLoader resourceLoader, EventDispatcher eventDispatcher) {
         this.imageName = imageName;
-        this.cardFront = cardFront;
-        this.cardBack = cardBack;
+        cardFront = resourceLoader.loadCardImage(imageName);
+        cardBack = resourceLoader.loadBackogroundImage("CardBack.png");
+        this.eventDispatcher = eventDispatcher;
     }
 
+    /**
+     * Get the card image to render.
+     */
     public BufferedImage getImage() {
+        if (!isVisible()) {
+            return null;
+        }
         return isFaceUp() ? cardFront : cardBack;
     }
 
-    public boolean isFaceUp() {
-        return faceUp;
-    }
-
+    /**
+     * Return whether the card should be displayed.
+     */
     public boolean isVisible() {
         return visible;
     }
 
+    /**
+     * Return whether the card is facing up or down.
+     */
+    public boolean isFaceUp() {
+        return faceUp;
+    }
+
+    /**
+     * Return whether a card animation is in progress.
+     */
     public boolean isInAnimation() {
         return inAnimation;
     }
 
+    /**
+     * Return whether the given memory card is a matching pair.
+     */
     public boolean isPairOf(Card other) {
         return imageName.equals(other.imageName);
     }
 
+    /**
+     * Make the card invisible.
+     */
     public void hide() {
+        EventObject event = new CardHideEvent(this, this);
         animate(new TimerTask() {
             @Override
             public void run() {
@@ -81,11 +112,14 @@ public class Card extends Observable {
                 inAnimation = false;
                 setChanged();
                 notifyObservers();
-                MemoryGame.gameState.checkWin();
+                eventDispatcher.dispatch(event);
             }
         });
     }
 
+    /**
+     * Make the card face down.
+     */
     public void flipDown() {
         animate(new TimerTask() {
             @Override
@@ -98,6 +132,9 @@ public class Card extends Observable {
         });
     }
 
+    /**
+     * Execute the given task after a small period of time.
+     */
     private void animate(TimerTask timerTask) {
         inAnimation = true;
         setChanged();
@@ -105,6 +142,9 @@ public class Card extends Observable {
         new Timer().schedule(timerTask, 750);
     }
 
+    /**
+     * Make the card face up.
+     */
     public void flipUp() {
         faceUp = true;
         setChanged();
