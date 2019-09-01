@@ -1,6 +1,5 @@
 package net.csirmazbendeguz.memory_game.swing.buttons;
 
-import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
 import java.awt.Graphics;
@@ -30,7 +29,6 @@ public class PokemonButton extends JButton implements MouseListener {
      */
     private BufferedImage image;
 
-    @Inject
     public PokemonButton(ResourceLoader resourceLoader) {
         super();
         setOpaque(false);

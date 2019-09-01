@@ -1,6 +1,6 @@
-package net.csirmazbendeguz.memory_game.game_state.event.listeners;
+package net.csirmazbendeguz.memory_game.event.listeners;
 
-import net.csirmazbendeguz.memory_game.game_state.event.objects.GameStartEvent;
+import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
 
 import java.util.EventListener;
 

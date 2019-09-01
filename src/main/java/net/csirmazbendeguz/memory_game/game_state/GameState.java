@@ -1,8 +1,8 @@
 package net.csirmazbendeguz.memory_game.game_state;
 
-import net.csirmazbendeguz.memory_game.game_state.event.EventDispatcher;
-import net.csirmazbendeguz.memory_game.game_state.event.objects.GameStartEvent;
-import net.csirmazbendeguz.memory_game.game_state.event.objects.GameEndEvent;
+import net.csirmazbendeguz.memory_game.event.EventDispatcher;
+import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
+import net.csirmazbendeguz.memory_game.event.objects.GameEndEvent;
 import net.csirmazbendeguz.memory_game.util.RandomCardGenerator;
 
 public class GameState {

@@ -1,35 +1,31 @@
-package net.csirmazbendeguz.memory_game.game_state.event;
+package net.csirmazbendeguz.memory_game.event;
 
-import net.csirmazbendeguz.memory_game.util.ComponentTreeIterator;
-
-import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.EventListener;
-import java.util.EventObject;
+import java.util.*;
+import java.util.List;
 
 public class EventDispatcher {
 
-    private Component root;
+    private Map<Class, List<EventListener>> listeners = new HashMap<>();
 
-    public EventDispatcher(Component root) {
-        this.root = root;
+    public void addListener(Class eventType, EventListener listener) {
+        listeners.computeIfAbsent(eventType, k -> new ArrayList<>());
+        listeners.get(eventType).add(listener);
     }
 
     /**
-     * Dispatch an event to components implementing the corresponding event listener interface.
+     * Dispatch an event to the registered event listeners.
      *
      * @param event The event to dispatch.
      */
     public void dispatch(EventObject event) {
-        new ComponentTreeIterator(root).forEachRemaining(component -> {
-            // Events can only be dispatched to event listeners.
-            if (!(component instanceof EventListener)) {
-                return;
-            }
-
-            for (Method method : component.getClass().getDeclaredMethods()) {
+        if (!listeners.containsKey(event.getClass())) {
+            return;
+        }
+        for (EventListener listener : listeners.get(event.getClass())) {
+            for (Method method : listener.getClass().getDeclaredMethods()) {
                 // Interface methods are always public.
                 if (!Modifier.isPublic(method.getModifiers())) {
                     continue;
@@ -42,12 +38,12 @@ public class EventDispatcher {
                 }
 
                 try {
-                    method.invoke(component, event);
+                    method.invoke(listener, event);
                 } catch (IllegalAccessException | InvocationTargetException exception) {
                     throw new RuntimeException(String.format("Failed to invoke method '%s'.", method), exception);
                 }
             }
-        });
+        }
     }
 
 }

@@ -1,9 +1,10 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
+import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.game_state.Board;
 import net.csirmazbendeguz.memory_game.game_state.Card;
-import net.csirmazbendeguz.memory_game.game_state.event.listeners.GameStartListener;
-import net.csirmazbendeguz.memory_game.game_state.event.objects.GameStartEvent;
+import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
+import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
 import net.csirmazbendeguz.memory_game.swing.GameFrame;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
@@ -24,9 +25,10 @@ public class BoardPanel extends JPanel implements GameStartListener {
     /**
      * Construct a container for the board.
      */
-    public BoardPanel(ResourceLoader resourceLoader) {
+    public BoardPanel(ResourceLoader resourceLoader, EventDispatcher eventDispatcher) {
         this.setBounds(25, 100, 650, 650);
         background = resourceLoader.loadBackogroundImage("GamePanelBackground.png");
+        eventDispatcher.addListener(GameStartEvent.class, this);
     }
 
     /**

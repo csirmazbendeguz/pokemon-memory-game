@@ -1,6 +1,7 @@
 package net.csirmazbendeguz.memory_game;
 
 import com.google.inject.AbstractModule;
+import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.util.RandomCardGenerator;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
@@ -10,6 +11,7 @@ public class BasicModule extends AbstractModule {
     protected void configure() {
         bind(ResourceLoader.class).asEagerSingleton();
         bind(RandomCardGenerator.class).asEagerSingleton();
+        bind(EventDispatcher.class).asEagerSingleton();
     }
 
 }

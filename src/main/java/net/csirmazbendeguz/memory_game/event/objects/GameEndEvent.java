@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.game_state.event.objects;
+package net.csirmazbendeguz.memory_game.event.objects;
 
 import java.util.EventObject;
 

@@ -1,5 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing;
 
+import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.swing.labels.TimeLabel;
 import net.csirmazbendeguz.memory_game.swing.labels.TriesLabel;
 import net.csirmazbendeguz.memory_game.swing.panels.BackgroundPanel;
@@ -14,7 +15,7 @@ import javax.swing.*;
 
 public class GameFrame extends JFrame {
 
-    public GameFrame(ResourceLoader resourceLoader) {
+    public GameFrame(ResourceLoader resourceLoader, EventDispatcher eventDispatcher) {
         super();
         setSize(1100, 900);
         setLocationRelativeTo(null);
@@ -27,10 +28,10 @@ public class GameFrame extends JFrame {
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> true);
 
         BackgroundPanel bg = new BackgroundPanel(resourceLoader);
-        WinGlassPane winGlassPane = new WinGlassPane(resourceLoader);
+        WinGlassPane winGlassPane = new WinGlassPane(resourceLoader, eventDispatcher);
         setGlassPane(winGlassPane);
-        BoardPanel boardPanel = new BoardPanel(resourceLoader);
-        ChangeDimensionButton changeDimensionButton = new ChangeDimensionButton(resourceLoader);
+        BoardPanel boardPanel = new BoardPanel(resourceLoader, eventDispatcher);
+        ChangeDimensionButton changeDimensionButton = new ChangeDimensionButton(resourceLoader, eventDispatcher);
         RestartButton restartButton = new RestartButton(resourceLoader);
         TimeLabel timeLabel = new TimeLabel();
         TriesLabel triesLabel = new TriesLabel();

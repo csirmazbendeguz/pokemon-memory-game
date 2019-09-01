@@ -1,7 +1,8 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
-import net.csirmazbendeguz.memory_game.game_state.event.listeners.GameEndListener;
-import net.csirmazbendeguz.memory_game.game_state.event.objects.GameEndEvent;
+import net.csirmazbendeguz.memory_game.event.EventDispatcher;
+import net.csirmazbendeguz.memory_game.event.listeners.GameEndListener;
+import net.csirmazbendeguz.memory_game.event.objects.GameEndEvent;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
 import java.awt.*;
@@ -35,11 +36,12 @@ public class WinGlassPane extends JPanel implements GameEndListener, MouseListen
     /**
      * Construct a new glass pane for the win screen.
      */
-    public WinGlassPane(ResourceLoader resourceLoader) {
+    public WinGlassPane(ResourceLoader resourceLoader, EventDispatcher eventDispatcher) {
         setBackground(null);
         setOpaque(false);
         addMouseListener(this);
         background = resourceLoader.loadBackogroundImage("Win.png");
+        eventDispatcher.addListener(GameEndEvent.class, this);
     }
 
     /**
