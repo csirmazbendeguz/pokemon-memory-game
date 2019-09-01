@@ -19,16 +19,15 @@ public class Stopwatch extends Observable {
      */
     private int seconds;
 
-    private boolean isTimerRunning() {
-        return timer != null;
-    }
-
+    /**
+     * Return the seconds passed since the start of the timer.
+     */
     public int getSeconds() {
         return seconds;
     }
 
     /**
-     * Reset seconds to zero.
+     * Reset the seconds to zero.
      */
     public void resetSeconds() {
         seconds = 0;
@@ -67,6 +66,13 @@ public class Stopwatch extends Observable {
 
         timer.cancel();
         timer = null;
+    }
+
+    /**
+     * Return whether the timer is running.
+     */
+    private boolean isTimerRunning() {
+        return timer != null;
     }
 
 }
