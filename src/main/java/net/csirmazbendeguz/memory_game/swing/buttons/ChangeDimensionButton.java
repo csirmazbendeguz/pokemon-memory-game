@@ -37,7 +37,7 @@ public class ChangeDimensionButton extends PokemonButton implements ActionListen
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        int dimension = gameState.getBoard().getDimension();
+        int dimension = gameState.getDimension();
         dimension += 2;
         if (dimension == 8) {
             dimension = 2;
@@ -50,7 +50,7 @@ public class ChangeDimensionButton extends PokemonButton implements ActionListen
      */
     @Override
     public void gameStarted(GameStartEvent event) {
-        setText(String.format(LABEL, event.getBoard().getDimension()));
+        setText(String.format(LABEL, event.getDimension()));
     }
 
 }

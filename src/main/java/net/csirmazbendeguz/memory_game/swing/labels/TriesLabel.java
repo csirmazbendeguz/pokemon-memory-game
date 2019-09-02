@@ -18,8 +18,7 @@ public class TriesLabel extends JLabel implements Observer {
     }
 
     @Override
-    public void update(Observable observable, Object o) {
-        int tries = (int) o;
+    public void update(Observable observable, Object tries) {
         setText("Tries: " + tries);
         repaint();
     }

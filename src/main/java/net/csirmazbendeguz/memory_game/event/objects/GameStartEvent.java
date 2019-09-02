@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.event.objects;
 
-import net.csirmazbendeguz.memory_game.game_state.Board;
+import net.csirmazbendeguz.memory_game.game_state.Card;
 
 import java.util.EventObject;
 
@@ -9,14 +9,21 @@ import java.util.EventObject;
  */
 public class GameStartEvent extends EventObject {
 
-    private Board board;
+    private int dimension;
 
-    public GameStartEvent(Object source, Board board) {
+    private Card[][] board;
+
+    public GameStartEvent(Object source, int dimension, Card[][] board) {
         super(source);
+        this.dimension = dimension;
         this.board = board;
     }
 
-    public Board getBoard() {
+    public int getDimension() {
+        return dimension;
+    }
+
+    public Card[][] getBoard() {
         return board;
     }
 

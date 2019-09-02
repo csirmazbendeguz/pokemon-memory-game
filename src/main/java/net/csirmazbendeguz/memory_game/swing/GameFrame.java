@@ -33,7 +33,7 @@ public class GameFrame extends JFrame {
         BackgroundPanel bg = new BackgroundPanel(resourceLoader);
         WinGlassPane winGlassPane = new WinGlassPane(resourceLoader, eventDispatcher);
         setGlassPane(winGlassPane);
-        BoardPanel boardPanel = new BoardPanel(resourceLoader, eventDispatcher, gameState, stopwatch);
+        BoardPanel boardPanel = new BoardPanel(resourceLoader, eventDispatcher);
         ChangeDimensionButton changeDimensionButton = new ChangeDimensionButton(resourceLoader, eventDispatcher, gameState);
         RestartButton restartButton = new RestartButton(resourceLoader, gameState);
         TimeLabel timeLabel = new TimeLabel(stopwatch);

@@ -12,31 +12,27 @@ import java.util.Queue;
  */
 public class Board implements CardFlipUpListener {
 
-    private int dimension;
-
     private Card[][] board;
 
     private Queue<Card> faceUpCards;
 
     private TriesCounter triesCounter;
 
-    public Board(int dimension, Card[][] board, TriesCounter triesCounter, EventDispatcher eventDispatcher) {
-        this.dimension = dimension;
-        this.board = board;
-        faceUpCards = new ArrayDeque<>();
+    Board(TriesCounter triesCounter, EventDispatcher eventDispatcher) {
         this.triesCounter = triesCounter;
         eventDispatcher.addListener(CardFlipUpEvent.class, this);
     }
 
-    public int getDimension() {
-        return dimension;
+    public void newGame(Card[][] board) {
+        this.board = board;
+        faceUpCards = new ArrayDeque<>();
     }
 
     public Card[][] getBoard() {
         return board;
     }
 
-    public boolean isGameWon() {
+    boolean isGameWon() {
         for (Card[] cards : board) {
             for (Card card : cards) {
                 if (card.isVisible()) {

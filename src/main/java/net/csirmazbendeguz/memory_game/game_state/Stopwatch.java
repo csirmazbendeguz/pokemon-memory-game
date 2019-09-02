@@ -22,14 +22,14 @@ public class Stopwatch extends Observable {
     /**
      * Return the seconds passed since the start of the timer.
      */
-    public int getSeconds() {
+    int getSeconds() {
         return seconds;
     }
 
     /**
      * Reset the seconds to zero.
      */
-    public void resetSeconds() {
+    void resetSeconds() {
         seconds = 0;
         setChanged();
         notifyObservers(seconds);
@@ -38,7 +38,7 @@ public class Stopwatch extends Observable {
     /**
      * Start the timer.
      */
-    public void startTimer() {
+    void startTimer() {
         if (isTimerRunning()) {
             return;
         }
@@ -59,7 +59,7 @@ public class Stopwatch extends Observable {
     /**
      * Stop the timer.
      */
-    public void stopTimer() {
+    void stopTimer() {
         if (!isTimerRunning()) {
             return;
         }

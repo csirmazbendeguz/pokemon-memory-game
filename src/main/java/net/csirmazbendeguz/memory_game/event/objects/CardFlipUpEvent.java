@@ -13,6 +13,7 @@ public class CardFlipUpEvent extends EventObject {
 
     public CardFlipUpEvent(Object source, Card card) {
         super(source);
+        this.card = card;
     }
 
     public Card getCard() {

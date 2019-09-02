@@ -138,8 +138,6 @@ public class Card extends Observable {
      */
     private void animate(TimerTask timerTask) {
         inAnimation = true;
-        setChanged();
-        notifyObservers();
         new Timer().schedule(timerTask, 750);
     }
 
@@ -151,6 +149,10 @@ public class Card extends Observable {
         setChanged();
         notifyObservers();
         eventDispatcher.dispatch(new CardFlipUpEvent(this, this));
+    }
+
+    public boolean canFlipUp() {
+        return isVisible() && !isFaceUp() && !isInAnimation();
     }
 
 }

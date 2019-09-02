@@ -1,12 +1,9 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
-import net.csirmazbendeguz.memory_game.game_state.Board;
 import net.csirmazbendeguz.memory_game.game_state.Card;
 import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
 import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
-import net.csirmazbendeguz.memory_game.game_state.GameState;
-import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
 import net.csirmazbendeguz.memory_game.swing.GameFrame;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
@@ -24,19 +21,13 @@ public class BoardPanel extends JPanel implements GameStartListener {
      */
     private BufferedImage background;
 
-    private GameState gameState;
-
-    private Stopwatch stopwatch;
-
     /**
      * Construct a container for the board.
      */
-    public BoardPanel(ResourceLoader resourceLoader, EventDispatcher eventDispatcher, GameState gameState, Stopwatch stopwatch) {
+    public BoardPanel(ResourceLoader resourceLoader, EventDispatcher eventDispatcher) {
         this.setBounds(25, 100, 650, 650);
         background = resourceLoader.loadBackogroundImage("GamePanelBackground.png");
         eventDispatcher.addListener(GameStartEvent.class, this);
-        this.gameState = gameState;
-        this.stopwatch = stopwatch;
     }
 
     /**
@@ -44,9 +35,8 @@ public class BoardPanel extends JPanel implements GameStartListener {
      */
     @Override
     public void gameStarted(GameStartEvent event) {
-        Board board = event.getBoard();
-        Card[][] cards = board.getBoard();
-        int dimension = board.getDimension();
+        Card[][] cards = event.getBoard();
+        int dimension = event.getDimension();
         this.removeAll();
         this.setLayout(new GridBagLayout());
 
@@ -57,7 +47,7 @@ public class BoardPanel extends JPanel implements GameStartListener {
                 constraints.gridx = row;
                 constraints.gridy = column;
 
-                CardPanel cardPanel = new CardPanel(cards[row][column], gameState, stopwatch);
+                CardPanel cardPanel = new CardPanel(cards[row][column]);
                 this.add(cardPanel, constraints);
             }
         }

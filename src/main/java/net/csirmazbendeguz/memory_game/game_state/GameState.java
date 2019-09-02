@@ -2,14 +2,21 @@ package net.csirmazbendeguz.memory_game.game_state;
 
 import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
+import net.csirmazbendeguz.memory_game.event.listeners.CardFlipUpListener;
 import net.csirmazbendeguz.memory_game.event.listeners.CardHideListener;
+import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
 import net.csirmazbendeguz.memory_game.event.objects.CardHideEvent;
 import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
 import net.csirmazbendeguz.memory_game.event.objects.GameEndEvent;
 import net.csirmazbendeguz.memory_game.util.RandomCardGenerator;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
-public class GameState implements CardHideListener {
+public class GameState implements CardHideListener, CardFlipUpListener {
+
+    /**
+     * The game board's dimension.
+     */
+    private int dimension;
 
     private Board board;
 
@@ -31,19 +38,23 @@ public class GameState implements CardHideListener {
         eventDispatcher.addListener(CardHideEvent.class, this);
         this.stopwatch = stopwatch;
         this.triesCounter = triesCounter;
+        eventDispatcher.addListener(CardFlipUpEvent.class, this);
+        board = new Board(triesCounter, eventDispatcher);
     }
 
     public void restartGame() {
-        newGame(board.getDimension());
+        newGame(getDimension());
     }
 
     public void newGame(int dimension) {
+        this.dimension = dimension;
         stopwatch.stopTimer();
         stopwatch.resetSeconds();
         triesCounter.reset();
 
-        board = new Board(dimension, generateCards(randomCardGenerator.generateBoard(dimension)), triesCounter, eventDispatcher);
-        eventDispatcher.dispatch(new GameStartEvent(this, board));
+        Card[][] cards = generateCards(randomCardGenerator.generateBoard(dimension));
+        board.newGame(cards);
+        eventDispatcher.dispatch(new GameStartEvent(this, dimension, cards));
     }
 
     private Card[][] generateCards(String[][] cardImageNames) {
@@ -58,12 +69,8 @@ public class GameState implements CardHideListener {
         return cards;
     }
 
-    public Board getBoard() {
-        return board;
-    }
-
     /**
-     * Check for win.
+     * Move the game to the "won" state when the last card is hidden.
      */
     @Override
     public void cardHidden(CardHideEvent event) {
@@ -71,11 +78,27 @@ public class GameState implements CardHideListener {
             stopwatch.stopTimer();
             eventDispatcher.dispatch(new GameEndEvent(
                 this,
-                board.getDimension(),
+                getDimension(),
                 stopwatch.getSeconds(),
                 triesCounter.getTries()
             ));
         }
+    }
+
+    /**
+     * Start the timer when the first card is flipped.
+     */
+    @Override
+    public void cardFlippedUp(CardFlipUpEvent event) {
+        // Start the timer if it's not already running.
+        stopwatch.startTimer();
+    }
+
+    /**
+     * Get the current game board's dimension.
+     */
+    public int getDimension() {
+        return dimension;
     }
 
 }

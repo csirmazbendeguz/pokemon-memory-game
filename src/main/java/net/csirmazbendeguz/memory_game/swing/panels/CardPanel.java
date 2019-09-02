@@ -1,9 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
-import net.csirmazbendeguz.memory_game.game_state.Board;
 import net.csirmazbendeguz.memory_game.game_state.Card;
-import net.csirmazbendeguz.memory_game.game_state.GameState;
-import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
 import net.csirmazbendeguz.memory_game.swing.GameFrame;
 
 import java.awt.*;
@@ -24,16 +21,12 @@ public class CardPanel extends JPanel implements MouseListener, Observer {
      */
     private Card card;
 
-    private GameState gameState;
-
-    private Stopwatch stopwatch;
-
     /**
      * Construct a container for memory game cards.
      *
      * @param card The card state.
      */
-    public CardPanel(Card card, GameState gameState, Stopwatch stopwatch) {
+    public CardPanel(Card card) {
         this.card = card;
 
         Dimension size = new Dimension(100, 100);
@@ -43,8 +36,6 @@ public class CardPanel extends JPanel implements MouseListener, Observer {
 
         addMouseListener(this);
         card.addObserver(this);
-        this.gameState = gameState;
-        this.stopwatch = stopwatch;
     }
 
     /**
@@ -66,9 +57,8 @@ public class CardPanel extends JPanel implements MouseListener, Observer {
      */
     @Override
     public void mousePressed(MouseEvent me) {
-        if (card.isVisible() && !card.isFaceUp() && !card.isInAnimation()) {
+        if (card.canFlipUp()) {
             card.flipUp();
-            stopwatch.startTimer();
         }
     }
 
