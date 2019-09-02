@@ -1,7 +1,5 @@
 package net.csirmazbendeguz.memory_game.event.objects;
 
-import net.csirmazbendeguz.memory_game.game_state.Card;
-
 import java.util.EventObject;
 
 /**
@@ -9,15 +7,8 @@ import java.util.EventObject;
  */
 public class CardHideEvent extends EventObject {
 
-    private Card card;
-
-    public CardHideEvent(Object source, Card card) {
+    public CardHideEvent(Object source) {
         super(source);
-        this.card = card;
-    }
-
-    public Card getCard() {
-        return card;
     }
 
 }

@@ -105,7 +105,7 @@ public class Card extends Observable {
      * Make the card invisible.
      */
     public void hide() {
-        EventObject event = new CardHideEvent(this, this);
+        EventObject event = new CardHideEvent(this);
         animate(new TimerTask() {
             @Override
             public void run() {

@@ -31,21 +31,29 @@ public class GameState implements CardHideListener, CardFlipUpListener {
     private TriesCounter triesCounter;
 
     @Inject
-    public GameState(ResourceLoader resourceLoader, EventDispatcher eventDispatcher, RandomCardGenerator randomCardGenerator, Stopwatch stopwatch, TriesCounter triesCounter) {
+    public GameState(ResourceLoader resourceLoader, EventDispatcher eventDispatcher, RandomCardGenerator randomCardGenerator, Stopwatch stopwatch, TriesCounter triesCounter, Board board) {
         this.resourceLoader = resourceLoader;
         this.eventDispatcher = eventDispatcher;
         this.randomCardGenerator = randomCardGenerator;
-        eventDispatcher.addListener(CardHideEvent.class, this);
         this.stopwatch = stopwatch;
         this.triesCounter = triesCounter;
+        this.board = board;
+        eventDispatcher.addListener(CardHideEvent.class, this);
         eventDispatcher.addListener(CardFlipUpEvent.class, this);
-        board = new Board(triesCounter, eventDispatcher);
     }
 
+    /**
+     * Restart the game.
+     */
     public void restartGame() {
         newGame(getDimension());
     }
 
+    /**
+     * Start a new game.
+     *
+     * @param dimension The new board's dimension.
+     */
     public void newGame(int dimension) {
         this.dimension = dimension;
         stopwatch.stopTimer();
@@ -53,7 +61,7 @@ public class GameState implements CardHideListener, CardFlipUpListener {
         triesCounter.reset();
 
         Card[][] cards = generateCards(randomCardGenerator.generateBoard(dimension));
-        board.newGame(cards);
+        board.init(cards);
         eventDispatcher.dispatch(new GameStartEvent(this, dimension, cards));
     }
 
