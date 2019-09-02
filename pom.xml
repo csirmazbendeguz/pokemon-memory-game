@@ -35,7 +35,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>net.csirmazbendeguz.memory_game.MemoryGame</mainClass>
+                            <mainClass>net.csirmazbendeguz.memory_game.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

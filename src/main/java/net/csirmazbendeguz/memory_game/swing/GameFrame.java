@@ -1,5 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing;
 
+import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.game_state.GameState;
 import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
@@ -18,6 +19,7 @@ import javax.swing.*;
 
 public class GameFrame extends JFrame {
 
+    @Inject
     public GameFrame(ResourceLoader resourceLoader, EventDispatcher eventDispatcher, GameState gameState, Stopwatch stopwatch, TriesCounter triesCounter) {
         super();
         setSize(1100, 900);
