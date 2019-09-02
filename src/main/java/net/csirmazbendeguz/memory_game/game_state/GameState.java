@@ -42,7 +42,7 @@ public class GameState implements CardHideListener {
         stopwatch.resetSeconds();
         triesCounter.reset();
 
-        board = new Board(dimension, generateCards(randomCardGenerator.generateBoard(dimension)), triesCounter);
+        board = new Board(dimension, generateCards(randomCardGenerator.generateBoard(dimension)), triesCounter, eventDispatcher);
         eventDispatcher.dispatch(new GameStartEvent(this, board));
     }
 

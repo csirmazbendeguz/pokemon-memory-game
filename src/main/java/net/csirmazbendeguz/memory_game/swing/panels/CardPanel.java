@@ -69,9 +69,6 @@ public class CardPanel extends JPanel implements MouseListener, Observer {
         if (card.isVisible() && !card.isFaceUp() && !card.isInAnimation()) {
             card.flipUp();
             stopwatch.startTimer();
-            Board board = gameState.getBoard();
-            board.flipUp(card);
-            board.checkPairs();
         }
     }
 

@@ -1,9 +1,16 @@
 package net.csirmazbendeguz.memory_game.game_state;
 
+import net.csirmazbendeguz.memory_game.event.EventDispatcher;
+import net.csirmazbendeguz.memory_game.event.listeners.CardFlipUpListener;
+import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
+
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-public class Board {
+/**
+ * The board state.
+ */
+public class Board implements CardFlipUpListener {
 
     private int dimension;
 
@@ -13,11 +20,12 @@ public class Board {
 
     private TriesCounter triesCounter;
 
-    public Board(int dimension, Card[][] board, TriesCounter triesCounter) {
+    public Board(int dimension, Card[][] board, TriesCounter triesCounter, EventDispatcher eventDispatcher) {
         this.dimension = dimension;
         this.board = board;
         faceUpCards = new ArrayDeque<>();
         this.triesCounter = triesCounter;
+        eventDispatcher.addListener(CardFlipUpEvent.class, this);
     }
 
     public int getDimension() {
@@ -26,11 +34,6 @@ public class Board {
 
     public Card[][] getBoard() {
         return board;
-    }
-
-    public void flipUp(Card card) {
-        card.flipUp();
-        faceUpCards.offer(card);
     }
 
     public boolean isGameWon() {
@@ -45,7 +48,10 @@ public class Board {
         return true;
     }
 
-    public void checkPairs() {
+    @Override
+    public void cardFlippedUp(CardFlipUpEvent event) {
+        faceUpCards.offer(event.getCard());
+
         while (faceUpCards.size() >= 2) {
             triesCounter.increment();
 

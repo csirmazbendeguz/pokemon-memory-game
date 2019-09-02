@@ -1,6 +1,7 @@
 package net.csirmazbendeguz.memory_game.game_state;
 
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
+import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
 import net.csirmazbendeguz.memory_game.event.objects.CardHideEvent;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
@@ -118,7 +119,7 @@ public class Card extends Observable {
     }
 
     /**
-     * Make the card face down.
+     * Flip the card down.
      */
     public void flipDown() {
         animate(new TimerTask() {
@@ -143,12 +144,13 @@ public class Card extends Observable {
     }
 
     /**
-     * Make the card face up.
+     * Flip the card up.
      */
     public void flipUp() {
         faceUp = true;
         setChanged();
         notifyObservers();
+        eventDispatcher.dispatch(new CardFlipUpEvent(this, this));
     }
 
 }
