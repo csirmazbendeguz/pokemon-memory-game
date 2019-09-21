@@ -48,4 +48,11 @@ class ImageModule extends AbstractModule {
         return resourceLoader.loadBackogroundImage("Background.jpg");
     }
 
+    @Provides
+    @Singleton
+    @Named("winScreen")
+    BufferedImage provideWinScreen(ResourceLoader resourceLoader) {
+        return resourceLoader.loadBackogroundImage("Win.png");
+    }
+
 }

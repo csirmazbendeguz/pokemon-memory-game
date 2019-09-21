@@ -16,7 +16,7 @@ public class TimeLabel extends BaseLabel implements Observer {
     @Inject
     public TimeLabel(@Named("labelBackground") BufferedImage background, Stopwatch stopwatch) {
         super(background);
-        this.setBounds(940, 18, WIDTH, HEIGHT);
+        setBounds(940, 18, WIDTH, HEIGHT);
         stopwatch.addObserver(this);
     }
 
