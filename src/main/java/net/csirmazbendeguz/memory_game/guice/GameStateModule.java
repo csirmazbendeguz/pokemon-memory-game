@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game;
+package net.csirmazbendeguz.memory_game.guice;
 
 import com.google.inject.AbstractModule;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
@@ -9,7 +9,7 @@ import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
 import net.csirmazbendeguz.memory_game.util.RandomCardGenerator;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
-public class BasicModule extends AbstractModule {
+public class GameStateModule extends AbstractModule {
 
     @Override
     protected void configure() {

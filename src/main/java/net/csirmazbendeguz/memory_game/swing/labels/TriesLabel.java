@@ -1,5 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.labels;
 
+import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
@@ -10,6 +11,7 @@ import java.util.Observer;
 
 public class TriesLabel extends PokemonLabel implements Observer {
 
+    @Inject
     public TriesLabel(ResourceLoader resourceLoader, TriesCounter triesCounter) {
         super(resourceLoader);
         setBounds(940, 72, 150, 50);

@@ -1,5 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.labels;
 
+import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
@@ -10,6 +11,7 @@ import java.util.Observer;
 
 public class TimeLabel extends PokemonLabel implements Observer {
 
+    @Inject
     public TimeLabel(ResourceLoader resourceLoader, Stopwatch stopwatch) {
         super(resourceLoader);
         this.setForeground(Color.BLACK);

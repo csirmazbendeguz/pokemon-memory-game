@@ -20,7 +20,7 @@ import javax.swing.*;
 public class GameFrame extends JFrame {
 
     @Inject
-    public GameFrame(ResourceLoader resourceLoader, EventDispatcher eventDispatcher, GameState gameState, Stopwatch stopwatch, TriesCounter triesCounter) {
+    public GameFrame(ResourceLoader resourceLoader, EventDispatcher eventDispatcher, GameState gameState, Stopwatch stopwatch, TriesCounter triesCounter, TimeLabel timeLabel, TriesLabel triesLabel) {
         super();
         setSize(1100, 900);
         setLocationRelativeTo(null);
@@ -38,8 +38,6 @@ public class GameFrame extends JFrame {
         BoardPanel boardPanel = new BoardPanel(resourceLoader, eventDispatcher);
         ChangeDimensionButton changeDimensionButton = new ChangeDimensionButton(resourceLoader, eventDispatcher, gameState);
         RestartButton restartButton = new RestartButton(resourceLoader, gameState);
-        TimeLabel timeLabel = new TimeLabel(resourceLoader, stopwatch);
-        TriesLabel triesLabel = new TriesLabel(resourceLoader, triesCounter);
 
         getContentPane().add(bg);
         bg.setLayout(null);
