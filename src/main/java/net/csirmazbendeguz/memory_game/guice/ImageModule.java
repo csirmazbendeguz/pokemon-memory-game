@@ -9,7 +9,7 @@ import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 import java.awt.image.BufferedImage;
 
 /**
- * Module for binding images.
+ * Module for loading images.
  */
 class ImageModule extends AbstractModule {
 
@@ -53,6 +53,13 @@ class ImageModule extends AbstractModule {
     @Named("winScreen")
     BufferedImage provideWinScreen(ResourceLoader resourceLoader) {
         return resourceLoader.loadBackogroundImage("Win.png");
+    }
+
+    @Provides
+    @Singleton
+    @Named("boardBackground")
+    BufferedImage provideBoardBackground(ResourceLoader resourceLoader) {
+        return resourceLoader.loadBackogroundImage("GamePanelBackground.png");
     }
 
 }

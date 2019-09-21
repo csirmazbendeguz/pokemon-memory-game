@@ -1,12 +1,12 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.game_state.Card;
 import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
 import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
 import net.csirmazbendeguz.memory_game.swing.GameFrame;
-import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -26,9 +26,9 @@ public class BoardPanel extends JPanel implements GameStartListener {
      * Construct a container for the board.
      */
     @Inject
-    public BoardPanel(ResourceLoader resourceLoader, EventDispatcher eventDispatcher) {
-        this.setBounds(25, 100, 650, 650);
-        background = resourceLoader.loadBackogroundImage("GamePanelBackground.png");
+    public BoardPanel(@Named("boardBackground") BufferedImage background, EventDispatcher eventDispatcher) {
+        this.background = background;
+        setBounds(25, 100, 650, 650);
         eventDispatcher.addListener(GameStartEvent.class, this);
     }
 
