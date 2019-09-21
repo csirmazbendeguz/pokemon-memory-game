@@ -1,22 +1,19 @@
 package net.csirmazbendeguz.memory_game.swing.labels;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
-import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
 
 public class TriesLabel extends PokemonLabel implements Observer {
 
     @Inject
-    public TriesLabel(ResourceLoader resourceLoader, TriesCounter triesCounter) {
-        super(resourceLoader);
-        setBounds(940, 72, 150, 50);
-        setForeground(Color.BLACK);
-        setFont(new Font("Serif", Font.PLAIN, 25));
+    public TriesLabel(@Named("labelBackground") BufferedImage background, TriesCounter triesCounter) {
+        super(background);
+        setBounds(940, 72, WIDTH, HEIGHT);
         triesCounter.addObserver(this);
     }
 

@@ -1,22 +1,19 @@
 package net.csirmazbendeguz.memory_game.swing.labels;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
-import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
 
 public class TimeLabel extends PokemonLabel implements Observer {
 
     @Inject
-    public TimeLabel(ResourceLoader resourceLoader, Stopwatch stopwatch) {
-        super(resourceLoader);
-        this.setForeground(Color.BLACK);
-        this.setFont(new Font("Serif", Font.PLAIN, 25));
-        this.setBounds(940, 18, 150, 50);
+    public TimeLabel(@Named("labelBackground") BufferedImage background, Stopwatch stopwatch) {
+        super(background);
+        this.setBounds(940, 18, WIDTH, HEIGHT);
         stopwatch.addObserver(this);
     }
 

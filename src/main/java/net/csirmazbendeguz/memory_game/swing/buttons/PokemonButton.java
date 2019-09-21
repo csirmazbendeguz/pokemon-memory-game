@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JButton;
 
 /**
- * Base class for buttons.
+ * Base class for the game's buttons.
  */
 public class PokemonButton extends JButton implements MouseListener {
 
