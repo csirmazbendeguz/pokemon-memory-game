@@ -5,7 +5,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-
 /**
  * Base class for the game's labels.
  */
@@ -28,8 +27,8 @@ abstract class BaseLabel extends JLabel {
      */
     BaseLabel(BufferedImage background) {
         this.background = background;
-        this.setForeground(Color.BLACK);
-        this.setFont(new Font("Serif", Font.PLAIN, 25));
+        setForeground(Color.BLACK);
+        setFont(new Font("Serif", Font.PLAIN, 25));
         // Add a small left padding so the label's text doesn't overlap the background image.
         setBorder(new EmptyBorder(0, 15, 0, 0));
     }

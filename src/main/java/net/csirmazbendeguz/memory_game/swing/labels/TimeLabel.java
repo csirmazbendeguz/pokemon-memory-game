@@ -8,6 +8,9 @@ import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Label showing the time spent.
+ */
 public class TimeLabel extends BaseLabel implements Observer {
 
     @Inject
@@ -17,6 +20,9 @@ public class TimeLabel extends BaseLabel implements Observer {
         stopwatch.addObserver(this);
     }
 
+    /**
+     * Update the label's text.
+     */
     @Override
     public void update(Observable observable, Object o) {
         int totalSeconds = (int) o;
@@ -25,8 +31,7 @@ public class TimeLabel extends BaseLabel implements Observer {
         int minutes = (totalSeconds % 3600) / 60;
         int seconds = totalSeconds % 60;
 
-        this.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
-        this.repaint();
+        setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
     }
 
 }

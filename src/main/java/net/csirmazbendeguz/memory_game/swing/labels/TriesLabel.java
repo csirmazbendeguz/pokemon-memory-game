@@ -8,6 +8,9 @@ import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Label showing the number of tries.
+ */
 public class TriesLabel extends BaseLabel implements Observer {
 
     @Inject
@@ -17,10 +20,12 @@ public class TriesLabel extends BaseLabel implements Observer {
         triesCounter.addObserver(this);
     }
 
+    /**
+     * Update the label's text.
+     */
     @Override
     public void update(Observable observable, Object tries) {
         setText("Tries: " + tries);
-        repaint();
     }
 
 }
