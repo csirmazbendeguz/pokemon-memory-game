@@ -9,7 +9,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Label showing the time spent.
+ * Label to show the time spent.
  */
 public class TimeLabel extends BaseLabel implements Observer {
 

@@ -9,7 +9,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Label showing the number of tries.
+ * Label to show the number of tries.
  */
 public class TriesLabel extends BaseLabel implements Observer {
 
