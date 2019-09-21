@@ -1,5 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.buttons;
 
+import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
 import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
@@ -24,6 +25,7 @@ public class ChangeDimensionButton extends PokemonButton implements ActionListen
     /**
      * Construct a button for changing the dimension.
      */
+    @Inject
     public ChangeDimensionButton(ResourceLoader resourceLoader, EventDispatcher eventDispatcher, GameState gameState) {
         super(resourceLoader);
         setBounds(50, 775, WIDTH, HEIGHT);

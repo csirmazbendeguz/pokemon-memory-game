@@ -2,9 +2,6 @@ package net.csirmazbendeguz.memory_game.swing;
 
 import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
-import net.csirmazbendeguz.memory_game.game_state.GameState;
-import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
-import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
 import net.csirmazbendeguz.memory_game.swing.labels.TimeLabel;
 import net.csirmazbendeguz.memory_game.swing.labels.TriesLabel;
 import net.csirmazbendeguz.memory_game.swing.panels.BackgroundPanel;
@@ -20,7 +17,7 @@ import javax.swing.*;
 public class GameFrame extends JFrame {
 
     @Inject
-    public GameFrame(ResourceLoader resourceLoader, EventDispatcher eventDispatcher, GameState gameState, Stopwatch stopwatch, TriesCounter triesCounter, TimeLabel timeLabel, TriesLabel triesLabel) {
+    public GameFrame(ResourceLoader resourceLoader, EventDispatcher eventDispatcher, ChangeDimensionButton changeDimensionButton, RestartButton restartButton, TimeLabel timeLabel, TriesLabel triesLabel) {
         super();
         setSize(1100, 900);
         setLocationRelativeTo(null);
@@ -36,8 +33,6 @@ public class GameFrame extends JFrame {
         WinGlassPane winGlassPane = new WinGlassPane(resourceLoader, eventDispatcher);
         setGlassPane(winGlassPane);
         BoardPanel boardPanel = new BoardPanel(resourceLoader, eventDispatcher);
-        ChangeDimensionButton changeDimensionButton = new ChangeDimensionButton(resourceLoader, eventDispatcher, gameState);
-        RestartButton restartButton = new RestartButton(resourceLoader, gameState);
 
         getContentPane().add(bg);
         bg.setLayout(null);
