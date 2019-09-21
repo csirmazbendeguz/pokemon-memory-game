@@ -56,10 +56,10 @@ public class Card extends Observable {
      *
      * @param imageName The card front image's name.
      */
-    public Card(String imageName, ResourceLoader resourceLoader, EventDispatcher eventDispatcher) {
+    public Card(String imageName, ResourceLoader resourceLoader, BufferedImage cardBack, EventDispatcher eventDispatcher) {
         this.imageName = imageName;
         cardFront = resourceLoader.loadCardImage(imageName);
-        cardBack = resourceLoader.loadBackogroundImage("CardBack.png");
+        this.cardBack = cardBack;
         this.eventDispatcher = eventDispatcher;
     }
 

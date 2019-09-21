@@ -1,6 +1,7 @@
 package net.csirmazbendeguz.memory_game.game_state;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.event.listeners.CardFlipUpListener;
 import net.csirmazbendeguz.memory_game.event.listeners.CardHideListener;
@@ -10,6 +11,8 @@ import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
 import net.csirmazbendeguz.memory_game.event.objects.GameEndEvent;
 import net.csirmazbendeguz.memory_game.util.RandomCardGenerator;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
+
+import java.awt.image.BufferedImage;
 
 public class GameState implements CardHideListener, CardFlipUpListener {
 
@@ -30,9 +33,12 @@ public class GameState implements CardHideListener, CardFlipUpListener {
 
     private TriesCounter triesCounter;
 
+    private BufferedImage cardBack;
+
     @Inject
-    public GameState(ResourceLoader resourceLoader, EventDispatcher eventDispatcher, RandomCardGenerator randomCardGenerator, Stopwatch stopwatch, TriesCounter triesCounter, Board board) {
+    public GameState(ResourceLoader resourceLoader, @Named("cardBack") BufferedImage cardBack, EventDispatcher eventDispatcher, RandomCardGenerator randomCardGenerator, Stopwatch stopwatch, TriesCounter triesCounter, Board board) {
         this.resourceLoader = resourceLoader;
+        this.cardBack = cardBack;
         this.eventDispatcher = eventDispatcher;
         this.randomCardGenerator = randomCardGenerator;
         this.stopwatch = stopwatch;
@@ -70,7 +76,7 @@ public class GameState implements CardHideListener, CardFlipUpListener {
 
         for (int i = 0; i < cardImageNames.length; ++i) {
             for (int j = 0; j < cardImageNames.length; ++j) {
-                cards[i][j] = new Card(cardImageNames[i][j], resourceLoader, eventDispatcher);
+                cards[i][j] = new Card(cardImageNames[i][j], resourceLoader, cardBack, eventDispatcher);
             }
         }
 
