@@ -38,8 +38,8 @@ public class GameFrame extends JFrame {
         BoardPanel boardPanel = new BoardPanel(resourceLoader, eventDispatcher);
         ChangeDimensionButton changeDimensionButton = new ChangeDimensionButton(resourceLoader, eventDispatcher, gameState);
         RestartButton restartButton = new RestartButton(resourceLoader, gameState);
-        TimeLabel timeLabel = new TimeLabel(stopwatch);
-        TriesLabel triesLabel = new TriesLabel(triesCounter);
+        TimeLabel timeLabel = new TimeLabel(resourceLoader, stopwatch);
+        TriesLabel triesLabel = new TriesLabel(resourceLoader, triesCounter);
 
         getContentPane().add(bg);
         bg.setLayout(null);
