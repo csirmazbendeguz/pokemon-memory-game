@@ -1,5 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
+import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
 import java.awt.*;
@@ -16,6 +17,7 @@ public class BackgroundPanel extends JPanel {
      */
     private BufferedImage image;
 
+    @Inject
     public BackgroundPanel(ResourceLoader resourceLoader) {
         image = resourceLoader.loadBackogroundImage("Background.jpg");
     }
