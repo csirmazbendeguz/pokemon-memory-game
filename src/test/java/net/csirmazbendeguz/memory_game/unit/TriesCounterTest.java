@@ -12,38 +12,61 @@ import java.util.Observer;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
+/**
+ * Tests for the tries counter.
+ *
+ * @see net.csirmazbendeguz.memory_game.game_state.TriesCounter
+ */
 @ExtendWith(MockitoExtension.class)
 class TriesCounterTest {
 
-    private TriesCounter triesCounter;
+    /**
+     * The tries counter to test.
+     */
+    private TriesCounter counter;
 
+    /**
+     * The counter's mock observer.
+     */
     @Mock
-    private Observer mockObserver;
+    private Observer observer;
 
+    /**
+     * Set up the test fixture.
+     */
     @BeforeEach
     void setup() {
-        triesCounter = new TriesCounter();
-        triesCounter.addObserver(mockObserver);
+        counter = new TriesCounter();
+        counter.addObserver(observer);
     }
 
+    /**
+     * Test that the counter is set to 0 by default.
+     */
     @Test
     void testInitialValue() {
-        assertEquals(0, triesCounter.getTries());
-        verifyZeroInteractions(mockObserver);
+        assertEquals(0, counter.getTries());
+        verifyZeroInteractions(observer);
     }
 
+    /**
+     * Test that the counter can be incremented by 1.
+     */
     @Test
     void testIncrement() {
-        triesCounter.increment();
-        assertEquals(1, triesCounter.getTries());
-        verify(mockObserver).update(triesCounter, 1);
+        counter.increment();
+        assertEquals(1, counter.getTries());
+        verify(observer).update(counter, 1);
     }
 
+    /**
+     * Test that the counter can be reset to 0.
+     */
     @Test
     void testReset() {
-        triesCounter.reset();
-        assertEquals(0, triesCounter.getTries());
-        verify(mockObserver).update(triesCounter, 0);
+        counter.reset();
+        assertEquals(0, counter.getTries());
+        verify(observer).update(counter, 0);
     }
 
 }
