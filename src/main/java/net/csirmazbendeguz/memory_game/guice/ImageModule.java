@@ -17,49 +17,49 @@ class ImageModule extends AbstractModule {
     @Singleton
     @Named("labelBackground")
     BufferedImage provideLabelBackground(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("Label-Bg.png");
+        return resourceLoader.loadBackogroundImage("labelBackground.png");
     }
 
     @Provides
     @Singleton
     @Named("buttonBackground")
     BufferedImage provideButtonBackground(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("Button.png");
+        return resourceLoader.loadBackogroundImage("buttonBackground.png");
     }
 
     @Provides
     @Singleton
     @Named("buttonBackgroundHover")
     BufferedImage provideButtonBackgroundHover(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("ButtonHover.png");
+        return resourceLoader.loadBackogroundImage("buttonBackgroundHover.png");
     }
 
     @Provides
     @Singleton
     @Named("buttonBackgroundClick")
     BufferedImage provideButtonBackgroundClick(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("ButtonClick.png");
+        return resourceLoader.loadBackogroundImage("buttonBackgroundClick.png");
     }
 
     @Provides
     @Singleton
     @Named("background")
     BufferedImage provideBackground(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("Background.jpg");
+        return resourceLoader.loadBackogroundImage("background.jpg");
     }
 
     @Provides
     @Singleton
     @Named("winScreen")
     BufferedImage provideWinScreen(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("Win.png");
+        return resourceLoader.loadBackogroundImage("winScreen.png");
     }
 
     @Provides
     @Singleton
     @Named("boardBackground")
     BufferedImage provideBoardBackground(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("GamePanelBackground.png");
+        return resourceLoader.loadBackogroundImage("boardBackground.png");
     }
 
 }
