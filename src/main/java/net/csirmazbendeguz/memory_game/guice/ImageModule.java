@@ -16,29 +16,36 @@ class ImageModule extends AbstractModule {
     @Provides
     @Singleton
     @Named("labelBackground")
-    BufferedImage labelBackground(ResourceLoader resourceLoader) {
+    BufferedImage provideLabelBackground(ResourceLoader resourceLoader) {
         return resourceLoader.loadBackogroundImage("Label-Bg.png");
     }
 
     @Provides
     @Singleton
     @Named("buttonBackground")
-    BufferedImage buttonBackground(ResourceLoader resourceLoader) {
+    BufferedImage provideButtonBackground(ResourceLoader resourceLoader) {
         return resourceLoader.loadBackogroundImage("Button.png");
     }
 
     @Provides
     @Singleton
     @Named("buttonBackgroundHover")
-    BufferedImage buttonBackgroundHover(ResourceLoader resourceLoader) {
+    BufferedImage provideButtonBackgroundHover(ResourceLoader resourceLoader) {
         return resourceLoader.loadBackogroundImage("ButtonHover.png");
     }
 
     @Provides
     @Singleton
     @Named("buttonBackgroundClick")
-    BufferedImage buttonBackgroundClick(ResourceLoader resourceLoader) {
+    BufferedImage provideButtonBackgroundClick(ResourceLoader resourceLoader) {
         return resourceLoader.loadBackogroundImage("ButtonClick.png");
+    }
+
+    @Provides
+    @Singleton
+    @Named("background")
+    BufferedImage provideBackground(ResourceLoader resourceLoader) {
+        return resourceLoader.loadBackogroundImage("Background.jpg");
     }
 
 }
