@@ -15,14 +15,14 @@ public class TriesCounter extends Observable {
     /**
      * Return the number of tries.
      */
-    int getTries() {
+    public int getTries() {
         return tries;
     }
 
     /**
      * Reset the number of tries to zero.
      */
-    void reset() {
+    public void reset() {
         tries = 0;
         setChanged();
         notifyObservers(tries);
@@ -31,7 +31,7 @@ public class TriesCounter extends Observable {
     /**
      * Increment the number of tries by one.
      */
-    void increment() {
+    public void increment() {
         ++tries;
         setChanged();
         notifyObservers(tries);
