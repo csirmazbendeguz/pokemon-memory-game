@@ -7,7 +7,7 @@ public class MainModule extends AbstractModule {
     @Override
     protected void configure() {
         install(new GameStateModule());
-        install(new SwingModule());
+        install(new ImageModule());
     }
 
 }

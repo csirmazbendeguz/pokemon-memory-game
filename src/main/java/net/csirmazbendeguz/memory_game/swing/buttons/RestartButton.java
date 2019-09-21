@@ -1,19 +1,20 @@
 package net.csirmazbendeguz.memory_game.swing.buttons;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import net.csirmazbendeguz.memory_game.game_state.GameState;
-import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 public class RestartButton extends PokemonButton implements ActionListener {
 
     private GameState gameState;
 
     @Inject
-    public RestartButton(ResourceLoader resourceLoader, GameState gameState) {
-        super(resourceLoader);
+    public RestartButton(@Named("buttonBackground") BufferedImage normal, @Named("buttonBackgroundHover") BufferedImage hover, @Named("buttonBackgroundClick") BufferedImage click, GameState gameState) {
+        super(normal, hover, click);
         setText("Restart");
         setBounds(250, 775, WIDTH, HEIGHT);
         addActionListener(this);

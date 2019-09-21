@@ -1,7 +1,5 @@
 package net.csirmazbendeguz.memory_game.swing.buttons;
 
-import net.csirmazbendeguz.memory_game.util.ResourceLoader;
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -12,7 +10,7 @@ import javax.swing.JButton;
 /**
  * Base class for the game's buttons.
  */
-public class PokemonButton extends JButton implements MouseListener {
+abstract class PokemonButton extends JButton implements MouseListener {
 
     /**
      * The button images.
@@ -29,26 +27,35 @@ public class PokemonButton extends JButton implements MouseListener {
      */
     private BufferedImage image;
 
-    public PokemonButton(ResourceLoader resourceLoader) {
+    /**
+     * Initialize the button.
+     *
+     * @param normal The default image.
+     * @param hover The image to display on hover.
+     * @param click The image to display on click.
+     */
+    PokemonButton(BufferedImage normal, BufferedImage hover, BufferedImage click) {
         super();
         setOpaque(false);
         setBorderPainted(false);
         setContentAreaFilled(false);
         setFocusPainted(false);
         addMouseListener(this);
-        normal = resourceLoader.loadBackogroundImage("Button.png");
-        hover = resourceLoader.loadBackogroundImage("ButtonHover.png");
-        click = resourceLoader.loadBackogroundImage("ButtonClick.png");
+        this.normal = normal;
+        this.hover = hover;
+        this.click = click;
         image = normal;
     }
 
+    /**
+     * Draw the button.
+     */
     @Override
-    public void paintComponent(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), null);
+    public void paintComponent(Graphics graphics) {
+        graphics.drawImage(image, 0, 0, getWidth(), getHeight(), null);
         // Horizontally center the text.
-        int x = this.getWidth() / 2 - g2d.getFontMetrics().stringWidth(getText()) / 2;
-        g2d.drawString(getText(), x, 28);
+        int x = this.getWidth() / 2 - graphics.getFontMetrics().stringWidth(getText()) / 2;
+        graphics.drawString(getText(), x, 28);
     }
 
     @Override
