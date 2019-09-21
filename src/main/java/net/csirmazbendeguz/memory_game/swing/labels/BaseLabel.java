@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 /**
  * Base class for the game's labels.
  */
-abstract class PokemonLabel extends JLabel {
+abstract class BaseLabel extends JLabel {
 
     /**
      * The label dimensions.
@@ -26,7 +26,7 @@ abstract class PokemonLabel extends JLabel {
      *
      * @param background The background image.
      */
-    PokemonLabel(BufferedImage background) {
+    BaseLabel(BufferedImage background) {
         this.background = background;
         this.setForeground(Color.BLACK);
         this.setFont(new Font("Serif", Font.PLAIN, 25));
@@ -35,7 +35,7 @@ abstract class PokemonLabel extends JLabel {
     }
 
     /**
-     * Draw the label with the background image.
+     * Draw the label.
      */
     @Override
     protected void paintComponent(Graphics graphics) {

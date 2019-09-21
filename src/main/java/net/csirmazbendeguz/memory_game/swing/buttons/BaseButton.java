@@ -10,7 +10,7 @@ import javax.swing.JButton;
 /**
  * Base class for the game's buttons.
  */
-abstract class PokemonButton extends JButton implements MouseListener {
+abstract class BaseButton extends JButton implements MouseListener {
 
     /**
      * The button images.
@@ -34,7 +34,7 @@ abstract class PokemonButton extends JButton implements MouseListener {
      * @param hover The image to display on hover.
      * @param click The image to display on click.
      */
-    PokemonButton(BufferedImage normal, BufferedImage hover, BufferedImage click) {
+    BaseButton(BufferedImage normal, BufferedImage hover, BufferedImage click) {
         super();
         setOpaque(false);
         setBorderPainted(false);

@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
 
-public class TimeLabel extends PokemonLabel implements Observer {
+public class TimeLabel extends BaseLabel implements Observer {
 
     @Inject
     public TimeLabel(@Named("labelBackground") BufferedImage background, Stopwatch stopwatch) {

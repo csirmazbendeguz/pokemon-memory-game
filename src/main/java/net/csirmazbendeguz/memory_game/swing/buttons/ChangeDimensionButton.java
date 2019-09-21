@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
 /**
  * Button to change the dimension.
  */
-public class ChangeDimensionButton extends PokemonButton implements ActionListener, GameStartListener {
+public class ChangeDimensionButton extends BaseButton implements ActionListener, GameStartListener {
 
     /**
      * Template for the button's label.

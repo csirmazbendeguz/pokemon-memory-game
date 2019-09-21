@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
-public class RestartButton extends PokemonButton implements ActionListener {
+public class RestartButton extends BaseButton implements ActionListener {
 
     private GameState gameState;
 

@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
 
-public class TriesLabel extends PokemonLabel implements Observer {
+public class TriesLabel extends BaseLabel implements Observer {
 
     @Inject
     public TriesLabel(@Named("labelBackground") BufferedImage background, TriesCounter triesCounter) {
