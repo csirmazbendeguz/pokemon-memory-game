@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.swing.labels;
+package net.csirmazbendeguz.memory_game.swing.label;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -9,11 +9,6 @@ import java.awt.image.BufferedImage;
  * Base class for the game's labels.
  */
 abstract class BaseLabel extends JLabel {
-
-    /**
-     * The label dimensions.
-     */
-    static final int WIDTH = 150, HEIGHT = 50;
 
     /**
      * The background image.

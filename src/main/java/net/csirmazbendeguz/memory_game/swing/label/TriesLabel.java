@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.swing.labels;
+package net.csirmazbendeguz.memory_game.swing.label;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
@@ -16,7 +16,6 @@ public class TriesLabel extends BaseLabel implements Observer {
     @Inject
     public TriesLabel(@Named("labelBackground") BufferedImage background, TriesCounter triesCounter) {
         super(background);
-        setBounds(940, 72, WIDTH, HEIGHT);
         triesCounter.addObserver(this);
     }
 

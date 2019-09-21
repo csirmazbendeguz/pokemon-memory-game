@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.swing.labels;
+package net.csirmazbendeguz.memory_game.swing.label;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
@@ -16,7 +16,6 @@ public class TimeLabel extends BaseLabel implements Observer {
     @Inject
     public TimeLabel(@Named("labelBackground") BufferedImage background, Stopwatch stopwatch) {
         super(background);
-        setBounds(940, 18, WIDTH, HEIGHT);
         stopwatch.addObserver(this);
     }
 
