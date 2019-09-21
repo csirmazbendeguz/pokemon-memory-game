@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.swing.buttons;
+package net.csirmazbendeguz.memory_game.swing.button;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
@@ -29,7 +29,6 @@ public class ChangeDimensionButton extends BaseButton implements ActionListener,
     @Inject
     public ChangeDimensionButton(@Named("buttonBackground") BufferedImage normal, @Named("buttonBackgroundHover") BufferedImage hover, @Named("buttonBackgroundClick") BufferedImage click, EventDispatcher eventDispatcher, GameState gameState) {
         super(normal, hover, click);
-        setBounds(50, 775, WIDTH, HEIGHT);
         addActionListener(this);
         eventDispatcher.addListener(GameStartEvent.class, this);
         this.gameState = gameState;

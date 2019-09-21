@@ -1,7 +1,6 @@
-package net.csirmazbendeguz.memory_game.swing.buttons;
+package net.csirmazbendeguz.memory_game.swing.button;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -16,11 +15,6 @@ abstract class BaseButton extends JButton implements MouseListener {
      * The button images.
      */
     private BufferedImage normal, hover, click;
-
-    /**
-     * The button dimensions.
-     */
-    static final int WIDTH = 170, HEIGHT = 50;
 
     /**
      * The image to render.

@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.swing.buttons;
+package net.csirmazbendeguz.memory_game.swing.button;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
@@ -16,7 +16,6 @@ public class RestartButton extends BaseButton implements ActionListener {
     public RestartButton(@Named("buttonBackground") BufferedImage normal, @Named("buttonBackgroundHover") BufferedImage hover, @Named("buttonBackgroundClick") BufferedImage click, GameState gameState) {
         super(normal, hover, click);
         setText("Restart");
-        setBounds(250, 775, WIDTH, HEIGHT);
         addActionListener(this);
         this.gameState = gameState;
     }
