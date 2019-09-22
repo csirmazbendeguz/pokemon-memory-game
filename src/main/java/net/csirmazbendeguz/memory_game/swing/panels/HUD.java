@@ -1,6 +1,7 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import net.csirmazbendeguz.memory_game.swing.labels.hud.TimeLabel;
 import net.csirmazbendeguz.memory_game.swing.labels.hud.TriesLabel;
 
@@ -10,6 +11,7 @@ import java.awt.*;
 /**
  * Head-up display to show the current game's statistics.
  */
+@Singleton
 public class HUD extends JPanel {
 
     @Inject

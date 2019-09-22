@@ -1,6 +1,7 @@
 package net.csirmazbendeguz.memory_game.swing.buttons;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
@@ -14,6 +15,7 @@ import java.awt.image.BufferedImage;
 /**
  * Button to change the dimension.
  */
+@Singleton
 public class ChangeDimensionButton extends BaseButton implements ActionListener, GameStartListener {
 
     /**

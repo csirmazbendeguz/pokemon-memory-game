@@ -1,6 +1,7 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.event.listeners.GameEndListener;
@@ -17,6 +18,7 @@ import javax.swing.*;
 /**
  * Glass pane for the win screen.
  */
+@Singleton
 public class WinGlassPane extends JPanel implements GameEndListener, MouseListener {
 
     /**

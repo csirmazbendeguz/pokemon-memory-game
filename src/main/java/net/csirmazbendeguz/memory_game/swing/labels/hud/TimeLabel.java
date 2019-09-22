@@ -1,6 +1,7 @@
 package net.csirmazbendeguz.memory_game.swing.labels.hud;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
 
@@ -11,6 +12,7 @@ import java.util.Observer;
 /**
  * Label to show the time spent.
  */
+@Singleton
 public class TimeLabel extends BaseLabel implements Observer {
 
     @Inject

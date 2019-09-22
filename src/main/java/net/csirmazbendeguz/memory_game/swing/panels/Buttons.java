@@ -1,6 +1,7 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import net.csirmazbendeguz.memory_game.swing.buttons.ChangeDimensionButton;
 import net.csirmazbendeguz.memory_game.swing.buttons.RestartButton;
 
@@ -10,7 +11,8 @@ import java.awt.*;
 /**
  * Container for the game's buttons.
  */
-public class Buttons extends JPanel {
+@Singleton
+class Buttons extends JPanel {
 
     @Inject
     Buttons(RestartButton restartButton, ChangeDimensionButton changeDimensionButton) {
