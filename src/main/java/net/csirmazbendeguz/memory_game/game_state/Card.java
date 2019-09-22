@@ -42,9 +42,11 @@ public class Card extends Observable {
     private boolean inAnimation = false;
 
     /**
-     * The card front image's name.
+     * The card name.
+     *
+     * Used to identify pairs.
      */
-    private String imageName;
+    private String name;
 
     /**
      * The event dispatcher.
@@ -54,11 +56,11 @@ public class Card extends Observable {
     /**
      * Construct a new card state object.
      *
-     * @param imageName The card front image's name.
+     * @param name The card name.
      */
-    public Card(String imageName, ResourceLoader resourceLoader, BufferedImage cardBack, EventDispatcher eventDispatcher) {
-        this.imageName = imageName;
-        cardFront = resourceLoader.loadCardImage(imageName);
+    public Card(String name, BufferedImage cardFront, BufferedImage cardBack, EventDispatcher eventDispatcher) {
+        this.name = name;
+        this.cardFront = cardFront;
         this.cardBack = cardBack;
         this.eventDispatcher = eventDispatcher;
     }
@@ -98,7 +100,7 @@ public class Card extends Observable {
      * Return whether the given memory card is a matching pair.
      */
     public boolean isPairOf(Card other) {
-        return imageName.equals(other.imageName);
+        return name.equals(other.name);
     }
 
     /**

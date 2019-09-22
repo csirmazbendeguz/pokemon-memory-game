@@ -66,21 +66,9 @@ public class GameState implements CardHideListener, CardFlipUpListener {
         stopwatch.resetSeconds();
         triesCounter.reset();
 
-        Card[][] cards = generateCards(randomCardGenerator.generateBoard(dimension));
+        Card[][] cards = randomCardGenerator.generate(dimension);
         board.init(cards);
         eventDispatcher.dispatch(new GameStartEvent(this, dimension, cards));
-    }
-
-    private Card[][] generateCards(String[][] cardImageNames) {
-        Card[][] cards = new Card[cardImageNames.length][cardImageNames.length];
-
-        for (int i = 0; i < cardImageNames.length; ++i) {
-            for (int j = 0; j < cardImageNames.length; ++j) {
-                cards[i][j] = new Card(cardImageNames[i][j], resourceLoader, cardBack, eventDispatcher);
-            }
-        }
-
-        return cards;
     }
 
     /**

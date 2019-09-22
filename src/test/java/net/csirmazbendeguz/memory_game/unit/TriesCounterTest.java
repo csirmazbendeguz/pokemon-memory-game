@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 class TriesCounterTest {
 
     /**
-     * The tries counter to test.
+     * The object to test.
      */
     private TriesCounter counter;
 
