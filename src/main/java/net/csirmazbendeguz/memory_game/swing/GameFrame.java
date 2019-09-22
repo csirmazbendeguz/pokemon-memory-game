@@ -1,6 +1,7 @@
 package net.csirmazbendeguz.memory_game.swing;
 
 import com.google.inject.Inject;
+import net.csirmazbendeguz.memory_game.swing.labels.BackgroundFigureLabel;
 import net.csirmazbendeguz.memory_game.swing.panels.Buttons;
 import net.csirmazbendeguz.memory_game.swing.labels.TitleLabel;
 import net.csirmazbendeguz.memory_game.swing.panels.BackgroundPanel;
@@ -19,13 +20,12 @@ public class GameFrame extends JFrame {
     private static final Dimension SIZE = new Dimension(1100, 900);
 
     @Inject
-    public GameFrame(BoardPanel boardPanel, WinGlassPane winGlassPane, BackgroundPanel bg, Buttons buttons, TitleLabel title, HUD labels) {
+    public GameFrame(BoardPanel boardPanel, WinGlassPane winGlassPane, BackgroundPanel bg, Buttons buttons, TitleLabel title, HUD hud, BackgroundFigureLabel backgroundFigure) {
         super();
         setMinimumSize(SIZE);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Pokémon Memory Game");
-        setBackground(null);
 
         // Disable keyboard input on focused components.
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> true);
@@ -54,9 +54,13 @@ public class GameFrame extends JFrame {
         layout.putConstraint(SpringLayout.WEST, buttons, 50, SpringLayout.WEST, bg);
         bg.add(buttons);
 
-        layout.putConstraint(SpringLayout.NORTH, labels, 10, SpringLayout.NORTH, bg);
-        layout.putConstraint(SpringLayout.EAST, labels, -10, SpringLayout.EAST, bg);
-        bg.add(labels);
+        layout.putConstraint(SpringLayout.NORTH, hud, 10, SpringLayout.NORTH, bg);
+        layout.putConstraint(SpringLayout.EAST, hud, -10, SpringLayout.EAST, bg);
+        bg.add(hud);
+
+        layout.putConstraint(SpringLayout.SOUTH, backgroundFigure, -50, SpringLayout.SOUTH, bg);
+        layout.putConstraint(SpringLayout.EAST, backgroundFigure, -20, SpringLayout.EAST, bg);
+        bg.add(backgroundFigure);
 
         validate();
         setVisible(true);

@@ -45,7 +45,7 @@ class ImageModule extends AbstractModule {
     @Singleton
     @Named("background")
     BufferedImage provideBackground(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("background.jpg");
+        return resourceLoader.loadBackogroundImage("background.png");
     }
 
     @Provides
@@ -74,6 +74,13 @@ class ImageModule extends AbstractModule {
     @Named("title")
     BufferedImage provideTitle(ResourceLoader resourceLoader) {
         return resourceLoader.loadBackogroundImage("title.png");
+    }
+
+    @Provides
+    @Singleton
+    @Named("backgroundFigure")
+    BufferedImage provideBackgroundFigure(ResourceLoader resourceLoader) {
+        return resourceLoader.loadBackogroundImage("backgroundFigure.png");
     }
 
 }
