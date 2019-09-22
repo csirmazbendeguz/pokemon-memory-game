@@ -9,7 +9,7 @@
 
     <groupId>net.csirmazbendeguz</groupId>
     <artifactId>pokemon-memory-game</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-beta-1</version>
     <dependencies>
         <dependency>
             <groupId>com.google.inject</groupId>
