@@ -1,8 +1,8 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
 import com.google.inject.Inject;
-import net.csirmazbendeguz.memory_game.swing.labels.TimeLabel;
-import net.csirmazbendeguz.memory_game.swing.labels.TriesLabel;
+import net.csirmazbendeguz.memory_game.swing.labels.hud.TimeLabel;
+import net.csirmazbendeguz.memory_game.swing.labels.hud.TriesLabel;
 
 import javax.swing.*;
 import java.awt.*;

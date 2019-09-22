@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.swing.labels;
+package net.csirmazbendeguz.memory_game.swing.labels.hud;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
