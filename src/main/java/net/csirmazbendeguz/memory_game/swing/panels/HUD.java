@@ -1,21 +1,23 @@
-package net.csirmazbendeguz.memory_game.swing.label;
+package net.csirmazbendeguz.memory_game.swing.panels;
 
 import com.google.inject.Inject;
+import net.csirmazbendeguz.memory_game.swing.labels.TimeLabel;
+import net.csirmazbendeguz.memory_game.swing.labels.TriesLabel;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Container for the labels.
+ * Head-up display to show the time spent and the number of tries.
  */
-public class Labels extends JPanel {
+public class HUD extends JPanel {
 
     private static final Dimension LABEL_SIZE = new Dimension(150, 50);
 
     private static final Component FILLER = Box.createRigidArea(new Dimension(0, 3));
 
     @Inject
-    public Labels(TimeLabel timeLabel, TriesLabel triesLabel) {
+    public HUD(TimeLabel timeLabel, TriesLabel triesLabel) {
         setOpaque(false);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 

@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.swing.button;
+package net.csirmazbendeguz.memory_game.swing.buttons;
 
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;

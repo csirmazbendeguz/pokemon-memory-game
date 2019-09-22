@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.swing.label;
+package net.csirmazbendeguz.memory_game.swing.labels;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

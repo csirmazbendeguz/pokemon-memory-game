@@ -1,6 +1,8 @@
-package net.csirmazbendeguz.memory_game.swing.button;
+package net.csirmazbendeguz.memory_game.swing.panels;
 
 import com.google.inject.Inject;
+import net.csirmazbendeguz.memory_game.swing.buttons.ChangeDimensionButton;
+import net.csirmazbendeguz.memory_game.swing.buttons.RestartButton;
 
 import javax.swing.*;
 import java.awt.*;

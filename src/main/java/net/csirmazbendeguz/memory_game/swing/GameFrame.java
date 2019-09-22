@@ -1,11 +1,11 @@
 package net.csirmazbendeguz.memory_game.swing;
 
 import com.google.inject.Inject;
-import net.csirmazbendeguz.memory_game.swing.button.Buttons;
-import net.csirmazbendeguz.memory_game.swing.label.TitleLabel;
+import net.csirmazbendeguz.memory_game.swing.panels.Buttons;
+import net.csirmazbendeguz.memory_game.swing.labels.TitleLabel;
 import net.csirmazbendeguz.memory_game.swing.panels.BackgroundPanel;
 import net.csirmazbendeguz.memory_game.swing.panels.BoardPanel;
-import net.csirmazbendeguz.memory_game.swing.label.Labels;
+import net.csirmazbendeguz.memory_game.swing.panels.HUD;
 import net.csirmazbendeguz.memory_game.swing.panels.WinGlassPane;
 
 import java.awt.*;
@@ -16,7 +16,7 @@ public class GameFrame extends JFrame {
     private static final Dimension MINIMUM_SIZE = new Dimension(1100, 900);
 
     @Inject
-    public GameFrame(BoardPanel boardPanel, WinGlassPane winGlassPane, BackgroundPanel bg, Buttons buttons, TitleLabel title, Labels labels) {
+    public GameFrame(BoardPanel boardPanel, WinGlassPane winGlassPane, BackgroundPanel bg, Buttons buttons, TitleLabel title, HUD labels) {
         super();
         setMinimumSize(MINIMUM_SIZE);
         setLocationRelativeTo(null);

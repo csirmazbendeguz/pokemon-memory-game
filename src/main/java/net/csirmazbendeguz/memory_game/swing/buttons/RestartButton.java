@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.swing.button;
+package net.csirmazbendeguz.memory_game.swing.buttons;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
