@@ -5,7 +5,6 @@ import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
@@ -13,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
@@ -21,18 +21,12 @@ import static org.mockito.Mockito.when;
  * @see net.csirmazbendeguz.memory_game.util.RandomCardGenerator#getRandomImageNames
  */
 @ExtendWith(MockitoExtension.class)
-class RandomImageNamesTest {
+class GetRandomImageNamesTest {
 
     /**
      * The object to test.
      */
     private RandomCardGenerator randomCardGenerator;
-
-    /**
-     * The mock resource loader.
-     */
-    @Mock
-    private ResourceLoader resourceLoader;
 
     /**
      * The test image names.
@@ -48,8 +42,9 @@ class RandomImageNamesTest {
      */
     @BeforeEach
     void setup() {
-        randomCardGenerator = new RandomCardGenerator(resourceLoader, null);
+        ResourceLoader resourceLoader = mock(ResourceLoader.class);
         when(resourceLoader.getCardImageNames()).thenReturn(imageNames);
+        randomCardGenerator = new RandomCardGenerator(resourceLoader, null);
     }
 
     /**
@@ -87,6 +82,25 @@ class RandomImageNamesTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
             randomCardGenerator.getRandomImageNames(4));
         assertEquals("Failed to find enough images.", exception.getMessage());
+    }
+
+}
+
+/**
+ * Tests for selecting random image names without mocking any dependencies.
+ *
+ * @see net.csirmazbendeguz.memory_game.util.RandomCardGenerator#getRandomImageNames
+ */
+class GetRandomImageNamesNoMockTest {
+
+    /**
+     * Test that an exception is thrown when the count is negative.
+     */
+    @Test
+    void testNegative() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+            new RandomCardGenerator(null, null).getRandomImageNames(-1));
+        assertEquals(exception.getMessage(), "Count can't be negative.");
     }
 
 }

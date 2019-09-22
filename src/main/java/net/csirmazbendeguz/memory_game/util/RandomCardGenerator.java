@@ -53,9 +53,14 @@ public class RandomCardGenerator {
      * Randomly select a set of card image names.
      *
      * @param count The number of card image names to select.
+     * @throws IllegalArgumentException If the count is negative.
      * @throws IllegalArgumentException If there are not enough images.
      */
     public Set<String> getRandomImageNames(int count) {
+        if (count < 0) {
+            throw new IllegalArgumentException("Count can't be negative.");
+        }
+
         List<String> imageNames = resourceLoader.getCardImageNames();
 
         if (imageNames.size() < count) {
