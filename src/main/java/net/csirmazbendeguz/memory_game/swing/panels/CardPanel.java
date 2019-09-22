@@ -17,6 +17,11 @@ import javax.swing.SwingUtilities;
 public class CardPanel extends JPanel implements MouseListener, Observer {
 
     /**
+     * The card dimension.
+     */
+    private static final Dimension SIZE = new Dimension(100, 100);
+
+    /**
      * The card state.
      */
     private Card card;
@@ -28,12 +33,6 @@ public class CardPanel extends JPanel implements MouseListener, Observer {
      */
     public CardPanel(Card card) {
         this.card = card;
-
-        Dimension size = new Dimension(100, 100);
-        setPreferredSize(size);
-        setMinimumSize(size);
-        setMaximumSize(size);
-
         addMouseListener(this);
         card.addObserver(this);
     }
@@ -79,6 +78,21 @@ public class CardPanel extends JPanel implements MouseListener, Observer {
         GameFrame gameFrame = (GameFrame) SwingUtilities.getWindowAncestor(this);
         gameFrame.repaint();
         gameFrame.revalidate();
+    }
+
+    @Override
+    public Dimension getMinimumSize() {
+        return SIZE;
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return SIZE;
+    }
+
+    @Override
+    public Dimension getMaximumSize() {
+        return SIZE;
     }
 
 }

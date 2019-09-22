@@ -18,6 +18,11 @@ import javax.swing.*;
 public class BoardPanel extends JPanel implements GameStartListener {
 
     /**
+     * The board dimension.
+     */
+    private static final Dimension SIZE = new Dimension(650, 650);
+
+    /**
      * The container's background image.
      */
     private BufferedImage background;
@@ -64,6 +69,21 @@ public class BoardPanel extends JPanel implements GameStartListener {
     @Override
     public void paintComponent(Graphics graphics) {
         graphics.drawImage(background, 0, 0, getWidth(), getHeight(), null);
+    }
+
+    @Override
+    public Dimension getMinimumSize() {
+        return SIZE;
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return SIZE;
+    }
+
+    @Override
+    public Dimension getMaximumSize() {
+        return SIZE;
     }
 
 }

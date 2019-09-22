@@ -45,9 +45,6 @@ public class GameFrame extends JFrame {
 
         layout.putConstraint(SpringLayout.VERTICAL_CENTER, boardPanel, 0, SpringLayout.VERTICAL_CENTER, bg);
         layout.putConstraint(SpringLayout.WEST, boardPanel, 25, SpringLayout.WEST, bg);
-        boardPanel.setPreferredSize(new Dimension(650, 650));
-        boardPanel.setMaximumSize(new Dimension(650, 650));
-        boardPanel.setMinimumSize(new Dimension(650, 650));
         bg.add(boardPanel);
 
         layout.putConstraint(SpringLayout.SOUTH, buttons, -50, SpringLayout.SOUTH, bg);
