@@ -13,12 +13,15 @@ import javax.swing.*;
 
 public class GameFrame extends JFrame {
 
-    private static final Dimension MINIMUM_SIZE = new Dimension(1100, 900);
+    /**
+     * The frame dimension.
+     */
+    private static final Dimension SIZE = new Dimension(1100, 900);
 
     @Inject
     public GameFrame(BoardPanel boardPanel, WinGlassPane winGlassPane, BackgroundPanel bg, Buttons buttons, TitleLabel title, HUD labels) {
         super();
-        setMinimumSize(MINIMUM_SIZE);
+        setMinimumSize(SIZE);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Pokémon Memory Game");
