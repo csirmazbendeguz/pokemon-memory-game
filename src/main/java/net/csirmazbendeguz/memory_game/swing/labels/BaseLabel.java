@@ -11,6 +11,11 @@ import java.awt.image.BufferedImage;
 abstract class BaseLabel extends JLabel {
 
     /**
+     * The label's dimensions.
+     */
+    private static final Dimension SIZE = new Dimension(150, 50);
+
+    /**
      * The background image.
      */
     private BufferedImage background;
@@ -35,6 +40,21 @@ abstract class BaseLabel extends JLabel {
     protected void paintComponent(Graphics graphics) {
         graphics.drawImage(background, 0, 0, getWidth(), getHeight(), null);
         super.paintComponent(graphics);
+    }
+
+    @Override
+    public Dimension getMinimumSize() {
+        return SIZE;
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return SIZE;
+    }
+
+    @Override
+    public Dimension getMaximumSize() {
+        return SIZE;
     }
 
 }
