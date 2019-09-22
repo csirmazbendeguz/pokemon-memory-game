@@ -43,9 +43,9 @@ public class Board implements CardFlipUpListener {
     }
 
     /**
-     * Check if all pairs have been found.
+     * Check if all the cards are hidden.
      */
-    boolean isGameWon() {
+    boolean areAllCardsHidden() {
         for (Card[] cards : board) {
             for (Card card : cards) {
                 if (card.isVisible()) {

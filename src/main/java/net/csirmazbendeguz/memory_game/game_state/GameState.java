@@ -88,7 +88,7 @@ public class GameState implements CardHideListener, CardFlipUpListener {
      */
     @Override
     public void cardHidden(CardHideEvent event) {
-        if (board.isGameWon()) {
+        if (board.areAllCardsHidden()) {
             stopwatch.stopTimer();
             eventDispatcher.dispatch(new GameEndEvent(
                 this,

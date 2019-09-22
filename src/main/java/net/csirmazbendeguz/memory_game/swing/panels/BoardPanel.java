@@ -23,12 +23,13 @@ public class BoardPanel extends JPanel implements GameStartListener {
     private BufferedImage background;
 
     /**
-     * Construct a container for the board.
+     * Initialize the board.
      */
     @Inject
     public BoardPanel(@Named("boardBackground") BufferedImage background, EventDispatcher eventDispatcher) {
         this.background = background;
         eventDispatcher.addListener(GameStartEvent.class, this);
+        setLayout(new GridBagLayout());
     }
 
     /**
@@ -36,10 +37,9 @@ public class BoardPanel extends JPanel implements GameStartListener {
      */
     @Override
     public void gameStarted(GameStartEvent event) {
-        Card[][] cards = event.getBoard();
+        Card[][] cards = event.getCards();
         int dimension = event.getDimension();
-        this.removeAll();
-        this.setLayout(new GridBagLayout());
+        removeAll();
 
         for (int row = 0; row < dimension; ++row) {
             for (int column = 0; column < dimension; ++column) {
@@ -49,7 +49,7 @@ public class BoardPanel extends JPanel implements GameStartListener {
                 constraints.gridy = column;
 
                 CardPanel cardPanel = new CardPanel(cards[row][column]);
-                this.add(cardPanel, constraints);
+                add(cardPanel, constraints);
             }
         }
 
@@ -62,8 +62,8 @@ public class BoardPanel extends JPanel implements GameStartListener {
      * Draw the container's background image.
      */
     @Override
-    public void paintComponent(Graphics g) {
-        g.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), this);
+    public void paintComponent(Graphics graphics) {
+        graphics.drawImage(background, 0, 0, getWidth(), getHeight(), null);
     }
 
 }

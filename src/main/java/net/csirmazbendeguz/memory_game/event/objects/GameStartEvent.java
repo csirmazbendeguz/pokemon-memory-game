@@ -11,20 +11,20 @@ public class GameStartEvent extends EventObject {
 
     private int dimension;
 
-    private Card[][] board;
+    private Card[][] cards;
 
-    public GameStartEvent(Object source, int dimension, Card[][] board) {
+    public GameStartEvent(Object source, int dimension, Card[][] cards) {
         super(source);
         this.dimension = dimension;
-        this.board = board;
+        this.cards = cards;
     }
 
     public int getDimension() {
         return dimension;
     }
 
-    public Card[][] getBoard() {
-        return board;
+    public Card[][] getCards() {
+        return cards;
     }
 
 }
