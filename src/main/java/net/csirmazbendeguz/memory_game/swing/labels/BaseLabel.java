@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 abstract class BaseLabel extends JLabel {
 
     /**
-     * The label's dimensions.
+     * The label dimension.
      */
     private static final Dimension SIZE = new Dimension(150, 50);
 

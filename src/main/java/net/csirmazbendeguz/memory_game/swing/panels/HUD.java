@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Head-up display to show the time spent and the number of tries.
+ * Head-up display to show the current game's statistics.
  */
 public class HUD extends JPanel {
 

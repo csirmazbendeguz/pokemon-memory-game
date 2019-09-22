@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.buttons;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -10,6 +10,11 @@ import javax.swing.JButton;
  * Base class for the game's buttons.
  */
 abstract class BaseButton extends JButton implements MouseListener {
+
+    /**
+     * The button dimension.
+     */
+    private static final Dimension SIZE = new Dimension(170, 50);
 
     /**
      * The button images.
@@ -75,6 +80,21 @@ abstract class BaseButton extends JButton implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
         image = normal;
+    }
+
+    @Override
+    public Dimension getMinimumSize() {
+        return SIZE;
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return SIZE;
+    }
+
+    @Override
+    public Dimension getMaximumSize() {
+        return SIZE;
     }
 
 }
