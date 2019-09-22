@@ -25,7 +25,8 @@ public class Labels extends JPanel {
 
         timeLabel.setMaximumSize(LABEL_SIZE);
         triesLabel.setMaximumSize(LABEL_SIZE);
-        setBounds(940, 10, LABEL_SIZE.width, LABEL_SIZE.height * 2 + FILLER.getHeight());
+
+        setPreferredSize(new Dimension(LABEL_SIZE.width, LABEL_SIZE.height * 2 + FILLER.getHeight()));
     }
 
 }

@@ -20,7 +20,8 @@ public class Buttons extends JPanel {
 
         changeDimensionButton.setMaximumSize(BUTTON_SIZE);
         restartButton.setMaximumSize(BUTTON_SIZE);
-        setBounds(50, 775, BUTTON_SIZE.width * 2 + 10, BUTTON_SIZE.height);
+
+        setPreferredSize(new Dimension(BUTTON_SIZE.width * 2 + 10, BUTTON_SIZE.height));
     }
 
 }

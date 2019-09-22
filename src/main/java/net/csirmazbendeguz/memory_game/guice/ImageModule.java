@@ -69,4 +69,11 @@ class ImageModule extends AbstractModule {
         return resourceLoader.loadBackogroundImage("cardBack.png");
     }
 
+    @Provides
+    @Singleton
+    @Named("title")
+    BufferedImage provideTitle(ResourceLoader resourceLoader) {
+        return resourceLoader.loadBackogroundImage("title.png");
+    }
+
 }

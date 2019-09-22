@@ -28,7 +28,6 @@ public class BoardPanel extends JPanel implements GameStartListener {
     @Inject
     public BoardPanel(@Named("boardBackground") BufferedImage background, EventDispatcher eventDispatcher) {
         this.background = background;
-        setBounds(25, 100, 650, 650);
         eventDispatcher.addListener(GameStartEvent.class, this);
     }
 
