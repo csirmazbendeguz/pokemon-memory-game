@@ -11,30 +11,24 @@ import java.util.*;
  */
 public class RandomCardGenerator {
 
-    private RandomImageNameGenerator randomImageNameGenerator;
+    private RandomCardImageNameGenerator randomCardImageNameGenerator;
 
     private CardFactory cardFactory;
 
     @Inject
-    public RandomCardGenerator(RandomImageNameGenerator randomImageNameGenerator, CardFactory cardFactory) {
-        this.randomImageNameGenerator = randomImageNameGenerator;
+    public RandomCardGenerator(RandomCardImageNameGenerator randomCardImageNameGenerator, CardFactory cardFactory) {
+        this.randomCardImageNameGenerator = randomCardImageNameGenerator;
         this.cardFactory = cardFactory;
     }
 
     /**
-     * Generate a random board of card image names.
+     * Generate a random board of cards.
      *
      * @param dimension The board dimension (e.g. 4 for a 4x4 board).
-     * @return The generated board of card image names.
+     * @return The generated board of cards.
      */
     public Card[][] generate(int dimension) {
-        List<String> randomImageNames = randomImageNameGenerator.generate(dimension * dimension / 2);
-
-        List<String> pairs = new ArrayList<>();
-        pairs.addAll(randomImageNames);
-        pairs.addAll(randomImageNames);
-        Collections.shuffle(pairs);
-
+        List<String> pairs = randomCardImageNameGenerator.generatePairs(dimension * dimension / 2);
         Card[][] cards = new Card[dimension][dimension];
 
         for (int i = 0; i < dimension; ++i) {
