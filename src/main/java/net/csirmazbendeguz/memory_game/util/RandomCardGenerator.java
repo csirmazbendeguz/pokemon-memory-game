@@ -11,16 +11,13 @@ import java.util.*;
  */
 public class RandomCardGenerator {
 
-    /**
-     * The resource loader.
-     */
-    private ResourceLoader resourceLoader;
+    private RandomImageNameGenerator randomImageNameGenerator;
 
     private CardFactory cardFactory;
 
     @Inject
-    public RandomCardGenerator(ResourceLoader resourceLoader, CardFactory cardFactory) {
-        this.resourceLoader = resourceLoader;
+    public RandomCardGenerator(RandomImageNameGenerator randomImageNameGenerator, CardFactory cardFactory) {
+        this.randomImageNameGenerator = randomImageNameGenerator;
         this.cardFactory = cardFactory;
     }
 
@@ -31,7 +28,7 @@ public class RandomCardGenerator {
      * @return The generated board of card image names.
      */
     public Card[][] generate(int dimension) {
-        Set<String> randomImageNames = getRandomImageNames(dimension * dimension / 2);
+        List<String> randomImageNames = randomImageNameGenerator.generate(dimension * dimension / 2);
 
         List<String> pairs = new ArrayList<>();
         pairs.addAll(randomImageNames);
@@ -47,36 +44,6 @@ public class RandomCardGenerator {
         }
 
         return cards;
-    }
-
-    /**
-     * Randomly select a set of card image names.
-     *
-     * @param count The number of card image names to select.
-     * @throws IllegalArgumentException If the count is negative.
-     * @throws IllegalArgumentException If there are not enough images.
-     */
-    public Set<String> getRandomImageNames(int count) {
-        if (count < 0) {
-            throw new IllegalArgumentException("Count can't be negative.");
-        }
-
-        List<String> imageNames = resourceLoader.getCardImageNames();
-
-        if (imageNames.size() < count) {
-            throw new IllegalArgumentException("Failed to find enough images.");
-        }
-
-        Set<String> randomImageNames = new HashSet<>();
-        Random random = new Random();
-
-        while (randomImageNames.size() < count) {
-            int randomIndex = random.nextInt(imageNames.size());
-            String randomImageName = imageNames.get(randomIndex);
-            randomImageNames.add(randomImageName);
-        }
-
-        return randomImageNames;
     }
 
 }
