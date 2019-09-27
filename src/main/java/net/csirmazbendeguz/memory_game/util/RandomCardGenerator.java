@@ -6,9 +6,6 @@ import net.csirmazbendeguz.memory_game.game_state.CardFactory;
 
 import java.util.*;
 
-/**
- * Service for generating the memory game cards.
- */
 public class RandomCardGenerator {
 
     private RandomCardImageNameGenerator randomCardImageNameGenerator;
@@ -25,7 +22,6 @@ public class RandomCardGenerator {
      * Generate a random board of cards.
      *
      * @param dimension The board dimension (e.g. 4 for a 4x4 board).
-     * @return The generated board of cards.
      */
     public Card[][] generate(int dimension) {
         List<String> pairs = randomCardImageNameGenerator.generatePairs(dimension * dimension / 2);

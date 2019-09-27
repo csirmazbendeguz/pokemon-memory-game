@@ -14,7 +14,7 @@ public class RandomCardImageNameGenerator {
     }
 
     /**
-     * Generate a list of card image name pairs.
+     * Generate a random list of card image name pairs.
      *
      * @param count The number of card image name pairs to generate.
      */
@@ -30,7 +30,7 @@ public class RandomCardImageNameGenerator {
     }
 
     /**
-     * Generate a set of card image names.
+     * Generate a random set of card image names.
      *
      * @param count The number of card image names to generate.
      */
