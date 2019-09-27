@@ -4,9 +4,6 @@ import com.google.inject.Inject;
 
 import java.util.*;
 
-/**
- * Random generator for card image names.
- */
 public class RandomCardImageNameGenerator {
 
     private ResourceLoader resourceLoader;

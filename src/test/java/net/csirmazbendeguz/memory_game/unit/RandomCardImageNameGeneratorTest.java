@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -32,9 +33,6 @@ class RandomCardImageNameGeneratorTest {
         "pikachu.png"
     );
 
-    /**
-     * Set up the test fixture.
-     */
     @BeforeEach
     void setup() {
         ResourceLoader resourceLoader = mock(ResourceLoader.class);
@@ -42,9 +40,6 @@ class RandomCardImageNameGeneratorTest {
         generator = new RandomCardImageNameGenerator(resourceLoader);
     }
 
-    /**
-     * Test that card image names can be generated.
-     */
     @Test
     void testGenerate() {
         Set<String> randomCardImageNames = generator.generate(2);
@@ -52,9 +47,6 @@ class RandomCardImageNameGeneratorTest {
         assertTrue(cardImageNames.containsAll(randomCardImageNames));
     }
 
-    /**
-     * Test that all card image names can be generated.
-     */
     @Test
     void testGenerateAll() {
         Set<String> randomCardImageNames = generator.generate(3);
@@ -72,7 +64,7 @@ class RandomCardImageNameGeneratorTest {
     }
 
     /**
-     * Test that an exception is thrown when requesting too many card image names.
+     * Test that an exception is thrown when the count is too high.
      */
     @Test
     void testGenerateTooMany() {
@@ -87,14 +79,14 @@ class RandomCardImageNameGeneratorTest {
         assertThrows(IllegalArgumentException.class, () -> generator.generate(-1));
     }
 
-    /**
-     * Test that card image name pairs can be generated.
-     */
     @Test
     void testGeneratePairs() {
         List<String> randomCardImageNamePairs = generator.generatePairs(3);
         assertEquals(6, randomCardImageNamePairs.size());
         assertTrue(cardImageNames.containsAll(randomCardImageNamePairs));
+        assertEquals(2, Collections.frequency(randomCardImageNamePairs, "bulbasaur.png"));
+        assertEquals(2, Collections.frequency(randomCardImageNamePairs, "charmander.png"));
+        assertEquals(2, Collections.frequency(randomCardImageNamePairs, "pikachu.png"));
     }
 
 }
