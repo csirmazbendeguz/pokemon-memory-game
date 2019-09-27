@@ -12,32 +12,18 @@ import java.util.Observer;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-/**
- * Tests for the tries counter.
- *
- * @see net.csirmazbendeguz.memory_game.game_state.TriesCounter
- */
 @ExtendWith(MockitoExtension.class)
 class TriesCounterTest {
 
-    /**
-     * The object to test.
-     */
     private TriesCounter counter;
 
-    /**
-     * The counter's mock observer.
-     */
     @Mock
-    private Observer observer;
+    private Observer mockObserver;
 
-    /**
-     * Set up the test fixture.
-     */
     @BeforeEach
     void setup() {
         counter = new TriesCounter();
-        counter.addObserver(observer);
+        counter.addObserver(mockObserver);
     }
 
     /**
@@ -46,7 +32,7 @@ class TriesCounterTest {
     @Test
     void testInitialValue() {
         assertEquals(0, counter.getTries());
-        verifyZeroInteractions(observer);
+        verifyZeroInteractions(mockObserver);
     }
 
     /**
@@ -56,7 +42,7 @@ class TriesCounterTest {
     void testIncrement() {
         counter.increment();
         assertEquals(1, counter.getTries());
-        verify(observer).update(counter, 1);
+        verify(mockObserver).update(counter, 1);
     }
 
     /**
@@ -66,7 +52,7 @@ class TriesCounterTest {
     void testReset() {
         counter.reset();
         assertEquals(0, counter.getTries());
-        verify(observer).update(counter, 0);
+        verify(mockObserver).update(counter, 0);
     }
 
 }
