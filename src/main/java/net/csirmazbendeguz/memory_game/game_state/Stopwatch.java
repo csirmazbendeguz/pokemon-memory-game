@@ -4,14 +4,8 @@ import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- * Service to manage the game timer.
- */
 public class Stopwatch extends Observable {
 
-    /**
-     * The timer.
-     */
     private Timer timer;
 
     /**
@@ -19,25 +13,16 @@ public class Stopwatch extends Observable {
      */
     private int seconds;
 
-    /**
-     * Return the seconds passed since the start of the timer.
-     */
     int getSeconds() {
         return seconds;
     }
 
-    /**
-     * Reset the seconds to zero.
-     */
     void resetSeconds() {
         seconds = 0;
         setChanged();
         notifyObservers(seconds);
     }
 
-    /**
-     * Start the timer.
-     */
     void startTimer() {
         if (isTimerRunning()) {
             return;
@@ -56,9 +41,6 @@ public class Stopwatch extends Observable {
         }, 0, 1000);
     }
 
-    /**
-     * Stop the timer.
-     */
     void stopTimer() {
         if (!isTimerRunning()) {
             return;
@@ -68,9 +50,6 @@ public class Stopwatch extends Observable {
         timer = null;
     }
 
-    /**
-     * Return whether the timer is running.
-     */
     private boolean isTimerRunning() {
         return timer != null;
     }

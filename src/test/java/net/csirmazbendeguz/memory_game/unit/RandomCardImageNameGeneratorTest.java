@@ -19,13 +19,10 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class RandomCardImageNameGeneratorTest {
 
-    /**
-     * The object to test.
-     */
     private RandomCardImageNameGenerator generator;
 
     /**
-     * The test card image names.
+     * The mocked card image names.
      */
     private List<String> cardImageNames = Arrays.asList(
         "bulbasaur.png",
