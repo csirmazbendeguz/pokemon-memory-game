@@ -4,7 +4,7 @@ import net.csirmazbendeguz.memory_game.game_state.Card;
 
 import java.util.EventObject;
 
-abstract class CardEvent extends EventObject {
+public abstract class CardEvent extends EventObject {
 
     private Card card;
 
