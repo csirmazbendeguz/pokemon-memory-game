@@ -11,7 +11,7 @@ import java.util.TimerTask;
 
 public class Card {
 
-    public static final int ANIMATION_LENGTH = 750;
+    public static final long ANIMATION_LENGTH = 750;
 
     private TimerFactory timerFactory;
 
