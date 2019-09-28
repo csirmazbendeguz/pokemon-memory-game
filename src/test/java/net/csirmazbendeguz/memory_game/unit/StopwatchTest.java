@@ -57,21 +57,18 @@ class StopwatchTest {
     @Test
     void testStart() {
         Timer mockTimer = mockTimer();
+
         stopwatch.start();
+
         assertTrue(stopwatch.isRunning());
         assertEquals(0, stopwatch.getSeconds());
         verifyZeroInteractions(mockObserver);
-        verify(mockTimer).scheduleAtFixedRate(any(TimerTask.class), eq(0L), eq(1000L));
-    }
 
-    @Test
-    void testScheduledTask() {
-        Timer mockTimer = mockTimer();
         ArgumentCaptor<TimerTask> timerTaskCaptor = ArgumentCaptor.forClass(TimerTask.class);
-        stopwatch.start();
         verify(mockTimer).scheduleAtFixedRate(timerTaskCaptor.capture(), eq(0L), eq(1000L));
         TimerTask scheduledTask = timerTaskCaptor.getValue();
         scheduledTask.run();
+
         assertTrue(stopwatch.isRunning());
         assertEquals(1, stopwatch.getSeconds());
         verify(mockObserver).update(stopwatch, 1);
@@ -87,8 +84,10 @@ class StopwatchTest {
     @Test
     void testStop() {
         Timer mockTimer = mockTimer();
+
         stopwatch.start();
         stopwatch.stop();
+
         assertFalse(stopwatch.isRunning());
         assertEquals(0, stopwatch.getSeconds());
         verifyZeroInteractions(mockObserver);
