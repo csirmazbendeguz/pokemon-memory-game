@@ -19,21 +19,7 @@ public class ResourceLoader {
      */
     public List<String> getCardImageNames() {
         URI uri = getCardsFolderURI();
-        Path path;
-
-        if (uri.getScheme().equals("jar")) {
-            FileSystem fileSystem;
-
-            try {
-                fileSystem = FileSystems.newFileSystem(uri, Collections.emptyMap());
-            } catch (IOException exception) {
-                throw new RuntimeException("Failed to load the card image names.", exception);
-            }
-
-            path = fileSystem.getPath("images/cards");
-        } else {
-            path = Paths.get(uri);
-        }
+        Path path = getCardsFolderPath(uri);
 
         try (Stream<Path> paths = Files.walk(path, 1)) {
             return paths.filter(Files::isRegularFile)
@@ -58,6 +44,24 @@ public class ResourceLoader {
         } catch (URISyntaxException exception) {
             throw new RuntimeException("Can't convert the cards folder URL to a URI.", exception);
         }
+    }
+
+    private Path getCardsFolderPath(URI uri) {
+        if (!uri.getScheme().equals("jar")) {
+            return Paths.get(uri);
+        }
+
+        FileSystem fileSystem;
+
+        try {
+            fileSystem = FileSystems.newFileSystem(uri, Collections.emptyMap());
+        } catch (FileSystemAlreadyExistsException exception) {
+            fileSystem = FileSystems.getFileSystem(uri);
+        } catch (IOException exception) {
+            throw new RuntimeException("Failed to load the card image names.", exception);
+        }
+
+        return fileSystem.getPath("images/cards");
     }
 
 }
