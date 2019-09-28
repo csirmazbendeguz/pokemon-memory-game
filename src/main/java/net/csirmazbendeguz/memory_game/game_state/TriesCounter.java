@@ -1,10 +1,10 @@
 package net.csirmazbendeguz.memory_game.game_state;
 
+import com.google.inject.Singleton;
+
 import java.util.Observable;
 
-/**
- * Service for managing the number of tries.
- */
+@Singleton
 public class TriesCounter extends Observable {
 
     /**
@@ -12,9 +12,6 @@ public class TriesCounter extends Observable {
      */
     private int tries;
 
-    /**
-     * Return the number of tries.
-     */
     public int getTries() {
         return tries;
     }

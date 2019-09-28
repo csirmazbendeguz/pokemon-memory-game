@@ -1,11 +1,14 @@
 package net.csirmazbendeguz.memory_game.event;
 
+import com.google.inject.Singleton;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.*;
 import java.util.List;
 
+@Singleton
 public class EventDispatcher {
 
     private Map<Class, List<EventListener>> listeners = new HashMap<>();

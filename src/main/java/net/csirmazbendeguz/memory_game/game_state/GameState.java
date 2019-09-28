@@ -1,6 +1,7 @@
 package net.csirmazbendeguz.memory_game.game_state;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.event.listeners.CardFlipUpListener;
@@ -9,11 +10,13 @@ import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
 import net.csirmazbendeguz.memory_game.event.objects.CardHideEvent;
 import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
 import net.csirmazbendeguz.memory_game.event.objects.GameEndEvent;
+import net.csirmazbendeguz.memory_game.game_state.timer.Stopwatch;
 import net.csirmazbendeguz.memory_game.util.RandomCardGenerator;
 import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 
 import java.awt.image.BufferedImage;
 
+@Singleton
 public class GameState implements CardHideListener, CardFlipUpListener {
 
     /**
@@ -34,6 +37,8 @@ public class GameState implements CardHideListener, CardFlipUpListener {
     private TriesCounter triesCounter;
 
     private BufferedImage cardBack;
+
+    private boolean isWon;
 
     @Inject
     public GameState(ResourceLoader resourceLoader, @Named("cardBack") BufferedImage cardBack, EventDispatcher eventDispatcher, RandomCardGenerator randomCardGenerator, Stopwatch stopwatch, TriesCounter triesCounter, Board board) {
@@ -61,9 +66,9 @@ public class GameState implements CardHideListener, CardFlipUpListener {
      * @param dimension The new board's dimension.
      */
     public void newGame(int dimension) {
+        isWon = false;
         this.dimension = dimension;
-        stopwatch.stopTimer();
-        stopwatch.resetSeconds();
+        stopwatch.reset();
         triesCounter.reset();
 
         Card[][] cards = randomCardGenerator.generate(dimension);
@@ -76,8 +81,9 @@ public class GameState implements CardHideListener, CardFlipUpListener {
      */
     @Override
     public void cardHidden(CardHideEvent event) {
-        if (board.areAllCardsHidden()) {
-            stopwatch.stopTimer();
+        if (board.areAllCardsHidden() && !isWon) {
+            isWon = true;
+            stopwatch.stop();
             eventDispatcher.dispatch(new GameEndEvent(
                 this,
                 getDimension(),
@@ -88,12 +94,13 @@ public class GameState implements CardHideListener, CardFlipUpListener {
     }
 
     /**
-     * Start the timer when the first card is flipped.
+     * Start the stopwatch when the first card is flipped up.
      */
     @Override
     public void cardFlippedUp(CardFlipUpEvent event) {
-        // Start the timer if it's not already running.
-        stopwatch.startTimer();
+        if (!stopwatch.isRunning()) {
+            stopwatch.start();
+        }
     }
 
     /**
