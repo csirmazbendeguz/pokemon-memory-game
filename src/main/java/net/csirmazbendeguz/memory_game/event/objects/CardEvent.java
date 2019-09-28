@@ -8,7 +8,7 @@ abstract class CardEvent extends EventObject {
 
     private Card card;
 
-    public CardEvent(Object source, Card card) {
+    CardEvent(Object source, Card card) {
         super(source);
         this.card = card;
     }

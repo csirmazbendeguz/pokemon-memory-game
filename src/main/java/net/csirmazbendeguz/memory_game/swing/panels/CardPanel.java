@@ -38,11 +38,11 @@ public class CardPanel extends JPanel implements DefaultMouseListener, CardFlipU
      *
      * @param card The card state.
      */
-    public CardPanel(Card card, CardImageCache cardImageCache, EventDispatcher eventDispatcher) {
+    public CardPanel(Card card, CardImageCache cardImageCache, BufferedImage cardBack, EventDispatcher eventDispatcher) {
         this.card = card;
         addMouseListener(this);
         cardFront = cardImageCache.get(card.getImageName());
-        cardBack = cardImageCache.getCardBack();
+        this.cardBack = cardBack;
         eventDispatcher.addListener(CardFlipUpEvent.class, this);
         eventDispatcher.addListener(CardFlipDownEvent.class, this);
         eventDispatcher.addListener(CardHideEvent.class, this);
