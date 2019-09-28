@@ -1,14 +1,11 @@
 package net.csirmazbendeguz.memory_game.event.objects;
 
-import java.util.EventObject;
+import net.csirmazbendeguz.memory_game.game_state.Card;
 
-/**
- * Event object for dispatching information about a hidden card.
- */
-public class CardHideEvent extends EventObject {
+public class CardHideEvent extends CardEvent {
 
-    public CardHideEvent(Object source) {
-        super(source);
+    public CardHideEvent(Object source, Card card) {
+        super(source, card);
     }
 
 }

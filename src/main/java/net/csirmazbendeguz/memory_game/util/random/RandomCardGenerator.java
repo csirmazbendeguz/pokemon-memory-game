@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.util;
+package net.csirmazbendeguz.memory_game.util.random;
 
 import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.game_state.Card;
@@ -29,7 +29,7 @@ public class RandomCardGenerator {
 
         for (int i = 0; i < dimension; ++i) {
             for (int j = 0; j < dimension; ++j) {
-                cards[i][j] = cardFactory.createCard(pairs.get(i * dimension + j));
+                cards[i][j] = cardFactory.create(pairs.get(i * dimension + j));
             }
         }
 

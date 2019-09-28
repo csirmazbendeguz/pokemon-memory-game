@@ -2,9 +2,9 @@ package net.csirmazbendeguz.memory_game.event.objects;
 
 import net.csirmazbendeguz.memory_game.game_state.Card;
 
-public class CardFlipUpEvent extends CardEvent {
+public class CardFlipDownEvent extends CardEvent {
 
-    public CardFlipUpEvent(Object source, Card card) {
+    public CardFlipDownEvent(Object source, Card card) {
         super(source, card);
     }
 

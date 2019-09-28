@@ -1,7 +1,7 @@
 package net.csirmazbendeguz.memory_game.unit;
 
-import net.csirmazbendeguz.memory_game.util.RandomCardImageNameGenerator;
-import net.csirmazbendeguz.memory_game.util.ResourceLoader;
+import net.csirmazbendeguz.memory_game.util.random.RandomCardImageNameGenerator;
+import net.csirmazbendeguz.memory_game.util.loaders.ResourceLoader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

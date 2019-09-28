@@ -7,6 +7,7 @@ import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.game_state.Card;
 import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
 import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
+import net.csirmazbendeguz.memory_game.game_state.CardImageCache;
 import net.csirmazbendeguz.memory_game.swing.GameFrame;
 
 import java.awt.*;
@@ -29,14 +30,17 @@ public class BoardPanel extends JPanel implements GameStartListener {
      */
     private BufferedImage background;
 
+    private CardPanelFactory cardPanelFactory;
+
     /**
      * Initialize the board.
      */
     @Inject
-    public BoardPanel(@Named("boardBackground") BufferedImage background, EventDispatcher eventDispatcher) {
+    public BoardPanel(@Named("boardBackground") BufferedImage background, EventDispatcher eventDispatcher, CardPanelFactory cardPanelFactory) {
         this.background = background;
         eventDispatcher.addListener(GameStartEvent.class, this);
         setLayout(new GridBagLayout());
+        this.cardPanelFactory = cardPanelFactory;
     }
 
     /**
@@ -55,7 +59,7 @@ public class BoardPanel extends JPanel implements GameStartListener {
                 constraints.gridx = row;
                 constraints.gridy = column;
 
-                CardPanel cardPanel = new CardPanel(cards[row][column]);
+                CardPanel cardPanel = cardPanelFactory.create(cards[row][column]);
                 add(cardPanel, constraints);
             }
         }

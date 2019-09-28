@@ -1,20 +1,25 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
+import net.csirmazbendeguz.memory_game.event.EventDispatcher;
+import net.csirmazbendeguz.memory_game.event.listeners.CardFlipDownListener;
+import net.csirmazbendeguz.memory_game.event.listeners.CardFlipUpListener;
+import net.csirmazbendeguz.memory_game.event.listeners.CardHideListener;
+import net.csirmazbendeguz.memory_game.event.objects.CardFlipDownEvent;
+import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
+import net.csirmazbendeguz.memory_game.event.objects.CardHideEvent;
 import net.csirmazbendeguz.memory_game.game_state.Card;
-import net.csirmazbendeguz.memory_game.swing.GameFrame;
+import net.csirmazbendeguz.memory_game.game_state.CardImageCache;
+import net.csirmazbendeguz.memory_game.swing.DefaultMouseListener;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.Observable;
-import java.util.Observer;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import java.awt.image.BufferedImage;
+import javax.swing.*;
 
 /**
  * Container for memory game cards.
  */
-public class CardPanel extends JPanel implements MouseListener, Observer {
+public class CardPanel extends JPanel implements DefaultMouseListener, CardFlipUpListener, CardFlipDownListener, CardHideListener {
 
     /**
      * The card dimension.
@@ -26,58 +31,42 @@ public class CardPanel extends JPanel implements MouseListener, Observer {
      */
     private Card card;
 
+    private BufferedImage cardFront, cardBack;
+
     /**
      * Construct a container for memory game cards.
      *
      * @param card The card state.
      */
-    public CardPanel(Card card) {
+    public CardPanel(Card card, CardImageCache cardImageCache, EventDispatcher eventDispatcher) {
         this.card = card;
         addMouseListener(this);
-        card.addObserver(this);
+        cardFront = cardImageCache.get(card.getImageName());
+        cardBack = cardImageCache.getCardBack();
+        eventDispatcher.addListener(CardFlipUpEvent.class, this);
+        eventDispatcher.addListener(CardFlipDownEvent.class, this);
+        eventDispatcher.addListener(CardHideEvent.class, this);
     }
 
     /**
      * Draw the card.
      */
     @Override
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics graphics) {
         if (!card.isVisible()) {
             return;
         }
-        g.drawImage(card.getImage(), 0, 0, getWidth(), getHeight(), null);
+        graphics.drawImage(card.isFaceUp() ? cardFront : cardBack, 0, 0, getWidth(), getHeight(), null);
     }
 
-    @Override
-    public void mouseClicked(MouseEvent me) {}
-
     /**
-     * Handle the card click event.
+     * Flip up the card.
      */
     @Override
     public void mousePressed(MouseEvent me) {
         if (card.canFlipUp()) {
             card.flipUp();
         }
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent me) {}
-
-    @Override
-    public void mouseEntered(MouseEvent me) {}
-
-    @Override
-    public void mouseExited(MouseEvent me) {}
-
-    /**
-     * Redraw the card.
-     */
-    @Override
-    public void update(Observable observable, Object o) {
-        GameFrame gameFrame = (GameFrame) SwingUtilities.getWindowAncestor(this);
-        gameFrame.repaint();
-        gameFrame.revalidate();
     }
 
     @Override
@@ -93,6 +82,33 @@ public class CardPanel extends JPanel implements MouseListener, Observer {
     @Override
     public Dimension getMaximumSize() {
         return SIZE;
+    }
+
+    @Override
+    public void cardFlippedUp(CardFlipUpEvent event) {
+        if (event.getCard() == card) {
+            update();
+        }
+    }
+
+    @Override
+    public void cardFlippedDown(CardFlipDownEvent event) {
+        if (event.getCard() == card) {
+            update();
+        }
+    }
+
+    @Override
+    public void cardHidden(CardHideEvent event) {
+        if (event.getCard() == card) {
+            update();
+        }
+    }
+
+    public void update() {
+        Window window = SwingUtilities.getWindowAncestor(this);
+        window.repaint();
+        window.revalidate();
     }
 
 }

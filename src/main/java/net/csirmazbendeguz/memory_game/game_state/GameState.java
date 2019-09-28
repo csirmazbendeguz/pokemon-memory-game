@@ -2,7 +2,6 @@ package net.csirmazbendeguz.memory_game.game_state;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.google.inject.name.Named;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.event.listeners.CardFlipUpListener;
 import net.csirmazbendeguz.memory_game.event.listeners.CardHideListener;
@@ -11,10 +10,7 @@ import net.csirmazbendeguz.memory_game.event.objects.CardHideEvent;
 import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
 import net.csirmazbendeguz.memory_game.event.objects.GameEndEvent;
 import net.csirmazbendeguz.memory_game.game_state.timer.Stopwatch;
-import net.csirmazbendeguz.memory_game.util.RandomCardGenerator;
-import net.csirmazbendeguz.memory_game.util.ResourceLoader;
-
-import java.awt.image.BufferedImage;
+import net.csirmazbendeguz.memory_game.util.random.RandomCardGenerator;
 
 @Singleton
 public class GameState implements CardHideListener, CardFlipUpListener {
@@ -30,20 +26,14 @@ public class GameState implements CardHideListener, CardFlipUpListener {
 
     private RandomCardGenerator randomCardGenerator;
 
-    private ResourceLoader resourceLoader;
-
     private Stopwatch stopwatch;
 
     private TriesCounter triesCounter;
 
-    private BufferedImage cardBack;
-
     private boolean isWon;
 
     @Inject
-    public GameState(ResourceLoader resourceLoader, @Named("cardBack") BufferedImage cardBack, EventDispatcher eventDispatcher, RandomCardGenerator randomCardGenerator, Stopwatch stopwatch, TriesCounter triesCounter, Board board) {
-        this.resourceLoader = resourceLoader;
-        this.cardBack = cardBack;
+    public GameState(EventDispatcher eventDispatcher, RandomCardGenerator randomCardGenerator, Stopwatch stopwatch, TriesCounter triesCounter, Board board) {
         this.eventDispatcher = eventDispatcher;
         this.randomCardGenerator = randomCardGenerator;
         this.stopwatch = stopwatch;
@@ -69,6 +59,9 @@ public class GameState implements CardHideListener, CardFlipUpListener {
         isWon = false;
         this.dimension = dimension;
         stopwatch.reset();
+        if (stopwatch.isRunning()) {
+            stopwatch.stop();
+        }
         triesCounter.reset();
 
         Card[][] cards = randomCardGenerator.generate(dimension);

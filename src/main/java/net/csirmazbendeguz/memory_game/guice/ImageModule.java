@@ -4,7 +4,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
-import net.csirmazbendeguz.memory_game.util.ResourceLoader;
+import net.csirmazbendeguz.memory_game.util.loaders.ImageLoader;
 
 import java.awt.image.BufferedImage;
 
@@ -16,71 +16,71 @@ class ImageModule extends AbstractModule {
     @Provides
     @Singleton
     @Named("labelBackground")
-    BufferedImage provideLabelBackground(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("labelBackground.png");
+    BufferedImage provideLabelBackground(ImageLoader imageLoader) {
+        return imageLoader.loadBackogroundImage("labelBackground.png");
     }
 
     @Provides
     @Singleton
     @Named("buttonBackground")
-    BufferedImage provideButtonBackground(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("buttonBackground.png");
+    BufferedImage provideButtonBackground(ImageLoader imageLoader) {
+        return imageLoader.loadBackogroundImage("buttonBackground.png");
     }
 
     @Provides
     @Singleton
     @Named("buttonBackgroundHover")
-    BufferedImage provideButtonBackgroundHover(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("buttonBackgroundHover.png");
+    BufferedImage provideButtonBackgroundHover(ImageLoader imageLoader) {
+        return imageLoader.loadBackogroundImage("buttonBackgroundHover.png");
     }
 
     @Provides
     @Singleton
     @Named("buttonBackgroundClick")
-    BufferedImage provideButtonBackgroundClick(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("buttonBackgroundClick.png");
+    BufferedImage provideButtonBackgroundClick(ImageLoader imageLoader) {
+        return imageLoader.loadBackogroundImage("buttonBackgroundClick.png");
     }
 
     @Provides
     @Singleton
     @Named("background")
-    BufferedImage provideBackground(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("background.png");
+    BufferedImage provideBackground(ImageLoader imageLoader) {
+        return imageLoader.loadBackogroundImage("background.png");
     }
 
     @Provides
     @Singleton
     @Named("winScreen")
-    BufferedImage provideWinScreen(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("winScreen.png");
+    BufferedImage provideWinScreen(ImageLoader imageLoader) {
+        return imageLoader.loadBackogroundImage("winScreen.png");
     }
 
     @Provides
     @Singleton
     @Named("boardBackground")
-    BufferedImage provideBoardBackground(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("boardBackground.png");
+    BufferedImage provideBoardBackground(ImageLoader imageLoader) {
+        return imageLoader.loadBackogroundImage("boardBackground.png");
     }
 
     @Provides
     @Singleton
     @Named("cardBack")
-    BufferedImage provideCardBack(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("cardBack.png");
+    BufferedImage provideCardBack(ImageLoader imageLoader) {
+        return imageLoader.loadBackogroundImage("cardBack.png");
     }
 
     @Provides
     @Singleton
     @Named("title")
-    BufferedImage provideTitle(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("title.png");
+    BufferedImage provideTitle(ImageLoader imageLoader) {
+        return imageLoader.loadBackogroundImage("title.png");
     }
 
     @Provides
     @Singleton
     @Named("backgroundFigure")
-    BufferedImage provideBackgroundFigure(ResourceLoader resourceLoader) {
-        return resourceLoader.loadBackogroundImage("backgroundFigure.png");
+    BufferedImage provideBackgroundFigure(ImageLoader imageLoader) {
+        return imageLoader.loadBackogroundImage("backgroundFigure.png");
     }
 
 }

@@ -1,6 +1,7 @@
-package net.csirmazbendeguz.memory_game.util;
+package net.csirmazbendeguz.memory_game.util.random;
 
 import com.google.inject.Inject;
+import net.csirmazbendeguz.memory_game.util.loaders.ResourceLoader;
 
 import java.util.*;
 
