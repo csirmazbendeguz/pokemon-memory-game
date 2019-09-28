@@ -1,7 +1,6 @@
 package net.csirmazbendeguz.memory_game.unit;
 
 import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
-import net.csirmazbendeguz.memory_game.game_state.TimerFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,12 +16,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class StopwatchTest {
+class StopwatchTest extends MockTimerFactoryTestBase {
 
     private Stopwatch stopwatch;
-
-    @Mock
-    private TimerFactory mockTimerFactory;
 
     @Mock
     private Observer mockObserver;
@@ -31,12 +27,6 @@ class StopwatchTest {
     void setup() {
         stopwatch = new Stopwatch(mockTimerFactory);
         stopwatch.addObserver(mockObserver);
-    }
-
-    Timer mockTimer() {
-        Timer mockTimer = mock(Timer.class);
-        when(mockTimerFactory.create()).thenReturn(mockTimer);
-        return mockTimer;
     }
 
     @Test

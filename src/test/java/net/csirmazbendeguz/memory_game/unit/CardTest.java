@@ -6,14 +6,11 @@ import net.csirmazbendeguz.memory_game.event.objects.CardFlipDownEvent;
 import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
 import net.csirmazbendeguz.memory_game.event.objects.CardHideEvent;
 import net.csirmazbendeguz.memory_game.game_state.Card;
-import net.csirmazbendeguz.memory_game.game_state.TimerFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,13 +18,9 @@ import java.util.TimerTask;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
-class CardTest {
+class CardTest extends MockTimerFactoryTestBase {
 
     private Card card;
-
-    @Mock
-    private TimerFactory mockTimerFactory;
 
     @Mock
     private EventDispatcher mockEventDispatcher;
@@ -35,12 +28,6 @@ class CardTest {
     @BeforeEach
     void setup() {
         card = new Card("bulbasaur.png", mockTimerFactory, mockEventDispatcher);
-    }
-
-    Timer mockTimer() {
-        Timer mockTimer = mock(Timer.class);
-        when(mockTimerFactory.create()).thenReturn(mockTimer);
-        return mockTimer;
     }
 
     void assertCardEvent(CardEvent event) {
