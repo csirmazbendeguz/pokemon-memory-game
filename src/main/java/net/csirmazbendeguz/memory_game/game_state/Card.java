@@ -11,7 +11,13 @@ import java.util.TimerTask;
 
 public class Card {
 
+    public static final int ANIMATION_LENGTH = 750;
+
+    private TimerFactory timerFactory;
+
     private EventDispatcher eventDispatcher;
+
+    private String imageName;
 
     private boolean faceUp = false;
 
@@ -19,10 +25,9 @@ public class Card {
 
     private boolean inAnimation = false;
 
-    private String imageName;
-
-    public Card(String imageName, EventDispatcher eventDispatcher) {
+    public Card(String imageName, TimerFactory timerFactory, EventDispatcher eventDispatcher) {
         this.imageName = imageName;
+        this.timerFactory = timerFactory;
         this.eventDispatcher = eventDispatcher;
     }
 
@@ -30,12 +35,12 @@ public class Card {
         return imageName;
     }
 
-    public boolean isVisible() {
-        return visible;
-    }
-
     public boolean isFaceUp() {
         return faceUp;
+    }
+
+    public boolean isVisible() {
+        return visible;
     }
 
     public boolean isInAnimation() {
@@ -68,7 +73,8 @@ public class Card {
 
     private void animate(TimerTask timerTask) {
         inAnimation = true;
-        new Timer().schedule(timerTask, 750);
+        Timer timer = timerFactory.create();
+        timer.schedule(timerTask, ANIMATION_LENGTH);
     }
 
     public void flipUp() {

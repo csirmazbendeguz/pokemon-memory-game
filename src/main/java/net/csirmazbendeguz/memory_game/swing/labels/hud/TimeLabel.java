@@ -3,7 +3,7 @@ package net.csirmazbendeguz.memory_game.swing.labels.hud;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
-import net.csirmazbendeguz.memory_game.game_state.timer.Stopwatch;
+import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
 
 import java.awt.image.BufferedImage;
 import java.util.Observable;

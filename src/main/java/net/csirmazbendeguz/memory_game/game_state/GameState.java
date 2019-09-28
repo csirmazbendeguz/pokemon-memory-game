@@ -9,7 +9,6 @@ import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
 import net.csirmazbendeguz.memory_game.event.objects.CardHideEvent;
 import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
 import net.csirmazbendeguz.memory_game.event.objects.GameEndEvent;
-import net.csirmazbendeguz.memory_game.game_state.timer.Stopwatch;
 import net.csirmazbendeguz.memory_game.util.random.RandomCardGenerator;
 
 @Singleton
