@@ -5,6 +5,8 @@ import net.csirmazbendeguz.memory_game.util.ResourceLoader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
@@ -37,17 +39,11 @@ class RandomCardImageNameGeneratorTest {
         generator = new RandomCardImageNameGenerator(resourceLoader);
     }
 
-    @Test
-    void testGenerate() {
-        Set<String> randomCardImageNames = generator.generate(2);
-        assertEquals(2, randomCardImageNames.size());
-        assertTrue(cardImageNames.containsAll(randomCardImageNames));
-    }
-
-    @Test
-    void testGenerateAll() {
-        Set<String> randomCardImageNames = generator.generate(3);
-        assertEquals(3, randomCardImageNames.size());
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void testGenerate(int count) {
+        Set<String> randomCardImageNames = generator.generate(count);
+        assertEquals(count, randomCardImageNames.size());
         assertTrue(cardImageNames.containsAll(randomCardImageNames));
     }
 
