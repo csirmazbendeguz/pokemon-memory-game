@@ -36,7 +36,7 @@ public class RandomCardImageNameGenerator {
      * @param count The number of card image names to generate.
      */
     public Set<String> generate(int count) {
-        List<String> cardImageNames = resourceLoader.getCardImageNames();
+        List<String> cardImageNames = new ArrayList<>(resourceLoader.loadCardImageNames());
         Collections.shuffle(cardImageNames);
 
         return new HashSet<>(cardImageNames.subList(0, count));

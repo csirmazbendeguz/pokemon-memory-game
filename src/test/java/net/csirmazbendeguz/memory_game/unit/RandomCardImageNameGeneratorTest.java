@@ -9,10 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -26,16 +23,16 @@ class RandomCardImageNameGeneratorTest {
     /**
      * The mocked card image names.
      */
-    private List<String> cardImageNames = Arrays.asList(
+    private Set<String> cardImageNames = new HashSet<>(Arrays.asList(
         "bulbasaur.png",
         "charmander.png",
         "pikachu.png"
-    );
+    ));
 
     @BeforeEach
     void setup() {
         ResourceLoader resourceLoader = mock(ResourceLoader.class);
-        when(resourceLoader.getCardImageNames()).thenReturn(cardImageNames);
+        when(resourceLoader.loadCardImageNames()).thenReturn(cardImageNames);
         generator = new RandomCardImageNameGenerator(resourceLoader);
     }
 
