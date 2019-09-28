@@ -3,6 +3,7 @@ package net.csirmazbendeguz.memory_game.util.loaders;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.*;
 import java.util.Collections;
 import java.util.List;
@@ -17,14 +18,7 @@ public class ResourceLoader {
      * @return The card image names.
      */
     public List<String> getCardImageNames() {
-        URI uri;
-
-        try {
-            uri = getClass().getClassLoader().getResource("images/cards").toURI();
-        } catch (URISyntaxException exception) {
-            throw new RuntimeException("Failed to load the card image names.", exception);
-        }
-
+        URI uri = getCardsFolderURI();
         Path path;
 
         if (uri.getScheme().equals("jar")) {
@@ -48,6 +42,21 @@ public class ResourceLoader {
                 .collect(Collectors.toList());
         } catch (IOException exception) {
             throw new RuntimeException("Failed to load the card image names.", exception);
+        }
+    }
+
+    private URI getCardsFolderURI() {
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL url = classLoader.getResource("images/cards");
+
+        if (url == null) {
+            throw new RuntimeException("Can't find the cards folder.");
+        }
+
+        try {
+            return url.toURI();
+        } catch (URISyntaxException exception) {
+            throw new RuntimeException("Can't convert the cards folder URL to a URI.", exception);
         }
     }
 
