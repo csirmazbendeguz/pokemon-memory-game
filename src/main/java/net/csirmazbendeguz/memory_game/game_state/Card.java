@@ -43,10 +43,6 @@ public class Card {
         return visible;
     }
 
-    public boolean isInAnimation() {
-        return inAnimation;
-    }
-
     public void hide() {
         EventObject event = new CardHideEvent(this, this);
         animate(new TimerTask() {
@@ -83,7 +79,7 @@ public class Card {
     }
 
     public boolean canFlipUp() {
-        return isVisible() && !isFaceUp() && !isInAnimation();
+        return isVisible() && !isFaceUp() && !inAnimation;
     }
 
     public boolean isPairOf(Card other) {

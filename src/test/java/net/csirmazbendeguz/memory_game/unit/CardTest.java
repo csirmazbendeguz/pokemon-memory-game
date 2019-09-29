@@ -39,7 +39,6 @@ class CardTest extends MockTimerFactoryTestBase {
     void testDefaults() {
         assertFalse(card.isFaceUp());
         assertTrue(card.isVisible());
-        assertFalse(card.isInAnimation());
         assertEquals("bulbasaur.png", card.getImageName());
         assertTrue(card.canFlipUp());
     }
@@ -50,7 +49,6 @@ class CardTest extends MockTimerFactoryTestBase {
 
         assertTrue(card.isFaceUp());
         assertTrue(card.isVisible());
-        assertFalse(card.isInAnimation());
         assertFalse(card.canFlipUp());
 
         ArgumentCaptor<CardFlipUpEvent> eventCaptor = ArgumentCaptor.forClass(CardFlipUpEvent.class);
@@ -76,7 +74,6 @@ class CardTest extends MockTimerFactoryTestBase {
         card.hide();
 
         assertTrue(card.isVisible());
-        assertTrue(card.isInAnimation());
         assertFalse(card.canFlipUp());
 
         ArgumentCaptor<TimerTask> timerTaskCaptor = ArgumentCaptor.forClass(TimerTask.class);
@@ -85,7 +82,6 @@ class CardTest extends MockTimerFactoryTestBase {
         scheduledTask.run();
 
         assertFalse(card.isVisible());
-        assertFalse(card.isInAnimation());
         assertFalse(card.canFlipUp());
 
         ArgumentCaptor<CardHideEvent> eventCaptor = ArgumentCaptor.forClass(CardHideEvent.class);
@@ -101,7 +97,6 @@ class CardTest extends MockTimerFactoryTestBase {
         card.flipDown();
 
         assertTrue(card.isFaceUp());
-        assertTrue(card.isInAnimation());
         assertFalse(card.canFlipUp());
 
         ArgumentCaptor<TimerTask> timerTaskCaptor = ArgumentCaptor.forClass(TimerTask.class);
@@ -110,7 +105,6 @@ class CardTest extends MockTimerFactoryTestBase {
         scheduledTask.run();
 
         assertFalse(card.isFaceUp());
-        assertFalse(card.isInAnimation());
         assertTrue(card.canFlipUp());
 
         InOrder inOrder = inOrder(mockEventDispatcher);
