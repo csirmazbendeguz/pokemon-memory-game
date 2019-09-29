@@ -77,7 +77,7 @@ class CardTest extends MockTimerFactoryTestBase {
         assertFalse(card.canFlipUp());
 
         ArgumentCaptor<TimerTask> timerTaskCaptor = ArgumentCaptor.forClass(TimerTask.class);
-        verify(mockTimer).schedule(timerTaskCaptor.capture(), eq(Card.ANIMATION_LENGTH));
+        verify(mockTimer).schedule(timerTaskCaptor.capture(), eq(Card.ANIMATION_DELAY));
         TimerTask scheduledTask = timerTaskCaptor.getValue();
         scheduledTask.run();
 
@@ -100,7 +100,7 @@ class CardTest extends MockTimerFactoryTestBase {
         assertFalse(card.canFlipUp());
 
         ArgumentCaptor<TimerTask> timerTaskCaptor = ArgumentCaptor.forClass(TimerTask.class);
-        verify(mockTimer).schedule(timerTaskCaptor.capture(), eq(Card.ANIMATION_LENGTH));
+        verify(mockTimer).schedule(timerTaskCaptor.capture(), eq(Card.ANIMATION_DELAY));
         TimerTask scheduledTask = timerTaskCaptor.getValue();
         scheduledTask.run();
 

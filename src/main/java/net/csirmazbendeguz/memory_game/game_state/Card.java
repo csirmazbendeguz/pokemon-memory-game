@@ -11,7 +11,7 @@ import java.util.TimerTask;
 
 public class Card {
 
-    public static final long ANIMATION_LENGTH = 750;
+    public static final long ANIMATION_DELAY = 750;
 
     private TimerFactory timerFactory;
 
@@ -35,12 +35,25 @@ public class Card {
         return imageName;
     }
 
+    public boolean isPairOf(Card other) {
+        return imageName.equals(other.imageName);
+    }
+
     public boolean isFaceUp() {
         return faceUp;
     }
 
     public boolean isVisible() {
         return visible;
+    }
+
+    public boolean canFlipUp() {
+        return isVisible() && !isFaceUp() && !inAnimation;
+    }
+
+    public void flipUp() {
+        faceUp = true;
+        eventDispatcher.dispatch(new CardFlipUpEvent(this, this));
     }
 
     public void hide() {
@@ -70,20 +83,7 @@ public class Card {
     private void animate(TimerTask timerTask) {
         inAnimation = true;
         Timer timer = timerFactory.create();
-        timer.schedule(timerTask, ANIMATION_LENGTH);
-    }
-
-    public void flipUp() {
-        faceUp = true;
-        eventDispatcher.dispatch(new CardFlipUpEvent(this, this));
-    }
-
-    public boolean canFlipUp() {
-        return isVisible() && !isFaceUp() && !inAnimation;
-    }
-
-    public boolean isPairOf(Card other) {
-        return imageName.equals(other.imageName);
+        timer.schedule(timerTask, ANIMATION_DELAY);
     }
 
 }
