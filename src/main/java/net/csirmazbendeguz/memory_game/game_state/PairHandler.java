@@ -3,32 +3,24 @@ package net.csirmazbendeguz.memory_game.game_state;
 import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.event.listeners.CardFlipUpListener;
-import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
 import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
-import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-public class PairHandler implements GameStartListener, CardFlipUpListener {
+public class PairHandler implements CardFlipUpListener {
 
     /**
      * The cards facing up in the order they were flipped.
      */
-    private Queue<Card> faceUpCards;
+    private Queue<Card> faceUpCards = new ArrayDeque<>();
 
     private TriesCounter triesCounter;
 
     @Inject
     public PairHandler(TriesCounter triesCounter, EventDispatcher eventDispatcher) {
         this.triesCounter = triesCounter;
-        eventDispatcher.addListener(GameStartEvent.class, this);
         eventDispatcher.addListener(CardFlipUpEvent.class, this);
-    }
-
-    @Override
-    public void gameStarted(GameStartEvent event) {
-        faceUpCards = new ArrayDeque<>();
     }
 
     /**
