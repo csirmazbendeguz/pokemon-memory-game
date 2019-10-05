@@ -40,9 +40,6 @@ public class GameState implements CardHideListener, CardFlipUpListener {
         this.board = board;
     }
 
-    /**
-     * Restart the game.
-     */
     public void restartGame() {
         newGame(getDimension());
     }
@@ -94,7 +91,7 @@ public class GameState implements CardHideListener, CardFlipUpListener {
     }
 
     /**
-     * Get the current game board's dimension.
+     * Get the current game's board dimension.
      */
     public int getDimension() {
         return dimension;

@@ -9,7 +9,7 @@ import java.util.EventObject;
 public class GameEndEvent extends EventObject {
 
     /**
-     * The game board's dimension.
+     * The finished game's board dimension.
      */
     private int dimension;
 

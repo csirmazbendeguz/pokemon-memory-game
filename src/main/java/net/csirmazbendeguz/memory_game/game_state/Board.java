@@ -2,20 +2,11 @@ package net.csirmazbendeguz.memory_game.game_state;
 
 import com.google.inject.Singleton;
 
-/**
- * The board state.
- */
 @Singleton
 public class Board {
 
-    /**
-     * The memory card board.
-     */
     private Card[][] board;
 
-    /**
-     * Initialize the board.
-     */
     void init(Card[][] board) {
         this.board = board;
     }

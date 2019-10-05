@@ -1,7 +1,6 @@
 package net.csirmazbendeguz.memory_game.game_state;
 
 import com.google.inject.Inject;
-import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.event.listeners.CardFlipUpListener;
 import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
 

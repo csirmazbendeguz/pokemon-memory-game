@@ -8,7 +8,7 @@ import java.util.*;
 public class EventListeners {
 
     /**
-     * The listener interfaces mapped to their implementations.
+     * The game's event listener interfaces mapped to their implementations.
      */
     private Map<Class, List<EventListener>> listeners = new HashMap<>();
 
