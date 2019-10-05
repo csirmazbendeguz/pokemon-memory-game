@@ -1,12 +1,12 @@
 package net.csirmazbendeguz.memory_game.event.objects;
 
+import net.csirmazbendeguz.memory_game.event.Listener;
+import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
 import net.csirmazbendeguz.memory_game.game_state.Card;
 
 import java.util.EventObject;
 
-/**
- * Event object for dispatching information about a new game.
- */
+@Listener(GameStartListener.class)
 public class GameStartEvent extends EventObject {
 
     private int dimension;

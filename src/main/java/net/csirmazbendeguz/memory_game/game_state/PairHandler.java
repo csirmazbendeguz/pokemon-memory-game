@@ -18,9 +18,8 @@ public class PairHandler implements CardFlipUpListener {
     private TriesCounter triesCounter;
 
     @Inject
-    public PairHandler(TriesCounter triesCounter, EventDispatcher eventDispatcher) {
+    public PairHandler(TriesCounter triesCounter) {
         this.triesCounter = triesCounter;
-        eventDispatcher.addListener(CardFlipUpEvent.class, this);
     }
 
     /**

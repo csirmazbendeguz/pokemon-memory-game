@@ -2,7 +2,7 @@ package net.csirmazbendeguz.memory_game.swing.panels;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import net.csirmazbendeguz.memory_game.event.EventDispatcher;
+import net.csirmazbendeguz.memory_game.event.EventListeners;
 import net.csirmazbendeguz.memory_game.game_state.Card;
 import net.csirmazbendeguz.memory_game.game_state.CardImageCache;
 
@@ -12,19 +12,20 @@ public class CardPanelFactory {
 
     private CardImageCache cardImageCache;
 
-    private EventDispatcher eventDispatcher;
+    private EventListeners eventListeners;
 
     private BufferedImage cardBack;
 
     @Inject
-    public CardPanelFactory(CardImageCache cardImageCache, EventDispatcher eventDispatcher, @Named("cardBack") BufferedImage cardBack) {
+    public CardPanelFactory(CardImageCache cardImageCache, EventListeners eventListeners, @Named("cardBack") BufferedImage cardBack) {
         this.cardImageCache = cardImageCache;
-        this.eventDispatcher = eventDispatcher;
+        this.eventListeners = eventListeners;
         this.cardBack = cardBack;
     }
 
     public CardPanel create(Card card) {
-        return new CardPanel(card, cardImageCache, cardBack, eventDispatcher);
+        BufferedImage cardFront = cardImageCache.get(card.getImageName());
+        return new CardPanel(card, cardFront, cardBack, eventListeners);
     }
 
 }

@@ -3,7 +3,6 @@ package net.csirmazbendeguz.memory_game.swing.panels;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
-import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.event.listeners.GameEndListener;
 import net.csirmazbendeguz.memory_game.event.objects.GameEndEvent;
 
@@ -40,12 +39,11 @@ public class WinGlassPane extends JPanel implements GameEndListener, MouseListen
      * Construct a new glass pane for the win screen.
      */
     @Inject
-    public WinGlassPane(@Named("winScreen") BufferedImage background, EventDispatcher eventDispatcher) {
+    public WinGlassPane(@Named("winScreen") BufferedImage background) {
         setBackground(null);
         setOpaque(false);
         addMouseListener(this);
         this.background = background;
-        eventDispatcher.addListener(GameEndEvent.class, this);
     }
 
     /**

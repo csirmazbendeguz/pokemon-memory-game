@@ -4,9 +4,6 @@ import net.csirmazbendeguz.memory_game.event.objects.GameEndEvent;
 
 import java.util.EventListener;
 
-/**
- * Event listener for finishing a game.
- */
 public interface GameEndListener extends EventListener {
 
     /**

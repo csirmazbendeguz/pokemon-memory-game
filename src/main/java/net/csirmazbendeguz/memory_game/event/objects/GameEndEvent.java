@@ -1,10 +1,11 @@
 package net.csirmazbendeguz.memory_game.event.objects;
 
+import net.csirmazbendeguz.memory_game.event.Listener;
+import net.csirmazbendeguz.memory_game.event.listeners.GameEndListener;
+
 import java.util.EventObject;
 
-/**
- * Event object for dispatching information about a finished game.
- */
+@Listener(GameEndListener.class)
 public class GameEndEvent extends EventObject {
 
     /**

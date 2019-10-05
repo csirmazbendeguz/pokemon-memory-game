@@ -38,8 +38,6 @@ public class GameState implements CardHideListener, CardFlipUpListener {
         this.stopwatch = stopwatch;
         this.triesCounter = triesCounter;
         this.board = board;
-        eventDispatcher.addListener(CardHideEvent.class, this);
-        eventDispatcher.addListener(CardFlipUpEvent.class, this);
     }
 
     /**

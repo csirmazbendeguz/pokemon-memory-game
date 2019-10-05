@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
-import net.csirmazbendeguz.memory_game.event.EventDispatcher;
+import net.csirmazbendeguz.memory_game.event.EventListeners;
 import net.csirmazbendeguz.memory_game.event.listeners.CardFlipDownListener;
 import net.csirmazbendeguz.memory_game.event.listeners.CardFlipUpListener;
 import net.csirmazbendeguz.memory_game.event.listeners.CardHideListener;
@@ -8,7 +8,6 @@ import net.csirmazbendeguz.memory_game.event.objects.CardFlipDownEvent;
 import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
 import net.csirmazbendeguz.memory_game.event.objects.CardHideEvent;
 import net.csirmazbendeguz.memory_game.game_state.Card;
-import net.csirmazbendeguz.memory_game.game_state.CardImageCache;
 import net.csirmazbendeguz.memory_game.swing.DefaultMouseListener;
 
 import java.awt.*;
@@ -38,14 +37,15 @@ public class CardPanel extends JPanel implements DefaultMouseListener, CardFlipU
      *
      * @param card The card state.
      */
-    public CardPanel(Card card, CardImageCache cardImageCache, BufferedImage cardBack, EventDispatcher eventDispatcher) {
+    public CardPanel(Card card, BufferedImage cardFront, BufferedImage cardBack, EventListeners eventListeners) {
         this.card = card;
-        addMouseListener(this);
-        cardFront = cardImageCache.get(card.getImageName());
+        this.cardFront = cardFront;
         this.cardBack = cardBack;
-        eventDispatcher.addListener(CardFlipUpEvent.class, this);
-        eventDispatcher.addListener(CardFlipDownEvent.class, this);
-        eventDispatcher.addListener(CardHideEvent.class, this);
+        addMouseListener(this);
+        // The panels are not created by Guice, so the event listeners must be added manually.
+        eventListeners.add(CardFlipUpListener.class, this);
+        eventListeners.add(CardFlipDownListener.class, this);
+        eventListeners.add(CardHideListener.class, this);
     }
 
     /**

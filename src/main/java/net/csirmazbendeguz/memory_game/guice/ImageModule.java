@@ -8,9 +8,6 @@ import net.csirmazbendeguz.memory_game.util.loaders.ImageLoader;
 
 import java.awt.image.BufferedImage;
 
-/**
- * Module for loading images.
- */
 class ImageModule extends AbstractModule {
 
     @Provides

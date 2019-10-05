@@ -36,9 +36,8 @@ public class BoardPanel extends JPanel implements GameStartListener {
      * Initialize the board.
      */
     @Inject
-    public BoardPanel(@Named("boardBackground") BufferedImage background, EventDispatcher eventDispatcher, CardPanelFactory cardPanelFactory) {
+    public BoardPanel(@Named("boardBackground") BufferedImage background, CardPanelFactory cardPanelFactory) {
         this.background = background;
-        eventDispatcher.addListener(GameStartEvent.class, this);
         setLayout(new GridBagLayout());
         this.cardPanelFactory = cardPanelFactory;
     }
