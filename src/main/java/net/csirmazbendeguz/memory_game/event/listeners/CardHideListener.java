@@ -6,6 +6,9 @@ import java.util.EventListener;
 
 public interface CardHideListener extends EventListener {
 
+    /**
+     * Called when a card is removed from the board.
+     */
     void cardHidden(CardHideEvent event);
 
 }

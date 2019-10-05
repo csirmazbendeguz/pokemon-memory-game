@@ -7,7 +7,7 @@ import java.util.EventListener;
 public interface GameEndListener extends EventListener {
 
     /**
-     * Called when a game is finished.
+     * Called when a game is finished, i.e. all the cards got removed from the board.
      */
     void gameEnded(GameEndEvent event);
 

@@ -7,7 +7,7 @@ import java.util.EventListener;
 public interface GameStartListener extends EventListener {
 
     /**
-     * Called when a new game is started.
+     * Called when a new game is started, i.e. a new board is generated.
      */
     void gameStarted(GameStartEvent event);
 
