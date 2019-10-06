@@ -46,15 +46,21 @@ class ListenerRegistratorTest {
         listenerRegistrator = new ListenerRegistrator(mockEventListenersProvider, listenerInterfaces);
     }
 
+    /**
+     * Test that no encounter is registered when the type irrelevant.
+     */
     @Test
-    void testNoListenerRegistered() {
+    void testNoEncounter() {
         TypeEncounter<GameEndListener> mockEncounter = mock(TypeEncounter.class);
         listenerRegistrator.hear(TypeLiteral.get(GameEndListener.class), mockEncounter);
         verifyZeroInteractions(mockEncounter);
     }
 
+    /**
+     * Test that an event listener implementation is registered when the type is relevant.
+     */
     @Test
-    void testListenerRegistered() {
+    void testRegister() {
         when(mockEventListenersProvider.get()).thenReturn(mockEventListeners);
 
         TypeEncounter<GameStartListener> mockEncounter = mock(TypeEncounter.class);
