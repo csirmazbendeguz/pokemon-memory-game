@@ -56,6 +56,9 @@ public class Card {
         eventDispatcher.dispatch(new CardFlipUpEvent(this, this));
     }
 
+    /**
+     * Remove the card from the board by making it invisible.
+     */
     public void hide() {
         EventObject event = new CardHideEvent(this, this);
         animate(new TimerTask() {
