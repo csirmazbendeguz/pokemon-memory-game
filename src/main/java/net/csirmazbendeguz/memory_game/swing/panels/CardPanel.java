@@ -25,6 +25,8 @@ public class CardPanel extends JPanel implements DefaultMouseListener, CardFlipU
      */
     private static final Dimension SIZE = new Dimension(100, 100);
 
+    private EventListeners eventListeners;
+
     /**
      * The card state.
      */
@@ -46,6 +48,7 @@ public class CardPanel extends JPanel implements DefaultMouseListener, CardFlipU
         eventListeners.register(CardFlipUpListener.class, this);
         eventListeners.register(CardFlipDownListener.class, this);
         eventListeners.register(CardHideListener.class, this);
+        this.eventListeners = eventListeners;
     }
 
     /**
@@ -109,6 +112,14 @@ public class CardPanel extends JPanel implements DefaultMouseListener, CardFlipU
         Window window = SwingUtilities.getWindowAncestor(this);
         window.repaint();
         window.revalidate();
+    }
+
+    @Override
+    public void removeNotify() {
+        eventListeners.remove(CardFlipUpListener.class, this);
+        eventListeners.remove(CardFlipDownListener.class, this);
+        eventListeners.remove(CardHideListener.class, this);
+        super.removeNotify();
     }
 
 }

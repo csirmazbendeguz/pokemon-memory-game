@@ -47,7 +47,7 @@ public class EventDispatcher {
                 try {
                     method.invoke(listener, event);
                 } catch (IllegalAccessException | InvocationTargetException exception) {
-                    throw new RuntimeException(String.format("Can't dispatch '%s', failed to invoke '%s'.", eventClass.getName(), method), exception);
+                    throw new RuntimeException(String.format("Can't dispatch '%s', failed to invoke '%s' on '%s'.", eventClass.getName(), method, listener), exception);
                 }
             }
         }

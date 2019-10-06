@@ -17,4 +17,8 @@ public class EventListeners {
         return listeners.computeIfAbsent(listenerInterface, i -> new ArrayList<>());
     }
 
+    public void remove(Class listInterface, EventListener listenerImplementation) {
+        getAll(listInterface).remove(listenerImplementation);
+    }
+
 }
