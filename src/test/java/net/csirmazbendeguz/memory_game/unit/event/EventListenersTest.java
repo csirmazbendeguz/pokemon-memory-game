@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.unit;
+package net.csirmazbendeguz.memory_game.unit.event;
 
 import net.csirmazbendeguz.memory_game.event.EventListeners;
 import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
@@ -31,7 +31,7 @@ class EventListenersTest {
     @Test
     void testAdd() {
         EventListener mockListener = Mockito.mock(EventListener.class);
-        eventListeners.add(GameStartListener.class, mockListener);
+        eventListeners.register(GameStartListener.class, mockListener);
         List<EventListener> gameStartListeners = eventListeners.getAll(GameStartListener.class);
         assertEquals(1, gameStartListeners.size());
         assertSame(mockListener, gameStartListeners.get(0));

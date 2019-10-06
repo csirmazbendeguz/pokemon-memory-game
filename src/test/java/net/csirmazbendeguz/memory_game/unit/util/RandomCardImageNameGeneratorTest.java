@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.unit;
+package net.csirmazbendeguz.memory_game.unit.util;
 
 import net.csirmazbendeguz.memory_game.util.random.RandomCardImageNameGenerator;
 import net.csirmazbendeguz.memory_game.util.loaders.ResourceLoader;

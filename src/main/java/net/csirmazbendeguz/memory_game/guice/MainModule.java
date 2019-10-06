@@ -6,6 +6,10 @@ import com.google.inject.Singleton;
 import com.google.inject.matcher.Matchers;
 import net.csirmazbendeguz.memory_game.event.EventListeners;
 import net.csirmazbendeguz.memory_game.game_state.PairHandler;
+import org.reflections.Reflections;
+
+import java.util.EventListener;
+import java.util.Set;
 
 public class MainModule extends AbstractModule {
 
@@ -13,13 +17,17 @@ public class MainModule extends AbstractModule {
     protected void configure() {
         bind(PairHandler.class).asEagerSingleton();
         install(new ImageModule());
-        bindListener(Matchers.any(), new ListenerRegistrator(getProvider(EventListeners.class)));
+        bindListener(Matchers.any(), new ListenerRegistrator(getProvider(EventListeners.class), scanListenerInterfaces()));
     }
 
     @Provides
     @Singleton
     EventListeners provideEventListeners() {
         return new EventListeners();
+    }
+
+    private Set<Class<? extends EventListener>> scanListenerInterfaces() {
+        return new Reflections("net.csirmazbendeguz.memory_game.event.listeners").getSubTypesOf(EventListener.class);
     }
 
 }

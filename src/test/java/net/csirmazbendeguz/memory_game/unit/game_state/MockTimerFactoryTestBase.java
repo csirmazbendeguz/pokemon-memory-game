@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.unit;
+package net.csirmazbendeguz.memory_game.unit.game_state;
 
 import net.csirmazbendeguz.memory_game.game_state.TimerFactory;
 import org.junit.jupiter.api.extension.ExtendWith;

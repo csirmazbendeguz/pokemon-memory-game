@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.unit;
+package net.csirmazbendeguz.memory_game.unit.game_state;
 
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.event.objects.CardEvent;

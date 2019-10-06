@@ -27,7 +27,7 @@ public class EventDispatcher {
         Class<? extends EventObject> eventClass = event.getClass();
 
         if (!eventClass.isAnnotationPresent(Listener.class)) {
-            throw new IllegalArgumentException(String.format("Can't dispatch '%s' event, '%s' annotation is missing.", eventClass.getName(), Listener.class.getName()));
+            throw new IllegalArgumentException(String.format("Can't dispatch '%s', '%s' annotation is missing.", eventClass.getName(), Listener.class.getName()));
         }
 
         Class<? extends EventListener> listenerInterface = eventClass.getAnnotation(Listener.class).value();
@@ -37,7 +37,7 @@ public class EventDispatcher {
             .collect(Collectors.toList());
 
         if (methods.isEmpty()) {
-            throw new IllegalArgumentException(String.format("Can't dispatch '%s' event, corresponding method in '%s' is missing.", eventClass.getName(), listenerInterface.getName()));
+            throw new IllegalArgumentException(String.format("Can't dispatch '%s', corresponding method in '%s' is missing.", eventClass.getName(), listenerInterface.getName()));
         }
 
         List<EventListener> listeners = eventListeners.getAll(listenerInterface);
@@ -47,7 +47,7 @@ public class EventDispatcher {
                 try {
                     method.invoke(listener, event);
                 } catch (IllegalAccessException | InvocationTargetException exception) {
-                    throw new RuntimeException(String.format("Can't dispatch '%s' event, failed to invoke method '%s'.", eventClass.getName(), method), exception);
+                    throw new RuntimeException(String.format("Can't dispatch '%s', failed to invoke '%s'.", eventClass.getName(), method), exception);
                 }
             }
         }

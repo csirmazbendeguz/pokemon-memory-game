@@ -43,9 +43,9 @@ public class CardPanel extends JPanel implements DefaultMouseListener, CardFlipU
         this.cardBack = cardBack;
         addMouseListener(this);
         // The panels are not created by Guice, so the event listeners must be added manually.
-        eventListeners.add(CardFlipUpListener.class, this);
-        eventListeners.add(CardFlipDownListener.class, this);
-        eventListeners.add(CardHideListener.class, this);
+        eventListeners.register(CardFlipUpListener.class, this);
+        eventListeners.register(CardFlipDownListener.class, this);
+        eventListeners.register(CardHideListener.class, this);
     }
 
     /**

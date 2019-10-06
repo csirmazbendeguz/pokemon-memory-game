@@ -12,8 +12,8 @@ public class EventListeners {
      */
     private Map<Class, List<EventListener>> listeners = new HashMap<>();
 
-    public void add(Class listenerInterface, EventListener listener) {
-        getAll(listenerInterface).add(listener);
+    public void register(Class listenerInterface, EventListener listenerImplementation) {
+        getAll(listenerInterface).add(listenerImplementation);
     }
 
     public List<EventListener> getAll(Class listenerInterface) {
