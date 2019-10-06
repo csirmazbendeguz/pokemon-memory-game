@@ -4,6 +4,7 @@ import com.google.inject.AbstractModule;
 import net.csirmazbendeguz.memory_game.state.event_handlers.GameEndHandler;
 import net.csirmazbendeguz.memory_game.state.event_handlers.PairHandler;
 import net.csirmazbendeguz.memory_game.state.event_handlers.StopwatchHandler;
+import net.csirmazbendeguz.memory_game.state.event_handlers.TriesCounterHandler;
 import net.csirmazbendeguz.memory_game.swing.GameFrame;
 
 public class MainModule extends AbstractModule {
@@ -16,6 +17,7 @@ public class MainModule extends AbstractModule {
         bind(PairHandler.class).asEagerSingleton();
         bind(GameEndHandler.class).asEagerSingleton();
         bind(StopwatchHandler.class).asEagerSingleton();
+        bind(TriesCounterHandler.class).asEagerSingleton();
 
         // Start the GUI by binding the game frame eagerly.
         bind(GameFrame.class).asEagerSingleton();
