@@ -1,10 +1,7 @@
 package net.csirmazbendeguz.memory_game.event;
 
-import com.google.inject.Singleton;
-
 import java.util.*;
 
-@Singleton
 public class EventListeners {
 
     /**
