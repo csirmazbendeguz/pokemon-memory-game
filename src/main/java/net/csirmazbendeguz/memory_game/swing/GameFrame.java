@@ -11,15 +11,11 @@ import javax.swing.*;
 @Singleton
 public class GameFrame extends JFrame {
 
-    /**
-     * The frame dimension.
-     */
-    private static final Dimension SIZE = new Dimension(1100, 900);
+    private static final Dimension DEFAULT_WINDOW_SIZE = new Dimension(1100, 900);
 
     @Inject
     public GameFrame(WinScreenGlassPane winScreenGlassPane, GamePanel gamePanel) {
-        super();
-        setMinimumSize(SIZE);
+        setMinimumSize(DEFAULT_WINDOW_SIZE);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Pokémon Memory Game");
