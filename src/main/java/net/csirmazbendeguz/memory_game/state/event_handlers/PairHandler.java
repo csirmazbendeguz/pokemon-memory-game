@@ -1,28 +1,30 @@
 package net.csirmazbendeguz.memory_game.state.event_handlers;
 
 import com.google.inject.Inject;
+import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.event.listeners.CardFlipUpListener;
 import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
+import net.csirmazbendeguz.memory_game.event.listeners.PairFlipUpListener;
 import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
 import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
+import net.csirmazbendeguz.memory_game.event.objects.PairFlipUpEvent;
 import net.csirmazbendeguz.memory_game.state.Card;
-import net.csirmazbendeguz.memory_game.state.TriesCounter;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-public class PairHandler implements GameStartListener, CardFlipUpListener {
+public class PairHandler implements GameStartListener, CardFlipUpListener, PairFlipUpListener {
+
+    private EventDispatcher eventDispatcher;
 
     /**
      * The cards facing up in the order they were flipped.
      */
     private Queue<Card> faceUpCards = new ArrayDeque<>();
 
-    private TriesCounter triesCounter;
-
     @Inject
-    public PairHandler(TriesCounter triesCounter) {
-        this.triesCounter = triesCounter;
+    public PairHandler(EventDispatcher eventDispatcher) {
+        this.eventDispatcher = eventDispatcher;
     }
 
     @Override
@@ -30,26 +32,32 @@ public class PairHandler implements GameStartListener, CardFlipUpListener {
         faceUpCards.clear();
     }
 
-    /**
-     * Check for pairs.
-     */
     @Override
     public void cardFlippedUp(CardFlipUpEvent event) {
         faceUpCards.offer(event.getCard());
 
         while (faceUpCards.size() >= 2) {
-            triesCounter.increment();
+            Card firstCard = faceUpCards.poll();
+            Card secondCard = faceUpCards.poll();
 
-            Card card1 = faceUpCards.poll();
-            Card card2 = faceUpCards.poll();
+            eventDispatcher.dispatch(new PairFlipUpEvent(this, firstCard, secondCard));
+        }
+    }
 
-            if (card1.isPairOf(card2)) {
-                card1.hide();
-                card2.hide();
-            } else {
-                card1.flipDown();
-                card2.flipDown();
-            }
+    /**
+     * Check for pairs.
+     */
+    @Override
+    public void pairFlippedUp(PairFlipUpEvent event) {
+        Card firstCard = event.getFirstCard();
+        Card secondCard = event.getSecondCard();
+
+        if (firstCard.isPairOf(secondCard)) {
+            firstCard.hide();
+            secondCard.hide();
+        } else {
+            firstCard.flipDown();
+            secondCard.flipDown();
         }
     }
 
