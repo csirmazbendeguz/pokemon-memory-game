@@ -2,12 +2,14 @@ package net.csirmazbendeguz.memory_game.game_state;
 
 import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.event.listeners.CardFlipUpListener;
+import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
 import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
+import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-public class PairHandler implements CardFlipUpListener {
+public class PairHandler implements GameStartListener, CardFlipUpListener {
 
     /**
      * The cards facing up in the order they were flipped.
@@ -19,6 +21,11 @@ public class PairHandler implements CardFlipUpListener {
     @Inject
     public PairHandler(TriesCounter triesCounter) {
         this.triesCounter = triesCounter;
+    }
+
+    @Override
+    public void gameStarted(GameStartEvent event) {
+        faceUpCards.clear();
     }
 
     /**
