@@ -3,6 +3,7 @@ package net.csirmazbendeguz.memory_game.guice;
 import com.google.inject.AbstractModule;
 import net.csirmazbendeguz.memory_game.game_state.event_handlers.GameEndHandler;
 import net.csirmazbendeguz.memory_game.game_state.event_handlers.PairHandler;
+import net.csirmazbendeguz.memory_game.game_state.event_handlers.StopwatchHandler;
 import net.csirmazbendeguz.memory_game.swing.GameFrame;
 
 public class MainModule extends AbstractModule {
@@ -14,6 +15,7 @@ public class MainModule extends AbstractModule {
         // Event handlers are consumers, not dependencies, so they have to be bound eagerly.
         bind(PairHandler.class).asEagerSingleton();
         bind(GameEndHandler.class).asEagerSingleton();
+        bind(StopwatchHandler.class).asEagerSingleton();
 
         // Start the GUI by binding the game frame eagerly.
         bind(GameFrame.class).asEagerSingleton();

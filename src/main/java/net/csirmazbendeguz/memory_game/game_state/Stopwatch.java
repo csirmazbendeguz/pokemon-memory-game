@@ -2,19 +2,13 @@ package net.csirmazbendeguz.memory_game.game_state;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import net.csirmazbendeguz.memory_game.event.listeners.CardFlipUpListener;
-import net.csirmazbendeguz.memory_game.event.listeners.GameEndListener;
-import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
-import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
-import net.csirmazbendeguz.memory_game.event.objects.GameEndEvent;
-import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
 
 import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
 @Singleton
-public class Stopwatch extends Observable implements GameStartListener, CardFlipUpListener, GameEndListener {
+public class Stopwatch extends Observable {
 
     private TimerFactory timerFactory;
 
@@ -76,29 +70,6 @@ public class Stopwatch extends Observable implements GameStartListener, CardFlip
 
     public boolean isRunning() {
         return timer != null;
-    }
-
-    @Override
-    public void gameStarted(GameStartEvent event) {
-        if (isRunning()) {
-            stop();
-        }
-        reset();
-    }
-
-    /**
-     * Start the stopwatch when the first card is flipped up.
-     */
-    @Override
-    public void cardFlippedUp(CardFlipUpEvent event) {
-        if (!isRunning()) {
-            start();
-        }
-    }
-
-    @Override
-    public void gameEnded(GameEndEvent event) {
-        stop();
     }
 
 }
