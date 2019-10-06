@@ -7,7 +7,7 @@ import net.csirmazbendeguz.memory_game.event.listeners.CardHideListener;
 import net.csirmazbendeguz.memory_game.event.objects.CardFlipDownEvent;
 import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
 import net.csirmazbendeguz.memory_game.event.objects.CardHideEvent;
-import net.csirmazbendeguz.memory_game.game_state.Card;
+import net.csirmazbendeguz.memory_game.state.Card;
 import net.csirmazbendeguz.memory_game.swing.DefaultMouseListener;
 
 import java.awt.*;

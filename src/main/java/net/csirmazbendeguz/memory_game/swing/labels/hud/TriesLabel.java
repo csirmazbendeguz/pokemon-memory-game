@@ -3,7 +3,7 @@ package net.csirmazbendeguz.memory_game.swing.labels.hud;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
-import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
+import net.csirmazbendeguz.memory_game.state.TriesCounter;
 
 import java.awt.image.BufferedImage;
 import java.util.Observable;

@@ -1,11 +1,11 @@
-package net.csirmazbendeguz.memory_game.unit.game_state;
+package net.csirmazbendeguz.memory_game.unit.state;
 
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.event.objects.CardEvent;
 import net.csirmazbendeguz.memory_game.event.objects.CardFlipDownEvent;
 import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
 import net.csirmazbendeguz.memory_game.event.objects.CardHideEvent;
-import net.csirmazbendeguz.memory_game.game_state.Card;
+import net.csirmazbendeguz.memory_game.state.Card;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;

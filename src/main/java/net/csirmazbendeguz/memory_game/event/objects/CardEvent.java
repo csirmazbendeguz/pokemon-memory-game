@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.event.objects;
 
-import net.csirmazbendeguz.memory_game.game_state.Card;
+import net.csirmazbendeguz.memory_game.state.Card;
 
 import java.util.EventObject;
 

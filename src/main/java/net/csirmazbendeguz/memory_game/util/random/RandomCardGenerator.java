@@ -1,8 +1,8 @@
 package net.csirmazbendeguz.memory_game.util.random;
 
 import com.google.inject.Inject;
-import net.csirmazbendeguz.memory_game.game_state.Card;
-import net.csirmazbendeguz.memory_game.game_state.CardFactory;
+import net.csirmazbendeguz.memory_game.state.Card;
+import net.csirmazbendeguz.memory_game.state.CardFactory;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.game_state;
+package net.csirmazbendeguz.memory_game.state;
 
 import com.google.inject.Singleton;
 import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;

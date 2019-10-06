@@ -1,9 +1,9 @@
 package net.csirmazbendeguz.memory_game.guice;
 
 import com.google.inject.AbstractModule;
-import net.csirmazbendeguz.memory_game.game_state.event_handlers.GameEndHandler;
-import net.csirmazbendeguz.memory_game.game_state.event_handlers.PairHandler;
-import net.csirmazbendeguz.memory_game.game_state.event_handlers.StopwatchHandler;
+import net.csirmazbendeguz.memory_game.state.event_handlers.GameEndHandler;
+import net.csirmazbendeguz.memory_game.state.event_handlers.PairHandler;
+import net.csirmazbendeguz.memory_game.state.event_handlers.StopwatchHandler;
 import net.csirmazbendeguz.memory_game.swing.GameFrame;
 
 public class MainModule extends AbstractModule {

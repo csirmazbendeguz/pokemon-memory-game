@@ -2,7 +2,7 @@ package net.csirmazbendeguz.memory_game.event.objects;
 
 import net.csirmazbendeguz.memory_game.event.Listener;
 import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
-import net.csirmazbendeguz.memory_game.game_state.Board;
+import net.csirmazbendeguz.memory_game.state.Board;
 
 import java.util.EventObject;
 
