@@ -4,4 +4,4 @@
 
 A Pokémon-themed memory game I created as an assignment for school in 2016.
 
-![Gameplay](https://cloud.githubusercontent.com/assets/19559023/18007669/49a0185a-6ba5-11e6-97d7-886142145a58.png)
+![Gameplay](https://user-images.githubusercontent.com/19559023/66273128-74cc3800-e871-11e9-9785-211f957d0328.png)
