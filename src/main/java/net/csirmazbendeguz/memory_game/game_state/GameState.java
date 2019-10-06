@@ -9,6 +9,11 @@ import net.csirmazbendeguz.memory_game.util.random.RandomCardGenerator;
 @Singleton
 public class GameState {
 
+    /**
+     * Start the game with 4x4 cards.
+     */
+    private static final int DEFAULT_BOARD_DIMENSION = 4;
+
     private Board board;
 
     private RandomCardGenerator randomCardGenerator;
@@ -20,6 +25,10 @@ public class GameState {
         this.board = board;
         this.randomCardGenerator = randomCardGenerator;
         this.eventDispatcher = eventDispatcher;
+    }
+
+    public void newGame() {
+        newGame(DEFAULT_BOARD_DIMENSION);
     }
 
     public void restartGame() {
@@ -40,7 +49,7 @@ public class GameState {
      *
      * @param dimension The new board's dimension.
      */
-    public void newGame(int dimension) {
+    private void newGame(int dimension) {
         board.init(randomCardGenerator.generate(dimension));
         eventDispatcher.dispatch(new GameStartEvent(this, board));
     }

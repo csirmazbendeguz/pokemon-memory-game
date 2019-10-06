@@ -7,6 +7,7 @@ import com.google.inject.matcher.Matchers;
 import net.csirmazbendeguz.memory_game.event.EventListeners;
 import net.csirmazbendeguz.memory_game.game_state.GameEndHandler;
 import net.csirmazbendeguz.memory_game.game_state.PairHandler;
+import net.csirmazbendeguz.memory_game.swing.GameFrame;
 import org.reflections.Reflections;
 
 import java.util.EventListener;
@@ -20,6 +21,7 @@ public class MainModule extends AbstractModule {
         bind(GameEndHandler.class).asEagerSingleton();
         install(new ImageModule());
         bindListener(Matchers.any(), new ListenerRegistrator(getProvider(EventListeners.class), scanListenerInterfaces()));
+        bind(GameFrame.class).asEagerSingleton();
     }
 
     @Provides
