@@ -80,4 +80,11 @@ class ImageModule extends AbstractModule {
         return imageLoader.loadBackogroundImage("backgroundFigure.png");
     }
 
+    @Provides
+    @Singleton
+    @Named("youWin")
+    BufferedImage provideYouWin(ImageLoader imageLoader) {
+        return imageLoader.loadBackogroundImage("youWin.png");
+    }
+
 }

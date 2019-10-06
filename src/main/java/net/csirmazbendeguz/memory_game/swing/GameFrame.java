@@ -3,7 +3,7 @@ package net.csirmazbendeguz.memory_game.swing;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import net.csirmazbendeguz.memory_game.swing.panels.GamePanel;
-import net.csirmazbendeguz.memory_game.swing.panels.WinGlassPane;
+import net.csirmazbendeguz.memory_game.swing.panels.WinScreenGlassPane;
 
 import java.awt.*;
 import javax.swing.*;
@@ -17,7 +17,7 @@ public class GameFrame extends JFrame {
     private static final Dimension SIZE = new Dimension(1100, 900);
 
     @Inject
-    public GameFrame(WinGlassPane winGlassPane, GamePanel gamePanel) {
+    public GameFrame(WinScreenGlassPane winScreenGlassPane, GamePanel gamePanel) {
         super();
         setMinimumSize(SIZE);
         setLocationRelativeTo(null);
@@ -27,7 +27,7 @@ public class GameFrame extends JFrame {
         // Disable keyboard input on focused components.
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> true);
 
-        setGlassPane(winGlassPane);
+        setGlassPane(winScreenGlassPane);
         setContentPane(gamePanel);
 
         validate();

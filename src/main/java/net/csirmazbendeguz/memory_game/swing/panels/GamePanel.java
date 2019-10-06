@@ -16,23 +16,20 @@ import java.awt.image.BufferedImage;
 @Singleton
 public class GamePanel extends JPanel {
 
-    /**
-     * The background image.
-     */
     private BufferedImage background;
 
     @Inject
-    public GamePanel(@Named("background") BufferedImage background, WinGlassPane winGlassPane, TitleLabel title, BoardPanel boardPanel, Buttons buttons, HUD hud, BackgroundFigureLabel backgroundFigure) {
+    public GamePanel(@Named("background") BufferedImage background, WinScreenGlassPane winScreenGlassPane, TitleLabel title, BoardPanel boardPanel, Buttons buttons, HUD hud, BackgroundFigureLabel backgroundFigure) {
         this.background = background;
 
         SpringLayout layout = new SpringLayout();
         setLayout(layout);
 
-        layout.putConstraint(SpringLayout.NORTH, winGlassPane, 0, SpringLayout.NORTH, this);
-        layout.putConstraint(SpringLayout.SOUTH, winGlassPane, 0, SpringLayout.SOUTH, this);
-        layout.putConstraint(SpringLayout.WEST, winGlassPane, 0, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.EAST, winGlassPane, 0, SpringLayout.EAST, this);
-        add(winGlassPane);
+        layout.putConstraint(SpringLayout.NORTH, winScreenGlassPane, 0, SpringLayout.NORTH, this);
+        layout.putConstraint(SpringLayout.SOUTH, winScreenGlassPane, 0, SpringLayout.SOUTH, this);
+        layout.putConstraint(SpringLayout.WEST, winScreenGlassPane, 0, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.EAST, winScreenGlassPane, 0, SpringLayout.EAST, this);
+        add(winScreenGlassPane);
 
         layout.putConstraint(SpringLayout.NORTH, title, 20, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.WEST, title, 25, SpringLayout.WEST, this);
@@ -55,9 +52,6 @@ public class GamePanel extends JPanel {
         add(backgroundFigure);
     }
 
-    /**
-     * Draw the background image.
-     */
     @Override
     public void paintComponent(Graphics graphics) {
         graphics.drawImage(background, 0, 0, getWidth(), getHeight(), null);

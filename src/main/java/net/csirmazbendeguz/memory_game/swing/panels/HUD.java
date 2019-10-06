@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Head-up display to show the current game's statistics.
+ * Head-up display to show the statistics.
  */
 @Singleton
 public class HUD extends JPanel {

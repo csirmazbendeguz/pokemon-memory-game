@@ -15,30 +15,16 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 
-/**
- * Container for memory game cards.
- */
 public class CardPanel extends JPanel implements DefaultMouseListener, CardFlipUpListener, CardFlipDownListener, CardHideListener {
 
-    /**
-     * The card dimension.
-     */
     private static final Dimension SIZE = new Dimension(100, 100);
 
     private EventListeners eventListeners;
 
-    /**
-     * The card state.
-     */
     private Card card;
 
     private BufferedImage cardFront, cardBack;
 
-    /**
-     * Construct a container for memory game cards.
-     *
-     * @param card The card state.
-     */
     public CardPanel(Card card, BufferedImage cardFront, BufferedImage cardBack, EventListeners eventListeners) {
         this.card = card;
         this.cardFront = cardFront;
@@ -51,9 +37,6 @@ public class CardPanel extends JPanel implements DefaultMouseListener, CardFlipU
         this.eventListeners = eventListeners;
     }
 
-    /**
-     * Draw the card.
-     */
     @Override
     public void paintComponent(Graphics graphics) {
         if (!card.isVisible()) {
