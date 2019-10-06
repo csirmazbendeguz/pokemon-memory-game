@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.state;
+package net.csirmazbendeguz.memory_game.state.factories;
 
 import java.util.Timer;
 

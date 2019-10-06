@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.unit.state;
 
-import net.csirmazbendeguz.memory_game.state.TimerFactory;
+import net.csirmazbendeguz.memory_game.state.factories.TimerFactory;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;

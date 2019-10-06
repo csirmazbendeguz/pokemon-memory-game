@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import net.csirmazbendeguz.memory_game.event.EventListeners;
 import net.csirmazbendeguz.memory_game.state.Card;
-import net.csirmazbendeguz.memory_game.state.CardImageCache;
+import net.csirmazbendeguz.memory_game.state.factories.CardImageCache;
 
 import java.awt.image.BufferedImage;
 

@@ -1,8 +1,9 @@
-package net.csirmazbendeguz.memory_game.state;
+package net.csirmazbendeguz.memory_game.state.factories;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
+import net.csirmazbendeguz.memory_game.state.Card;
 
 @Singleton
 public class CardFactory {
