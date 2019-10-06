@@ -5,6 +5,7 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.matcher.Matchers;
 import net.csirmazbendeguz.memory_game.event.EventListeners;
+import net.csirmazbendeguz.memory_game.game_state.GameEndHandler;
 import net.csirmazbendeguz.memory_game.game_state.PairHandler;
 import org.reflections.Reflections;
 
@@ -16,6 +17,7 @@ public class MainModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(PairHandler.class).asEagerSingleton();
+        bind(GameEndHandler.class).asEagerSingleton();
         install(new ImageModule());
         bindListener(Matchers.any(), new ListenerRegistrator(getProvider(EventListeners.class), scanListenerInterfaces()));
     }

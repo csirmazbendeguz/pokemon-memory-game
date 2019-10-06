@@ -1,10 +1,13 @@
 package net.csirmazbendeguz.memory_game.game_state;
 
+import com.google.inject.Singleton;
+
+@Singleton
 public class Board {
 
     private Card[][] cards;
 
-    public Board(Card[][] cards) {
+    public void init(Card[][] cards) {
         this.cards = cards;
     }
 
