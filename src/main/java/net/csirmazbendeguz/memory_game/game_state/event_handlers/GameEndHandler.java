@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.game_state;
+package net.csirmazbendeguz.memory_game.game_state.event_handlers;
 
 import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
@@ -7,6 +7,9 @@ import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
 import net.csirmazbendeguz.memory_game.event.objects.CardHideEvent;
 import net.csirmazbendeguz.memory_game.event.objects.GameEndEvent;
 import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
+import net.csirmazbendeguz.memory_game.game_state.Board;
+import net.csirmazbendeguz.memory_game.game_state.Stopwatch;
+import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
 
 public class GameEndHandler implements GameStartListener, CardHideListener {
 

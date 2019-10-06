@@ -8,7 +8,7 @@ import net.csirmazbendeguz.memory_game.util.loaders.ImageLoader;
 
 import java.awt.image.BufferedImage;
 
-class ImageModule extends AbstractModule {
+class ImageProvidersModule extends AbstractModule {
 
     @Provides
     @Singleton

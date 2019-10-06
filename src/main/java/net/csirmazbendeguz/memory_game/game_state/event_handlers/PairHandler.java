@@ -1,10 +1,12 @@
-package net.csirmazbendeguz.memory_game.game_state;
+package net.csirmazbendeguz.memory_game.game_state.event_handlers;
 
 import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.event.listeners.CardFlipUpListener;
 import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
 import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
 import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
+import net.csirmazbendeguz.memory_game.game_state.Card;
+import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

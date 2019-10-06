@@ -2,7 +2,7 @@ package net.csirmazbendeguz.memory_game.unit.game_state;
 
 import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
 import net.csirmazbendeguz.memory_game.game_state.Card;
-import net.csirmazbendeguz.memory_game.game_state.PairHandler;
+import net.csirmazbendeguz.memory_game.game_state.event_handlers.PairHandler;
 import net.csirmazbendeguz.memory_game.game_state.TriesCounter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
