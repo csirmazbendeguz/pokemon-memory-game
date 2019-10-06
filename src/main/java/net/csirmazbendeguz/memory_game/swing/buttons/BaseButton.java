@@ -52,9 +52,11 @@ abstract class BaseButton extends JButton implements MouseListener {
     @Override
     public void paintComponent(Graphics graphics) {
         graphics.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-        // Horizontally center the text.
-        int x = this.getWidth() / 2 - graphics.getFontMetrics().stringWidth(getText()) / 2;
-        graphics.drawString(getText(), x, 28);
+        // Center the text.
+        FontMetrics metrics = graphics.getFontMetrics();
+        int x = (getWidth() - metrics.stringWidth(getText())) / 2;
+        int y = (getHeight() - metrics.getHeight()) / 2 + metrics.getAscent();
+        graphics.drawString(getText(), x, y);
     }
 
     @Override
