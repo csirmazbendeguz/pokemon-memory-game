@@ -32,13 +32,8 @@ public class ChangeDimensionButton extends BaseButton implements ActionListener,
      * Start a new game with a new dimension.
      */
     @Override
-    public void actionPerformed(ActionEvent e) {
-        int dimension = gameState.getDimension();
-        dimension += 2;
-        if (dimension == 8) {
-            dimension = 2;
-        }
-        gameState.newGame(dimension);
+    public void actionPerformed(ActionEvent event) {
+        gameState.increaseDimension();
     }
 
     /**
@@ -46,7 +41,7 @@ public class ChangeDimensionButton extends BaseButton implements ActionListener,
      */
     @Override
     public void gameStarted(GameStartEvent event) {
-        setText(String.format(LABEL, event.getDimension()));
+        setText(String.format(LABEL, event.getBoard().getDimension()));
     }
 
 }

@@ -1,22 +1,19 @@
 package net.csirmazbendeguz.memory_game.game_state;
 
-import com.google.inject.Singleton;
-
-@Singleton
 public class Board {
 
-    private Card[][] board;
+    private Card[][] cards;
 
-    void init(Card[][] board) {
-        this.board = board;
+    public Board(Card[][] cards) {
+        this.cards = cards;
     }
 
     /**
-     * Check if all the cards are hidden.
+     * Check if all the cards have been removed from the board.
      */
-    boolean areAllCardsHidden() {
-        for (Card[] cards : board) {
-            for (Card card : cards) {
+    public boolean isEmpty() {
+        for (Card[] row : cards) {
+            for (Card card : row) {
                 if (card.isVisible()) {
                     return false;
                 }
@@ -24,6 +21,14 @@ public class Board {
         }
 
         return true;
+    }
+
+    public int getDimension() {
+        return cards.length;
+    }
+
+    public Card getCard(int row, int column) {
+        return cards[row][column];
     }
 
 }

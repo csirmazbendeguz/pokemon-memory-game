@@ -1,11 +1,13 @@
 package net.csirmazbendeguz.memory_game.game_state;
 
 import com.google.inject.Singleton;
+import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
+import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
 
 import java.util.Observable;
 
 @Singleton
-public class TriesCounter extends Observable {
+public class TriesCounter extends Observable implements GameStartListener {
 
     /**
      * The number of tries.
@@ -32,6 +34,11 @@ public class TriesCounter extends Observable {
         ++tries;
         setChanged();
         notifyObservers(tries);
+    }
+
+    @Override
+    public void gameStarted(GameStartEvent event) {
+        reset();
     }
 
 }
