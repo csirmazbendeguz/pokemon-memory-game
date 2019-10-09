@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.swing.panels;
 
-import net.csirmazbendeguz.memory_game.event.EventListeners;
+import net.csirmazbendeguz.memory_game.event.EventHandlers;
 import net.csirmazbendeguz.memory_game.event.listeners.CardFlipDownListener;
 import net.csirmazbendeguz.memory_game.event.listeners.CardFlipUpListener;
 import net.csirmazbendeguz.memory_game.event.listeners.CardHideListener;
@@ -19,22 +19,22 @@ public class CardPanel extends JPanel implements DefaultMouseListener, CardFlipU
 
     private static final Dimension SIZE = new Dimension(100, 100);
 
-    private EventListeners eventListeners;
+    private EventHandlers eventHandlers;
 
     private Card card;
 
     private BufferedImage cardFront, cardBack;
 
-    public CardPanel(Card card, BufferedImage cardFront, BufferedImage cardBack, EventListeners eventListeners) {
+    public CardPanel(Card card, BufferedImage cardFront, BufferedImage cardBack, EventHandlers eventHandlers) {
         this.card = card;
         this.cardFront = cardFront;
         this.cardBack = cardBack;
         addMouseListener(this);
-        // The panels are not created by Guice, so the event listeners must be added manually.
-        eventListeners.register(CardFlipUpListener.class, this);
-        eventListeners.register(CardFlipDownListener.class, this);
-        eventListeners.register(CardHideListener.class, this);
-        this.eventListeners = eventListeners;
+        // The card panels are not created by Guice, so they can't be discovered and registered automatically.
+        eventHandlers.register(CardFlipUpListener.class, this);
+        eventHandlers.register(CardFlipDownListener.class, this);
+        eventHandlers.register(CardHideListener.class, this);
+        this.eventHandlers = eventHandlers;
     }
 
     @Override
@@ -99,9 +99,9 @@ public class CardPanel extends JPanel implements DefaultMouseListener, CardFlipU
 
     @Override
     public void removeNotify() {
-        eventListeners.remove(CardFlipUpListener.class, this);
-        eventListeners.remove(CardFlipDownListener.class, this);
-        eventListeners.remove(CardHideListener.class, this);
+        eventHandlers.remove(CardFlipUpListener.class, this);
+        eventHandlers.remove(CardFlipDownListener.class, this);
+        eventHandlers.remove(CardHideListener.class, this);
         super.removeNotify();
     }
 

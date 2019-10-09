@@ -1,6 +1,6 @@
 package net.csirmazbendeguz.memory_game.unit.event;
 
-import net.csirmazbendeguz.memory_game.event.EventListeners;
+import net.csirmazbendeguz.memory_game.event.EventHandlers;
 import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,27 +14,27 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-class EventListenersTest {
+class EventHandlersTest {
 
-    private EventListeners eventListeners;
+    private EventHandlers eventHandlers;
 
     @BeforeEach
     void setup() {
-        eventListeners = new EventListeners();
+        eventHandlers = new EventHandlers();
     }
 
     @Test
     void testEmpty() {
-        assertTrue(eventListeners.getAll(GameStartListener.class).isEmpty());
+        assertTrue(eventHandlers.getAll(GameStartListener.class).isEmpty());
     }
 
     @Test
-    void testAdd() {
-        EventListener mockListener = Mockito.mock(EventListener.class);
-        eventListeners.register(GameStartListener.class, mockListener);
-        List<EventListener> gameStartListeners = eventListeners.getAll(GameStartListener.class);
+    void testRegister() {
+        EventListener mockHandler = Mockito.mock(EventListener.class);
+        eventHandlers.register(GameStartListener.class, mockHandler);
+        List<EventListener> gameStartListeners = eventHandlers.getAll(GameStartListener.class);
         assertEquals(1, gameStartListeners.size());
-        assertSame(mockListener, gameStartListeners.get(0));
+        assertSame(mockHandler, gameStartListeners.get(0));
     }
 
 }

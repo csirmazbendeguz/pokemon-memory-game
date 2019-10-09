@@ -5,31 +5,34 @@ import com.google.inject.TypeLiteral;
 import com.google.inject.spi.InjectionListener;
 import com.google.inject.spi.TypeEncounter;
 import com.google.inject.spi.TypeListener;
-import net.csirmazbendeguz.memory_game.event.EventListeners;
+import net.csirmazbendeguz.memory_game.event.EventHandlers;
 
 import java.util.EventListener;
 import java.util.Set;
 
-public class ListenerRegistrator implements TypeListener {
+public class EventHandlerRegistrator implements TypeListener {
 
-    private Provider<EventListeners> eventListenersProvider;
+    private Provider<EventHandlers> eventHandlersProvider;
 
+    /**
+     * The event handler types to register.
+     */
     private Set<Class<? extends EventListener>> listenerInterfaces;
 
-    public ListenerRegistrator(Provider<EventListeners> eventListenersProvider, Set<Class<? extends EventListener>> listenerInterfaces) {
-        this.eventListenersProvider = eventListenersProvider;
+    public EventHandlerRegistrator(Provider<EventHandlers> eventHandlersProvider, Set<Class<? extends EventListener>> listenerInterfaces) {
+        this.eventHandlersProvider = eventHandlersProvider;
         this.listenerInterfaces = listenerInterfaces;
     }
 
     /**
-     * Register the game's event listener implementations.
+     * Automatically register the event handlers found by Guice.
      */
     @Override
     public <I> void hear(TypeLiteral<I> type, TypeEncounter<I> encounter) {
         for (Class<? extends EventListener> listenerInterface : listenerInterfaces) {
             if (listenerInterface.isAssignableFrom(type.getRawType())) {
                 encounter.register((InjectionListener<I>) injectee -> {
-                    eventListenersProvider.get().register(listenerInterface, (EventListener) injectee);
+                    eventHandlersProvider.get().register(listenerInterface, (EventListener) injectee);
                 });
             }
         }

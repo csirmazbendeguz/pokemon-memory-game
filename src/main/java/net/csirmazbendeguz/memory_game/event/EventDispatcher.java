@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 @Singleton
 public class EventDispatcher {
 
-    private EventListeners eventListeners;
+    private EventHandlers eventHandlers;
 
     @Inject
-    public EventDispatcher(EventListeners eventListeners) {
-        this.eventListeners = eventListeners;
+    public EventDispatcher(EventHandlers eventHandlers) {
+        this.eventHandlers = eventHandlers;
     }
 
     /**
@@ -40,7 +40,7 @@ public class EventDispatcher {
             throw new IllegalArgumentException(String.format("Can't dispatch '%s', corresponding method in '%s' is missing.", eventClass.getName(), listenerInterface.getName()));
         }
 
-        List<EventListener> listeners = eventListeners.getAll(listenerInterface);
+        List<EventListener> listeners = eventHandlers.getAll(listenerInterface);
 
         for (EventListener listener : listeners) {
             for (Method method : methods) {

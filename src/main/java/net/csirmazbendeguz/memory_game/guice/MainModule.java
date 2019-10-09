@@ -23,7 +23,7 @@ public class MainModule extends AbstractModule {
         bind(GameFrame.class).asEagerSingleton();
 
         install(new ImageProvidersModule());
-        install(new ListenerDiscoveryModule());
+        install(new EventHandlerDiscoveryModule());
     }
 
 }
