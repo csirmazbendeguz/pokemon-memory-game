@@ -1,10 +1,7 @@
 package net.csirmazbendeguz.memory_game.guice;
 
 import com.google.inject.AbstractModule;
-import net.csirmazbendeguz.memory_game.state.event_handlers.GameEndHandler;
-import net.csirmazbendeguz.memory_game.state.event_handlers.PairHandler;
-import net.csirmazbendeguz.memory_game.state.event_handlers.StopwatchHandler;
-import net.csirmazbendeguz.memory_game.state.event_handlers.TriesCounterHandler;
+import net.csirmazbendeguz.memory_game.state.event_handlers.*;
 import net.csirmazbendeguz.memory_game.swing.GameFrame;
 
 public class MainModule extends AbstractModule {
@@ -14,6 +11,7 @@ public class MainModule extends AbstractModule {
         // Bind the event handlers.
         // Most objects are bound lazily when requested as dependencies.
         // Event handlers are consumers, not dependencies, so they have to be bound eagerly.
+        bind(FaceUpCardsHandler.class).asEagerSingleton();
         bind(PairHandler.class).asEagerSingleton();
         bind(GameEndHandler.class).asEagerSingleton();
         bind(StopwatchHandler.class).asEagerSingleton();
