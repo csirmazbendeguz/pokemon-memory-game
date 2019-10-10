@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 public class ResourceLoader {
 
     /**
-     * Load the filenames of the PNG images found in the images/cards folder.
+     * Load the PNG image filenames of the images/cards folder.
      *
-     * @return The loaded card image names.
+     * @return The loaded filenames.
      */
     public Set<String> loadCardImageNames() {
         return new Reflections("images.cards", new ResourcesScanner())
