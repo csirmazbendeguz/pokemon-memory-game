@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.state.factories;
+package net.csirmazbendeguz.memory_game.util;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;

@@ -2,7 +2,7 @@ package net.csirmazbendeguz.memory_game.util.random;
 
 import com.google.inject.Inject;
 import net.csirmazbendeguz.memory_game.state.Card;
-import net.csirmazbendeguz.memory_game.state.factories.CardFactory;
+import net.csirmazbendeguz.memory_game.util.CardFactory;
 
 import java.util.*;
 

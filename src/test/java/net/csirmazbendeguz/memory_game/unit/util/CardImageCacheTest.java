@@ -1,6 +1,6 @@
-package net.csirmazbendeguz.memory_game.unit.state;
+package net.csirmazbendeguz.memory_game.unit.util;
 
-import net.csirmazbendeguz.memory_game.state.factories.CardImageCache;
+import net.csirmazbendeguz.memory_game.util.CardImageCache;
 import net.csirmazbendeguz.memory_game.util.loaders.ImageLoader;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

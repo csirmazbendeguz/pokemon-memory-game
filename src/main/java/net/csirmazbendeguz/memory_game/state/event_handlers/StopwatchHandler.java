@@ -20,7 +20,8 @@ public class StopwatchHandler implements GameStartListener, GameEndListener, Car
 
     @Override
     public void gameStarted(GameStartEvent event) {
-        // Stop the running stopwatch unless it's the first game.
+        // Stop the stopwatch if it's still running.
+        // The stopwatch can still run if a new game is started without finishing the previous one.
         if (stopwatch.isRunning()) {
             stopwatch.stop();
         }

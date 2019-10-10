@@ -4,7 +4,7 @@ import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.event.objects.CardFlipDownEvent;
 import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
 import net.csirmazbendeguz.memory_game.event.objects.CardHideEvent;
-import net.csirmazbendeguz.memory_game.state.factories.TimerFactory;
+import net.csirmazbendeguz.memory_game.util.TimerFactory;
 
 import java.util.EventObject;
 import java.util.Timer;

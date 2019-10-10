@@ -2,7 +2,7 @@ package net.csirmazbendeguz.memory_game.state;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import net.csirmazbendeguz.memory_game.state.factories.TimerFactory;
+import net.csirmazbendeguz.memory_game.util.TimerFactory;
 
 import java.util.Observable;
 import java.util.Timer;
