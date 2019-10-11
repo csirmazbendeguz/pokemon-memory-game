@@ -24,7 +24,7 @@ public class GameEndHandler implements GameStartListener, CardHideListener {
     /**
      * A flag storing whether the game already ended.
      *
-     * Ensures the game end event is only dispatched once.
+     * Ensures the {@link net.csirmazbendeguz.memory_game.event.objects.GameEndEvent} is only dispatched once.
      */
     private boolean isGameEnded;
 
@@ -46,8 +46,9 @@ public class GameEndHandler implements GameStartListener, CardHideListener {
      */
     @Override
     public void cardHidden(CardHideEvent event) {
-        // Card hide events may occur in parallel, because they are dispatched by different timer threads.
-        // So, only checking whether all the cards are in an invisible state is not enough.
+        // The events may occur in parallel, because they are dispatched by different timer threads.
+        // So, checking if the board is empty is not enough.
+        // A flag is needed to decide whether the game is still in progress.
         if (!isGameEnded && board.isEmpty()) {
             isGameEnded = true;
             eventDispatcher.dispatch(new GameEndEvent(
