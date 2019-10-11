@@ -50,8 +50,7 @@ public class GameState {
      * @param dimension The new board's dimension.
      */
     private void newGame(int dimension) {
-        board.init(randomCardGenerator.generate(dimension));
-        eventDispatcher.dispatch(new GameStartEvent(this, board));
+        eventDispatcher.dispatch(new GameStartEvent(this, dimension, randomCardGenerator.generate(dimension)));
     }
 
 }

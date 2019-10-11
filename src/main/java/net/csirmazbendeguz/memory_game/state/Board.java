@@ -1,18 +1,24 @@
 package net.csirmazbendeguz.memory_game.state;
 
 import com.google.inject.Singleton;
+import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
+import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
 
 @Singleton
-public class Board {
+public class Board implements GameStartListener {
+
+    private int dimension;
 
     private Card[][] cards;
 
-    public void init(Card[][] cards) {
-        this.cards = cards;
+    @Override
+    public void gameStarted(GameStartEvent event) {
+        dimension = event.getDimension();
+        cards = event.getCards();
     }
 
     /**
-     * Check if all the cards have been removed from the board.
+     * Return true if all the cards have been removed from the board.
      */
     public boolean isEmpty() {
         for (Card[] row : cards) {
@@ -27,11 +33,7 @@ public class Board {
     }
 
     public int getDimension() {
-        return cards.length;
-    }
-
-    public Card getCard(int row, int column) {
-        return cards[row][column];
+        return dimension;
     }
 
 }

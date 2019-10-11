@@ -3,9 +3,9 @@ package net.csirmazbendeguz.memory_game.swing.panels;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
-import net.csirmazbendeguz.memory_game.state.Board;
 import net.csirmazbendeguz.memory_game.event.listeners.GameStartListener;
 import net.csirmazbendeguz.memory_game.event.objects.GameStartEvent;
+import net.csirmazbendeguz.memory_game.state.Card;
 import net.csirmazbendeguz.memory_game.swing.GameFrame;
 
 import java.awt.*;
@@ -45,8 +45,8 @@ public class BoardPanel extends JPanel implements GameStartListener {
      */
     @Override
     public void gameStarted(GameStartEvent event) {
-        Board board = event.getBoard();
-        int dimension = board.getDimension();
+        Card[][] cards = event.getCards();
+        int dimension = event.getDimension();
         removeAll();
 
         for (int row = 0; row < dimension; ++row) {
@@ -56,7 +56,7 @@ public class BoardPanel extends JPanel implements GameStartListener {
                 constraints.gridx = row;
                 constraints.gridy = column;
 
-                CardPanel cardPanel = cardPanelFactory.create(board.getCard(row, column));
+                CardPanel cardPanel = cardPanelFactory.create(cards[row][column]);
                 add(cardPanel, constraints);
             }
         }

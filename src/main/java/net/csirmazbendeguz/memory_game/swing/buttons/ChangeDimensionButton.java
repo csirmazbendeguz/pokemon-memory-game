@@ -41,7 +41,7 @@ public class ChangeDimensionButton extends BaseButton implements ActionListener,
      */
     @Override
     public void gameStarted(GameStartEvent event) {
-        setText(String.format(LABEL, event.getBoard().getDimension()));
+        setText(String.format(LABEL, event.getDimension()));
     }
 
 }
