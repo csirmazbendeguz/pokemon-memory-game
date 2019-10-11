@@ -22,6 +22,7 @@ public class RandomCardGenerator {
      * Generate a random board of cards.
      *
      * @param dimension The board dimension (e.g. 4 for a 4x4 board).
+     * @return The generated board.
      */
     public Card[][] generate(int dimension) {
         List<String> pairs = randomCardImageNameGenerator.generatePairs(dimension * dimension / 2);

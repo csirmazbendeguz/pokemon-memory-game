@@ -45,7 +45,7 @@ public class GameState {
     }
 
     /**
-     * Start a new game.
+     * Dispatch a {@link net.csirmazbendeguz.memory_game.event.objects.GameStartEvent} with a randomly generated board.
      *
      * @param dimension The new board's dimension.
      */
