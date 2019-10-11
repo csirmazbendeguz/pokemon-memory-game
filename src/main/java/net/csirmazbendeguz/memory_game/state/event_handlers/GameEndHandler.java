@@ -24,7 +24,7 @@ public class GameEndHandler implements GameStartListener, CardHideListener {
     /**
      * A flag storing whether the game already ended.
      *
-     * Ensures the {@link net.csirmazbendeguz.memory_game.event.objects.GameEndEvent} is only dispatched once.
+     * Ensures the {@link net.csirmazbendeguz.memory_game.event.objects.GameEndEvent} is only dispatched once per game.
      */
     private boolean isGameEnded;
 
