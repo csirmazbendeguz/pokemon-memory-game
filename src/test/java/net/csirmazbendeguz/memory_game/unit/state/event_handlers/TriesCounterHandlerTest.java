@@ -31,6 +31,7 @@ class TriesCounterHandlerTest {
         handler.gameStarted(mockEvent);
         verifyZeroInteractions(mockEvent);
         verify(mockTriesCounter).reset();
+        verifyNoMoreInteractions(mockTriesCounter);
     }
 
     @Test
@@ -39,6 +40,7 @@ class TriesCounterHandlerTest {
         handler.pairFlippedUp(mockEvent);
         verifyZeroInteractions(mockEvent);
         verify(mockTriesCounter).increment();
+        verifyNoMoreInteractions(mockTriesCounter);
     }
 
 }
