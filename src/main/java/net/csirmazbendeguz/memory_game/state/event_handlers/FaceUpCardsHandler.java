@@ -31,6 +31,9 @@ public class FaceUpCardsHandler implements GameStartListener, CardFlipUpListener
         faceUpCards.clear();
     }
 
+    /**
+     * Dispatch a {@link net.csirmazbendeguz.memory_game.event.objects.PairFlipUpEvent} for every two cards flipped.
+     */
     @Override
     public void cardFlippedUp(CardFlipUpEvent event) {
         faceUpCards.offer(event.getCard());
