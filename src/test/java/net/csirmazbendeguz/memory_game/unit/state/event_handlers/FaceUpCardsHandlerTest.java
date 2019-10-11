@@ -1,4 +1,4 @@
-package net.csirmazbendeguz.memory_game.unit.state;
+package net.csirmazbendeguz.memory_game.unit.state.event_handlers;
 
 import net.csirmazbendeguz.memory_game.event.EventDispatcher;
 import net.csirmazbendeguz.memory_game.event.objects.CardFlipUpEvent;
