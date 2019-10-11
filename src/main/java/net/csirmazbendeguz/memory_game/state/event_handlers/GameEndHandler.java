@@ -42,7 +42,7 @@ public class GameEndHandler implements GameStartListener, CardHideListener {
     }
 
     /**
-     * Finish the game when the last card is removed from the board.
+     * Dispatch a {@link net.csirmazbendeguz.memory_game.event.objects.GameEndEvent} when the last card is removed from the board.
      */
     @Override
     public void cardHidden(CardHideEvent event) {

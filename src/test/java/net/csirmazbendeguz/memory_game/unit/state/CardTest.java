@@ -58,13 +58,16 @@ class CardTest extends MockTimerFactoryTestBase {
 
     @Test
     void testIsPairOf() {
-        Card pair = new Card("bulbasaur.png", mockTimerFactory, mockEventDispatcher);
-        assertTrue(card.isPairOf(pair));
-        assertTrue(pair.isPairOf(card));
+        Card other = new Card("bulbasaur.png", mockTimerFactory, mockEventDispatcher);
+        assertTrue(card.isPairOf(other));
+        assertTrue(other.isPairOf(card));
+    }
 
-        Card notPair = new Card("charmander.png", mockTimerFactory, mockEventDispatcher);
-        assertFalse(card.isPairOf(notPair));
-        assertFalse(notPair.isPairOf(card));
+    @Test
+    void testNotIsPairOf() {
+        Card other = new Card("charmander.png", mockTimerFactory, mockEventDispatcher);
+        assertFalse(card.isPairOf(other));
+        assertFalse(other.isPairOf(card));
     }
 
     @Test

@@ -38,9 +38,7 @@ class StopwatchHandlerTest {
     @Test
     void testResetOnGameStart() {
         when(mockStopwatch.isRunning()).thenReturn(false);
-        GameStartEvent mockEvent = mock(GameStartEvent.class);
-        handler.gameStarted(mockEvent);
-        verifyZeroInteractions(mockEvent);
+        triggerGameStarted();
         verify(mockStopwatch).reset();
         verifyNoMoreInteractions(mockStopwatch);
     }
@@ -48,20 +46,22 @@ class StopwatchHandlerTest {
     @Test
     void testStopAndResetOnGameStart() {
         when(mockStopwatch.isRunning()).thenReturn(true);
-        GameStartEvent mockEvent = mock(GameStartEvent.class);
-        handler.gameStarted(mockEvent);
-        verifyZeroInteractions(mockEvent);
+        triggerGameStarted();
         verify(mockStopwatch).stop();
         verify(mockStopwatch).reset();
         verifyNoMoreInteractions(mockStopwatch);
     }
 
+    void triggerGameStarted() {
+        GameStartEvent mockEvent = mock(GameStartEvent.class);
+        handler.gameStarted(mockEvent);
+        verifyZeroInteractions(mockEvent);
+    }
+
     @Test
     void testStartOnFirstFlip() {
         when(mockStopwatch.isRunning()).thenReturn(false);
-        CardFlipUpEvent mockEvent = mock(CardFlipUpEvent.class);
-        handler.cardFlippedUp(mockEvent);
-        verifyZeroInteractions(mockEvent);
+        triggerCardFlippedUp();
         verify(mockStopwatch).start();
         verifyNoMoreInteractions(mockStopwatch);
     }
@@ -69,10 +69,14 @@ class StopwatchHandlerTest {
     @Test
     void testContinueOnFlip() {
         when(mockStopwatch.isRunning()).thenReturn(true);
+        triggerCardFlippedUp();
+        verifyNoMoreInteractions(mockStopwatch);
+    }
+
+    void triggerCardFlippedUp() {
         CardFlipUpEvent mockEvent = mock(CardFlipUpEvent.class);
         handler.cardFlippedUp(mockEvent);
         verifyZeroInteractions(mockEvent);
-        verifyNoMoreInteractions(mockStopwatch);
     }
 
 }
